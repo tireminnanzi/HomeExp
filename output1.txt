@@ -1,0 +1,91 @@
+****************
+Filename: c:\PROG\HomeExp\README.md
+# expensesHome
+home expenses log
+Purpose is to have a platform to store and analyze the expenses, where I can upload the documents from bank or credit card, then every line is split by a text analyzer routine and proposed to add one or more categories in levels. Once I have the database I can visualize the expenses per categories. We start from emptz cateogries, then I add it time by time. (i.e. first level cateogries: home expenses, travels, transports, foor, second level for trasporti, car gasoline or bus, or metro)
+
+1.STRUCTURE
+  There will be a backend where the data is stored in a database and a front end where the user can enter data, categorize and visualize. 
+ 1.1 BACKEND
+     1.1.1 DATABASES
+         Must be created two databases: expenses and categories
+         1.1.1.1 EXPENSES DATABASE
+             The Expenses database contains any single expense with date, description, amount, source (CVS, PDF AMAZON, PDF ING) first level category, second level category, third level category, a numeric id and nothing else.
+             - Verification of uniqueness: There is a verification for duplicates for this database that check if any two expenses have the same data, the same description and the same amount, in this case one of the two is eliminated. This function routine is called everytime an expense is pushed from the front end.
+          1.1.1.2 CATEGORIES DATABASE
+             This database includes the categories divided in the three levels. So we have the full list of the categories, with only one characteristic that is the belonging cateogory valid for the second level and third level category, if this belonging category feature is empty, it means the category is first level. 
+             The user can add one category. In the categorization page, for each categorization level button group, the last button is "new category". When user clicks on it, it can write in the button the name of the new category. If this is not equal to any other category in the same level, it is accepted, the button is modified, a "new category" button is added in case another category is needed. The front end send the add category command to the server.   
+      1.1.2 IMPLEMENTATION
+          The implementation is based on local server on development and debug, it will be deployed on a cloud server later.
+          JSON Server is used for the database interaction and communication
+ 1.2 FRONTEND
+      1.2.1 USER INTERFACE
+         The User interface has a menu on top with three voices that address to three visualization pages those still contain the menu choice on top, but the content is totally different: 
+         1.2.1.1 PAGE: UPLOAD DATA
+             in this page there is a space in the middle where the user can drop three kind of docuemnts from bank or credit card, in 2 different PDF structures or a CSV file to extract data. There is also a red button in the bottom right corner to delete all data and restart" the press of this button requres confirmation from a popup window. Once the file is dropped to the upload space, it is parsed for the expenses data and once data is extracted is pushed to the server. During this procedure a progression bard is visualized to check the status of the upload. When the upload is finished the visualization is automatically transferred to Data categorization. 
+         1.2.1.2 PAGE DATA CATEGORIZATION
+             on the left there is the list of expenses that is read from the server when entering this page. At webpage reload this page is visualized with the first expense selected, expense list can be navigated bz the up and down arrows to select each expense, or clicking on it with the mouse. On the right there is a space for categorization buttons, when a button is clicked it is added below the expense line. When is pressed on the expenses line, it is deleted from the line. There are three level of characterization, for example Food - groceries - Aldi. first level categories can be food, house, transport. Second level categories can be for food: groceries, small shop, restaurants. third level can be for groceries: vegetables, meat, drinks. The button visualization is automatical on the highest categorization to be chosen on the selected expense.
+             When the expenses has no category, only first level category are visualized with the color Red, once one category is chosen and added to the expense it appear the second level buttons in orange, once chosen the third level category is visualized in dark yellow color. When one category is deleted form one expense it deletes also the subcategories and pull the button visualization for the higher category choice.
+         1.1.3 Page "Data visualization"
+             This page is not yet defined, it will be defined once finished the data storage management
+ 1.3 COMMUNICATION BETWEEN FRONTEN AND BACKEND
+     The communication between the two layers happens on dedicated files on each side. The app calls this files and ask to communicate when is needed. 
+     2.3.1 FRONTEND TO BACKEND COMMUNICATION
+      The communication cases are only the following: 
+         - Request full database. Everytime entering the categorization page (for instance at startup)
+             Bakend must: 
+             - sequentially send the expenses
+             Frontend acknowledge every receiving
+         - Push for a new expense, when a document is uploaded and parsed 
+             Backend must:
+             - check that the new pushed expenses is not a duplicate
+             - if it is original, add to the database
+             - send a report to the frontend
+             Frontend log the push success or failure
+         - Add a category to an expense, when any category button is pressed
+             Backend must: 
+             - add the category
+             - Acknowledge the action
+             Frontend logs the activity to browser
+         - Add a category to the category list, sending category name and the parent category (empty if first level category)
+             Backend must:
+             - Update the database 
+             - Acknowledge the database update
+             Frontend: 
+             - log the activity in the browser log
+         - Command "delete all the data" from the red button int he upload data page
+             Backend must: 
+             - Delete all expenses, keeping the category database untouched
+             - acknowledge frontend
+             Frontend log the activity in the bwoser output
+        
+2.DEVELOPMENT
+server managed by JSON server during development stay local with both server manager and database, then MongoDB or google drive  
+Local folder: C:\PROG\HomeExp  
+Github repository: https://github.com/tireminnanzi/HomeExp  
+
+2.1 FOLDER STRUCTURE
+C:\PROG\HomeExp\
+├── frontend/
+│   ├── src/
+│   │   ├── uploadPage/
+│   │   │   └── uploadPage.js
+│   │   │   └── file parser.js
+│   │   ├── categorizationPage/
+│   │   │   └── categorizationPage.js
+│   │   │   └── categoriesManager.js
+│   │   ├── visualizationPage/
+│   │   │   └── visualizationPage.js
+│   │   └── backendCommunications
+│   index.html
+│   style.css
+│   script.js
+│ 
+├── backend/
+│   ├── db.json (JSON Server database)
+│   ├── package.json
+│   ├── server.js
+│   ├── package-lock.json
+│   └── node_modules/
+└── README.md
+
