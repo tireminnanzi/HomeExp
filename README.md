@@ -51,6 +51,7 @@ Purpose is to have a platform to store and analyze the expenses, where I can upl
              - Acknowledge the database update
              Frontend: 
              - log the activity in the browser log
+         - Read all categories in order to setup the cateries buttons
          - Command "delete all the data" from the red button int he upload data page
              Backend must: 
              - Delete all expenses, keeping the category database untouched

@@ -1,1 +1,36 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpensesHome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>ExpensesHome Test Sequence</h1>
+  <p>Open browser console (F12 > Console) to see results.</p>
+  <button onclick="debounce(step1PushExpense, 300)()">Step 1: Push Expense</button>
+  <button onclick="debounce(step3PushDuplicateExpense, 300)()">Step 3: Push Duplicate Expense</button>
+  <button onclick="debounce(step6AddCategory, 300)()">Step 6: Add Category</button>
+  <button onclick="debounce(step7FetchCategories, 300)()">Step 7: Fetch Categories</button>
+  <button onclick="debounce(step8AddDuplicateCategory, 300)()">Step 8: Add Duplicate Category</button>
+  <button onclick="debounce(step10AssignCategory, 300)()">Step 10: Assign Category</button>
+  <button onclick="debounce(step12DeleteAllExpenses, 300)()">Step 12: Delete All Expenses</button>
+  <script>
+    // Simple debounce function to prevent multiple clicks
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+  </script>
+  <script src="src/backendCommunications.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
