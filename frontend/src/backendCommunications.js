@@ -1,171 +1,146 @@
-const API_BASE_URL = 'http://localhost:3000'; // Adjust if port differs
-
-// Push a new expense to the backend
-async function pushNewExpense(expense) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/expenses`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expense)
-    });
-    const result = await response.json();
-    if (response.ok) {
-      console.log('Server response: Expense pushed successfully', {
-        id: result.id,
-        date: result.date,
-        description: result.description,
-        amount: result.amount,
-        fullResponse: result
-      });
-      return { success: true, data: result };
-    } else {
-      console.log('Server response: Failed to push expense', { error: result.error || 'Unknown error' });
-      return { success: false, message: result.error || 'Unknown error' };
-    }
-  } catch (error) {
-    console.log('Server response: Error pushing expense', { error: error.message });
-    return { success: false, message: error.message };
-  }
-}
-
-// Fetch all expenses
 async function fetchAllExpenses() {
   try {
-    const response = await fetch(`${API_BASE_URL}/expenses`);
-    const expenses = await response.json();
-    if (response.ok) {
-      console.log('Server response: Expenses fetched successfully', expenses.map(e => ({
-        id: e.id,
-        date: e.date,
-        description: e.description,
-        amount: e.amount
-      })));
-      return { success: true, data: expenses };
-    } else {
-      console.log('Server response: Failed to fetch expenses', { error: expenses.error || 'Unknown error' });
-      return { success: false, message: expenses.error || 'Unknown error' };
-    }
+    const response = await fetch('http://localhost:3000/expenses');
+    const data = await response.json();
+    console.log('Server response: Expenses fetched successfully', data);
+    return { success: true, data };
   } catch (error) {
-    console.log('Server response: Error fetching expenses', { error: error.message });
+    console.error('Error fetching expenses:', error);
     return { success: false, message: error.message };
   }
 }
 
-// Fetch all categories
 async function fetchAllCategories() {
   try {
-    const response = await fetch(`${API_BASE_URL}/categories`);
-    const categories = await response.json();
-    if (response.ok) {
-      console.log('Server response: Categories fetched successfully', categories.map(c => ({
-        id: c.id,
-        name: c.name,
-        parent: c.parent
-      })));
-      return { success: true, data: categories };
-    } else {
-      console.log('Server response: Failed to fetch categories', { error: categories.error || 'Unknown error' });
-      return { success: false, message: categories.error || 'Unknown error' };
-    }
+    const response = await fetch('http://localhost:3000/categories');
+    const data = await response.json();
+    console.log('Server response: Categories fetched successfully', data);
+    return { success: true, data };
   } catch (error) {
-    console.log('Server response: Error fetching categories', { error: error.message });
+    console.error('Error fetching categories:', error);
     return { success: false, message: error.message };
   }
 }
 
-// Add a new category to the categories list
-async function addNewCategory(categoryName, parentCategory = null) {
+async function assignCategoryToExpense(expense, level, categoryName) {
   try {
-    const newCategory = { name: categoryName, parent: parentCategory };
-    const response = await fetch(`${API_BASE_URL}/categories`, {
+    const updatedExpense = { ...expense };
+    if (level === 1) {
+      updatedExpense.category1 = categoryName;
+      updatedExpense.category2 = null;
+      updatedExpense.category3 = null;
+    } else if (level === 2) {
+      updatedExpense.category2 = categoryName;
+      updatedExpense.category3 = null;
+    } else if (level === 3) {
+      updatedExpense.category3 = categoryName;
+    }
+    const response = await fetch(`http://localhost:3000/expenses/${expense.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedExpense)
+    });
+    const data = await response.json();
+    console.log('Server response: Category assigned to expense', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error assigning category:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function addNewCategory(categoryName, parentCategory) {
+  try {
+    const newCategory = { id: Date.now().toString(), name: categoryName, parent: parentCategory };
+    const response = await fetch('http://localhost:3000/categories', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newCategory)
     });
-    const result = await response.json();
-    if (response.ok) {
-      console.log('Server response: Category added successfully', {
-        id: result.id,
-        name: result.name,
-        parent: result.parent,
-        fullResponse: result
-      });
-      return { success: true, data: result };
-    } else {
-      console.log('Server response: Failed to add category', { error: result.error || 'Unknown error' });
-      return { success: false, message: result.error || 'Unknown error' };
-    }
+    const data = await response.json();
+    console.log('Server response: Category added successfully', data);
+    return { success: true, data };
   } catch (error) {
-    console.log('Server response: Error adding category', { error: error.message });
+    console.error('Error adding category:', error);
     return { success: false, message: error.message };
   }
 }
 
-// Assign a category to an expense
-async function assignCategoryToExpense(expense, level, categoryName) {
+async function deleteSingleCategory(categoryName) {
   try {
-    // Validate expense object
-    if (!expense || !expense.id) {
-      console.log('Server response: Invalid expense or missing ID', { expense });
-      return { success: false, message: 'Invalid expense or missing ID' };
-    }
-    // Update the appropriate category level in the expense object
-    const updatedExpense = { ...expense };
-    if (level === 1) updatedExpense.category1 = categoryName;
-    else if (level === 2) updatedExpense.category2 = categoryName;
-    else if (level === 3) updatedExpense.category3 = categoryName;
+    // Fetch all categories to find the ID
+    const categoriesResponse = await fetch('http://localhost:3000/categories');
+    const allCategories = await categoriesResponse.json();
+    const category = allCategories.find(c => c.name === categoryName);
+    if (!category) throw new Error('Category not found');
 
-    const updateRes = await fetch(`${API_BASE_URL}/expenses/${expense.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedExpense)
+    const categoryId = category.id;
+
+    // Update expenses referencing this category
+    const expensesResponse = await fetch('http://localhost:3000/expenses');
+    const expenses = await expensesResponse.json();
+    for (const expense of expenses) {
+      let needsUpdate = false;
+      const updatedExpense = { ...expense };
+      if (expense.category1 === categoryName) {
+        updatedExpense.category1 = null;
+        updatedExpense.category2 = null;
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      } else if (expense.category2 === categoryName) {
+        updatedExpense.category2 = null;
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      } else if (expense.category3 === categoryName) {
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      }
+      if (needsUpdate) {
+        await fetch(`http://localhost:3000/expenses/${expense.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedExpense)
+        });
+      }
+    }
+
+    // Delete the category
+    const response = await fetch(`http://localhost:3000/categories/${categoryId}`, {
+      method: 'DELETE'
     });
-    const updated = await updateRes.json();
-    if (updateRes.ok) {
-      console.log('Server response: Category assigned to expense', {
-        id: updated.id,
-        date: updated.date,
-        description: updated.description,
-        amount: updated.amount,
-        category1: updated.category1,
-        fullResponse: updated
-      });
-      return { success: true, data: updated };
+    if (response.ok) {
+      console.log('Server response: Category deleted successfully', { id: categoryId });
+      return { success: true, data: { id: categoryId } };
     } else {
-      console.log('Server response: Failed to assign category', { error: updated.error || 'Unknown error' });
-      return { success: false, message: updated.error || 'Unknown error' };
+      throw new Error('Failed to delete category');
     }
   } catch (error) {
-    console.log('Server response: Error assigning category', { error: error.message });
+    console.error('Error deleting single category:', error);
     return { success: false, message: error.message };
   }
 }
 
-// Delete all expenses
 async function deleteAllExpenses() {
   try {
-    const response = await fetch(`${API_BASE_URL}/expenses`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+    const response = await fetch('http://localhost:3000/expenses', {
+      method: 'DELETE'
     });
-    const result = await response.json();
     if (response.ok) {
-      console.log('Server response: All expenses deleted successfully', result);
-      return { success: true, data: result };
+      console.log('Server response: All expenses deleted successfully');
+      return { success: true };
     } else {
-      console.log('Server response: Failed to delete all expenses', { error: result.error || 'Unknown error' });
-      return { success: false, message: result.error || 'Unknown error' };
+      throw new Error('Failed to delete expenses');
     }
   } catch (error) {
-    console.log('Server response: Error deleting all expenses', { error: error.message });
+    console.error('Error deleting expenses:', error);
     return { success: false, message: error.message };
   }
 }
 
-// Expose functions globally
-window.pushNewExpense = pushNewExpense;
+// Expose functions to window object
 window.fetchAllExpenses = fetchAllExpenses;
 window.fetchAllCategories = fetchAllCategories;
-window.addNewCategory = addNewCategory;
 window.assignCategoryToExpense = assignCategoryToExpense;
+window.addNewCategory = addNewCategory;
+window.deleteSingleCategory = deleteSingleCategory;
 window.deleteAllExpenses = deleteAllExpenses;

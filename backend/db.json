@@ -1,4 +1,191 @@
 {
-  "expenses": [],
-  "categories": []
+  "expenses": [
+    {
+      "id": "1",
+      "date": "2025-10-15",
+      "description": "Grocery shopping at supermarket",
+      "amount": -45.3,
+      "source": "CSV",
+      "category1": "Food",
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "2",
+      "date": "2025-10-16",
+      "description": "Bus ticket to work",
+      "amount": -2.5,
+      "source": "PDF_ING",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "3",
+      "date": "2025-10-17",
+      "description": "Salary deposit",
+      "amount": 1500,
+      "source": "CSV",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "4",
+      "date": "2025-10-18",
+      "description": "Restaurant dinner",
+      "amount": -65,
+      "source": "PDF_AMAZON",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "5",
+      "date": "2025-10-19",
+      "description": "Gasoline for car",
+      "amount": -50,
+      "source": "CSV",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Food",
+      "parent": null
+    },
+    {
+      "id": "2",
+      "name": "Groceries",
+      "parent": "Food"
+    },
+    {
+      "id": "3",
+      "name": "Vegetables",
+      "parent": "Groceries"
+    },
+    {
+      "id": "4",
+      "name": "Meat",
+      "parent": "Groceries"
+    },
+    {
+      "id": "5",
+      "name": "Dining",
+      "parent": "Food"
+    },
+    {
+      "id": "6",
+      "name": "Fast Food",
+      "parent": "Dining"
+    },
+    {
+      "id": "7",
+      "name": "Fine Dining",
+      "parent": "Dining"
+    },
+    {
+      "id": "8",
+      "name": "Transport",
+      "parent": null
+    },
+    {
+      "id": "9",
+      "name": "Public Transit",
+      "parent": "Transport"
+    },
+    {
+      "id": "10",
+      "name": "Bus",
+      "parent": "Public Transit"
+    },
+    {
+      "id": "11",
+      "name": "Metro",
+      "parent": "Public Transit"
+    },
+    {
+      "id": "12",
+      "name": "Car",
+      "parent": "Transport"
+    },
+    {
+      "id": "13",
+      "name": "Fuel",
+      "parent": "Car"
+    },
+    {
+      "id": "14",
+      "name": "Income",
+      "parent": null
+    },
+    {
+      "id": "15",
+      "name": "Salary",
+      "parent": "Income"
+    },
+    {
+      "id": "16",
+      "name": "Full-Time",
+      "parent": "Salary"
+    },
+    {
+      "id": "17",
+      "name": "Freelance",
+      "parent": "Income"
+    },
+    {
+      "id": "18",
+      "name": "Consulting",
+      "parent": "Freelance"
+    },
+    {
+      "id": "19",
+      "name": "Calories",
+      "parent": null
+    },
+    {
+      "id": "22",
+      "name": "Tranist",
+      "parent": "Transport"
+    },
+    {
+      "id": "23",
+      "name": "Walter",
+      "parent": "Transport"
+    },
+    {
+      "id": "26",
+      "name": "sss",
+      "parent": "Tranist"
+    },
+    {
+      "id": "27",
+      "name": "Fish",
+      "parent": "Groceries"
+    },
+    {
+      "id": "28",
+      "name": "Dessert",
+      "parent": "Groceries"
+    },
+    {
+      "id": "29",
+      "name": "f",
+      "parent": "Calories"
+    },
+    {
+      "id": "30",
+      "name": "fffd",
+      "parent": "Calories"
+    },
+    {
+      "id": "31",
+      "name": "dd",
+      "parent": "f"
+    }
+  ]
 }

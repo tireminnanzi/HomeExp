@@ -6,7 +6,22 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # List of file paths (relative to script's directory)
 files = [
     os.path.join(script_dir, "README.md"),
-    ]
+    os.path.join(script_dir, "backend", "package.json"),
+    os.path.join(script_dir, "backend", "package-lock.json"),
+    os.path.join(script_dir, "backend", "server.js"),
+    os.path.join(script_dir, "backend", "db.json"),
+    os.path.join(script_dir, "Frontend", "package.json"),
+    os.path.join(script_dir, "Frontend", "package-lock.json"),
+    os.path.join(script_dir, "Frontend", "index.html"),
+    os.path.join(script_dir, "Frontend", "script.js"),
+    os.path.join(script_dir, "Frontend", "style.css"),
+    os.path.join(script_dir, "Frontend", "src", "backendCommunications.js"),
+    os.path.join(script_dir, "Frontend", "src", "categorizationPage", "categorizationPage.js"),
+    os.path.join(script_dir, "Frontend", "src", "categorizationPage", "categoriesManager.js"),
+    os.path.join(script_dir, "Frontend", "src", "uploadPage", "fileParser.js"),
+    os.path.join(script_dir, "Frontend", "src", "uploadPage", "uploadPage.js"),
+    os.path.join(script_dir, "Frontend", "src", "visualizationPage", "visualizationPage.js")
+]
 
 output_base = "output"
 output_ext = ".txt"

@@ -76,14 +76,18 @@ C:\PROG\HomeExp\
 │   │   ├── visualizationPage/
 │   │   │   └── visualizationPage.js
 │   │   └── backendCommunications.js
+│   ├── node_modules
 │   index.html
 │   style.css
 │   script.js
+│   package.json
+│   package-lock.json
 │ 
 ├── backend/
 │   ├── db.json (JSON Server database)
 │   ├── package.json
 │   ├── server.js
 │   ├── package-lock.json
+│   ├── db.json
 │   └── node_modules/
 └── README.md
