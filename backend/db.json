@@ -7,8 +7,8 @@
       "amount": -45.3,
       "source": "CSV",
       "category1": "Food",
-      "category2": null,
-      "category3": null
+      "category2": "Groceries",
+      "category3": null,
     },
     {
       "id": "2",
@@ -16,9 +16,9 @@
       "description": "Bus ticket to work",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": null,
-      "category2": null,
-      "category3": null
+      "category1": "Food",
+      "category2": "Cena",
+      "category3": null,
     },
     {
       "id": "3",
@@ -26,9 +26,9 @@
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
-      "category3": null
+      "category1": "Transport",
+      "category2": "Car",
+      "category3": null,
     },
     {
       "id": "4",
@@ -38,9 +38,9 @@
       "source": "PDF_AMAZON",
       "category1": null,
       "category2": null,
-      "category3": null
+      "category3": null,
     },
-    {
+    {s
       "id": "5",
       "date": "2025-10-19",
       "description": "Gasoline for car",
@@ -48,7 +48,7 @@
       "source": "CSV",
       "category1": null,
       "category2": null,
-      "category3": null
+      "category3": null,
     }
   ],
   "categories": [
@@ -143,11 +143,6 @@
       "parent": "Freelance"
     },
     {
-      "id": "19",
-      "name": "Calories",
-      "parent": null
-    },
-    {
       "id": "22",
       "name": "Tranist",
       "parent": "Transport"
@@ -174,18 +169,13 @@
     },
     {
       "id": "29",
-      "name": "f",
-      "parent": "Calories"
+      "name": "Cena",
+      "parent": "Food"
     },
     {
       "id": "30",
-      "name": "fffd",
-      "parent": "Calories"
-    },
-    {
-      "id": "31",
-      "name": "dd",
-      "parent": "f"
+      "name": "cena",
+      "parent": null
     }
   ]
 }

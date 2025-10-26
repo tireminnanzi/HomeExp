@@ -1,0 +1,1274 @@
+Index of Files:
+1. index.html
+2. script.js
+3. style.css
+4. src/backendCommunications.js
+5. src/categorizationPage/categorizationPage.js
+6. src/categorizationPage/categoriesManager.js
+7. src/categorizationPage/expenseManager.js
+8. src/categorizationPage/rulesManager.js
+9. src/uploadPage/fileParser.js
+10. src/uploadPage/uploadPage.js
+11. src/visualizationPage/visualizationPage.js
+
+****************
+Filename: index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpensesHome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    console.log('HTML loaded, scripts about to run');
+  </script>
+  <script src="src/backendCommunications.js"></script>
+  <script src="script.js" type="module"></script>
+</body>
+</html>
+
+****************
+Filename: script.js
+console.log('script.js loaded and starting');
+
+function loadPage(page) {
+  console.log('loadPage called for page:', page);
+  const root = document.getElementById('root');
+  root.innerHTML = `
+    <header class="header">
+      <div class="header-container">
+        <h1 class="header-title">ExpensesHome</h1>
+        <nav class="nav">
+          <button class="nav-button ${page === 'upload' ? 'nav-button-active' : ''}" onclick="loadPage('upload')">Upload</button>
+          <button class="nav-button ${page === 'categorize' ? 'nav-button-active' : ''}" onclick="loadPage('categorize')">Categorize</button>
+          <button class="nav-button ${page === 'visualize' ? 'nav-button-active' : ''}" onclick="loadPage('visualize')">Visualize</button>
+        </nav>
+      </div>
+    </header>
+    <main class="main-container">
+      ${page === 'upload' ? `
+        <h2>Upload</h2>
+        <div id="upload-space" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" class="upload-space">
+          Drop files here (CSV, PDF AMAZON, PDF ING)
+        </div>
+        <button id="delete-data" class="delete-button" onclick="window.deleteAllExpenses()">Delete All Data</button>
+      ` : page === 'categorize' ? `
+        <div class="grid-container">
+          <div class="expense-column">
+            <h2 class="column-title">Expenses</h2>
+            <ul id="expense-list" class="expense-list"></ul>
+          </div>
+          <div class="category-column">
+            <h2 class="column-title">Categories</h2>
+            <div id="category-buttons" class="category-buttons"></div>
+          </div>
+        </div>
+      ` : `
+        <h2>Visualize</h2>
+        <p>Visualization page placeholder</p>
+      `}
+    </main>
+  `;
+  console.log('HTML content updated for page:', page);
+
+  // Remove existing page scripts
+  const existingScripts = document.querySelectorAll('script[data-page]');
+  existingScripts.forEach(script => {
+    console.log('Removing existing script:', script.src);
+    script.remove();
+  });
+
+  // Load page-specific scripts
+  if (page === 'upload') {
+    console.log('Loading upload page script');
+    const script = document.createElement('script');
+    script.src = 'src/uploadPage/uploadPage.js';
+    script.type = 'module';
+    script.dataset.page = 'upload';
+    document.body.appendChild(script);
+  } else if (page === 'categorize') {
+    console.log('Loading categorize page scripts');
+    // Carica expenseManager.js
+    const expenseScript = document.createElement('script');
+    expenseScript.src = '/src/categorizationPage/expenseManager.js';
+    expenseScript.type = 'module';
+    expenseScript.dataset.page = 'categorize';
+    document.body.appendChild(expenseScript);
+
+    // Carica categoriesManager.js
+    const categoriesScript = document.createElement('script');
+    categoriesScript.src = '/src/categorizationPage/categoriesManager.js';
+    categoriesScript.type = 'module';
+    categoriesScript.dataset.page = 'categorize';
+    document.body.appendChild(categoriesScript);
+
+    // Carica categorizationPage.js
+    const pageScript = document.createElement('script');
+    pageScript.src = '/src/categorizationPage/categorizationPage.js';
+    pageScript.type = 'module';
+    pageScript.dataset.page = 'categorize';
+    document.body.appendChild(pageScript);
+  } else if (page === 'visualize') {
+    console.log('Loading visualize page script');
+    const script = document.createElement('script');
+    script.src = 'src/visualizationPage/visualizationPage.js';
+    script.type = 'module';
+    script.dataset.page = 'visualize';
+    document.body.appendChild(script);
+  }
+}
+
+// Load default page
+console.log('Initializing with default page: categorize');
+loadPage('categorize');
+
+****************
+Filename: style.css
+/* Existing styles (unchanged except for expense-item and related) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-right: 32px;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-button:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-button-active {
+  background-color: #000;
+  color: #fff;
+}
+
+.main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 100%;
+}
+
+.expense-column, .category-column {
+  padding: 16px;
+  overflow-y: auto; /* Ensure scrolling within columns */
+}
+
+.column-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.expense-list {
+  list-style: none;
+}
+
+/* Updated expense-item styles */
+.expense-item {
+  padding: 8px 12px; /* Reduced padding for compact layout */
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+  font-size: 16px; /* Slightly smaller for 30px height */
+  color: #000;
+  transition: background-color 0.2s;
+  display: grid;
+  grid-template-rows: 30px 30px; /* 50% data, 50% categories */
+  grid-template-columns: 20% 65% 15%; /* Date, Description, Amount */
+  align-items: center;
+  gap: 8px;
+  height: 60px; /* Fixed height */
+}
+
+.expense-item:hover {
+  background-color: #f9fafb;
+}
+
+.expense-item.selected {
+  background-color: #e5e7eb;
+}
+
+.expense-date, .expense-description, .expense-amount {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  grid-row: 1 / 2; /* Top row */
+}
+
+.expense-date {
+  grid-column: 1 / 2;
+}
+
+.expense-description {
+  grid-column: 2 / 3;
+}
+
+.expense-amount {
+  grid-column: 3 / 4;
+  font-weight: bold;
+  text-align: right;
+}
+
+.expense-negative .expense-amount {
+  color: #dc2626;
+}
+
+.expense-positive .expense-amount {
+  color: #16a34a;
+}
+
+.category-tags {
+  grid-row: 2 / 3; /* Bottom row */
+  grid-column: 1 / -1; /* Span all columns */
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 24px; /* Fits tags in 30px row */
+}
+
+.expense-category-button {
+  padding: 4px 8px; /* Smaller for tags */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.expense-category-button.level-1 {
+  background-color: #16a34a; /* Green */
+}
+
+.expense-category-button.level-1:hover {
+  background-color: #15803d;
+}
+
+.expense-category-button.level-2 {
+  background-color: #2563eb; /* Blue */
+}
+
+.expense-category-button.level-2:hover {
+  background-color: #1d4ed8;
+}
+
+.expense-category-button.level-3 {
+  background-color: #dc2626; /* Red */
+}
+
+.expense-category-button.level-3:hover {
+  background-color: #b91c1c;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+}
+
+.delete-toggle-button {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  padding: 4px 8px;
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.delete-toggle-button:hover {
+  background-color: #b91c1c;
+}
+
+.category-buttons.delete-mode .category-button.level-1 {
+  background-color: #86efac;
+}
+
+.category-buttons.delete-mode .category-button.level-1:hover {
+  background-color: #4ade80;
+}
+
+.category-buttons.delete-mode .category-button.level-2 {
+  background-color: #93c5fd;
+}
+
+.category-buttons.delete-mode .category-button.level-2:hover {
+  background-color: #60a5fa;
+}
+
+.category-buttons.delete-mode .category-button.level-3 {
+  background-color: #fca5a5;
+}
+
+.category-buttons.delete-mode .category-button.level-3:hover {
+  background-color: #f87171;
+}
+
+.category-button {
+  padding: 8px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.category-button.level-1 {
+  background-color: #16a34a;
+}
+
+.category-button.level-1:hover {
+  background-color: #15803d;
+}
+
+.category-button.level-2 {
+  background-color: #2563eb;
+}
+
+.category-button.level-2:hover {
+  background-color: #1d4ed8;
+}
+
+.category-button.level-3 {
+  background-color: #dc2626;
+}
+
+.category-button.level-3:hover {
+  background-color: #b91c1c;
+}
+
+.category-button.editing {
+  color: #fff;
+  border: none;
+  min-width: 100px;
+  outline: none;
+}
+
+.category-button.editing::selection {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.no-data {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.upload-space {
+  height: 200px;
+  border: 2px dashed #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin: 20px 0;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px 16px;
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #b91c1c;
+}
+
+****************
+Filename: src/backendCommunications.js
+async function fetchAllExpenses() {
+  try {
+    const response = await fetch('http://localhost:3000/expenses');
+    const data = await response.json();
+    console.log('Server response: Expenses fetched successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching expenses:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function fetchAllCategories() {
+  try {
+    const response = await fetch('http://localhost:3000/categories');
+    const data = await response.json();
+    console.log('Server response: Categories fetched successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function assignCategoryToExpense(expense, level, categoryName) {
+  try {
+    const updatedExpense = { ...expense };
+    if (level === 1) {
+      updatedExpense.category1 = categoryName;
+      updatedExpense.category2 = null;
+      updatedExpense.category3 = null;
+    } else if (level === 2) {
+      updatedExpense.category2 = categoryName;
+      updatedExpense.category3 = null;
+    } else if (level === 3) {
+      updatedExpense.category3 = categoryName;
+    }
+    const response = await fetch(`http://localhost:3000/expenses/${expense.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedExpense)
+    });
+    const data = await response.json();
+    console.log('Server response: Category assigned to expense', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error assigning category:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function addNewCategory(categoryName, parentCategory) {
+  try {
+    const newCategory = { id: Date.now().toString(), name: categoryName, parent: parentCategory };
+    const response = await fetch('http://localhost:3000/categories', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newCategory)
+    });
+    const data = await response.json();
+    console.log('Server response: Category added successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error adding category:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function deleteSingleCategory(categoryName) {
+  try {
+    // Fetch all categories to find the ID
+    const categoriesResponse = await fetch('http://localhost:3000/categories');
+    const allCategories = await categoriesResponse.json();
+    const category = allCategories.find(c => c.name === categoryName);
+    if (!category) throw new Error('Category not found');
+
+    const categoryId = category.id;
+
+    // Update expenses referencing this category
+    const expensesResponse = await fetch('http://localhost:3000/expenses');
+    const expenses = await expensesResponse.json();
+    for (const expense of expenses) {
+      let needsUpdate = false;
+      const updatedExpense = { ...expense };
+      if (expense.category1 === categoryName) {
+        updatedExpense.category1 = null;
+        updatedExpense.category2 = null;
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      } else if (expense.category2 === categoryName) {
+        updatedExpense.category2 = null;
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      } else if (expense.category3 === categoryName) {
+        updatedExpense.category3 = null;
+        needsUpdate = true;
+      }
+      if (needsUpdate) {
+        await fetch(`http://localhost:3000/expenses/${expense.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedExpense)
+        });
+      }
+    }
+
+    // Delete the category
+    const response = await fetch(`http://localhost:3000/categories/${categoryId}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      console.log('Server response: Category deleted successfully', { id: categoryId });
+      return { success: true, data: { id: categoryId } };
+    } else {
+      throw new Error('Failed to delete category');
+    }
+  } catch (error) {
+    console.error('Error deleting single category:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+async function deleteAllExpenses() {
+  try {
+    const response = await fetch('http://localhost:3000/expenses', {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      console.log('Server response: All expenses deleted successfully');
+      return { success: true };
+    } else {
+      throw new Error('Failed to delete expenses');
+    }
+  } catch (error) {
+    console.error('Error deleting expenses:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+// Expose functions to window object
+window.fetchAllExpenses = fetchAllExpenses;
+window.fetchAllCategories = fetchAllCategories;
+window.assignCategoryToExpense = assignCategoryToExpense;
+window.addNewCategory = addNewCategory;
+window.deleteSingleCategory = deleteSingleCategory;
+window.deleteAllExpenses = deleteAllExpenses;
+
+****************
+Filename: src/categorizationPage/categorizationPage.js
+// Frontend/src/categorizationPage/categorizationPage.js
+console.log('categorizationPage.js loaded');
+
+let selectedExpenseId = null;
+let expensesList = [];
+let categoriesList = [];
+let isDeleteMode = false;
+
+export async function initializeCategorization() {
+    console.log('initializeCategorization started');
+    await loadPage();
+}
+
+async function loadPage() {
+    console.log('loadPage started');
+    const expenseList = document.getElementById('expense-list');
+    const categoryButtons = document.getElementById('category-buttons');
+    if (!expenseList || !categoryButtons) {
+        console.error('Required elements not found:', { expenseList, categoryButtons });
+        return;
+    }
+    expenseList.innerHTML = '';
+
+    try {
+        console.log('Fetching expenses and categories...');
+        const [fetchExpensesResult, fetchCategoriesResult] = await Promise.all([
+            window.fetchAllExpenses(),
+            window.fetchAllCategories()
+        ]);
+        expensesList = fetchExpensesResult.success ? fetchExpensesResult.data : [];
+        categoriesList = fetchCategoriesResult.success ? fetchCategoriesResult.data : [];
+        console.log('Expenses list:', expensesList);
+        console.log('Categories list:', categoriesList);
+    } catch (error) {
+        console.error('Fetch error in loadPage:', error);
+        expensesList = [];
+        categoriesList = [];
+    }
+
+    if (expensesList.length > 0) {
+        console.log('Initializing expense selection...');
+        initializeExpenseSelection();
+        console.log('Updating expense display...');
+        updateExpenseDisplay();
+        console.log('Updating category display...');
+        updateCategoryDisplay();
+    } else {
+        console.log('No expenses found, setting no-data message');
+        expenseList.innerHTML = '<p class="no-data">No expenses found</p>';
+        categoryButtons.innerHTML = '<p class="no-data">No expenses to categorize</p>';
+    }
+    console.log('loadPage completed');
+}
+
+function initializeExpenseSelection() {
+    console.log('initializeExpenseSelection started');
+    if (!selectedExpenseId || !expensesList.some(exp => exp.id === selectedExpenseId)) {
+        const firstUncategorized = expensesList.find(exp => !exp.category3) || expensesList[0];
+        selectedExpenseId = firstUncategorized ? firstUncategorized.id : null;
+        window.selectedExpenseId = selectedExpenseId; // Expose globally
+    }
+    console.log('Selected expense ID:', selectedExpenseId);
+    console.log('initializeExpenseSelection completed');
+}
+
+function updateExpenseDisplay() {
+    console.log('updateExpenseDisplay called');
+    if (window.expenseManager) {
+        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
+    } else {
+        console.error('expenseManager not found');
+    }
+    console.log('updateExpenseDisplay completed');
+}
+
+function updateCategoryDisplay() {
+    console.log('updateCategoryDisplay called');
+    const selectedExpense = expensesList.find(exp => exp.id === selectedExpenseId);
+    if (selectedExpense && window.categoriesManager) {
+        console.log('Selected expense for category display:', selectedExpense);
+        window.categoriesManager.updateCategoryButtons(selectedExpense, categoriesList, isDeleteMode);
+    } else {
+        console.log('No selected expense or categoriesManager not found');
+        document.getElementById('category-buttons').innerHTML = '<p class="no-data">No expense selected</p>';
+    }
+    console.log('updateCategoryDisplay completed');
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded in categorizationPage.js');
+        initializeCategorization();
+    });
+} else {
+    console.log('Document already loaded, calling initializeCategorization');
+    initializeCategorization();
+}
+
+document.getElementById('expense-list')?.addEventListener('expenseSelected', (e) => {
+    console.log('expenseSelected event received, new ID:', e.detail.id);
+    selectedExpenseId = e.detail.id;
+    window.selectedExpenseId = selectedExpenseId; // Update global
+    updateExpenseDisplay();
+    updateCategoryDisplay();
+});
+
+document.getElementById('category-buttons')?.addEventListener('categoryUpdated', async (e) => {
+    console.log('categoryUpdated event received');
+    try {
+        const fetchExpensesResult = await window.fetchAllExpenses();
+        expensesList = fetchExpensesResult.success ? fetchExpensesResult.data : [];
+        const selectedExpense = expensesList.find(exp => exp.id === selectedExpenseId);
+        if (selectedExpense) {
+            console.log('Updating single expense display for:', selectedExpense);
+            window.expenseManager.updateSingleExpenseDisplay(selectedExpense);
+            updateCategoryDisplay();
+        } else {
+            console.log('No selected expense to update, refreshing all');
+            updateExpenseDisplay();
+            updateCategoryDisplay();
+        }
+    } catch (error) {
+        console.error('Error updating expenses after category change:', error);
+    }
+});
+
+****************
+Filename: src/categorizationPage/categoriesManager.js
+// Frontend/src/categorizationPage/categoriesManager.js
+const categoriesManager = {
+    updateCategoryButtons(selectedExpense, categoriesList, isDeleteMode) {
+        console.log('updateCategoryButtons started, selectedExpense:', selectedExpense, 'isDeleteMode:', isDeleteMode);
+        const categoryButtons = document.getElementById('category-buttons');
+        categoryButtons.innerHTML = '';
+        categoryButtons.className = `category-buttons ${isDeleteMode ? 'delete-mode' : ''}`;
+
+        const deleteToggleBtn = document.createElement('button');
+        deleteToggleBtn.textContent = 'x';
+        deleteToggleBtn.className = 'delete-toggle-button';
+        deleteToggleBtn.onclick = () => {
+            console.log('Delete mode toggled to:', !isDeleteMode);
+            isDeleteMode = !isDeleteMode;
+            this.updateCategoryButtons(selectedExpense, categoriesList, isDeleteMode);
+        };
+        categoryButtons.appendChild(deleteToggleBtn);
+
+        let categoriesToShow = [];
+        let level = 1;
+        if (!selectedExpense.category1) {
+            categoriesToShow = categoriesList.filter(c => !c.parent);
+            level = 1;
+        } else if (!selectedExpense.category2) {
+            categoriesToShow = categoriesList.filter(c => c.parent === selectedExpense.category1);
+            level = 2;
+        } else if (!selectedExpense.category3) {
+            categoriesToShow = categoriesList.filter(c => c.parent === selectedExpense.category2);
+            level = 3;
+        } else {
+            console.log('Expense fully categorized');
+            categoryButtons.innerHTML = '<p class="no-data">Expense fully categorized</p>';
+            return;
+        }
+        console.log('Categories to show at level', level, ':', categoriesToShow);
+
+        categoriesToShow.forEach(c => {
+            const button = document.createElement('button');
+            button.textContent = c.name;
+            button.className = `category-button level-${level}`;
+            button.onclick = async () => {
+                console.log('Category button clicked:', c.name, 'mode:', isDeleteMode ? 'delete' : 'assign');
+                if (isDeleteMode) {
+                    const result = await this.deleteWithDescendants(c.name, categoriesList);
+                    if (result.success) {
+                        console.log('Category deleted:', c.name);
+                        const event = new CustomEvent('categoryUpdated');
+                        document.getElementById('category-buttons').dispatchEvent(event);
+                    } else {
+                        console.error('Error deleting category:', result.message);
+                        categoryButtons.innerHTML = '<p class="no-data">Error deleting category</p>';
+                    }
+                } else {
+                    const result = await window.assignCategoryToExpense(selectedExpense, level, c.name);
+                    if (result.success) {
+                        console.log('Category assigned:', c.name);
+                        const event = new CustomEvent('categoryUpdated');
+                        document.getElementById('category-buttons').dispatchEvent(event);
+                    }
+                }
+            };
+            categoryButtons.appendChild(button);
+        });
+
+        const addCategoryBtn = document.createElement('button');
+        addCategoryBtn.textContent = '...';
+        addCategoryBtn.className = `category-button level-${level}`;
+        addCategoryBtn.id = 'add-category-btn';
+        addCategoryBtn.contentEditable = false;
+        addCategoryBtn.onclick = () => {
+            console.log('Add category button clicked');
+            if (!isDeleteMode) {
+                addCategoryBtn.contentEditable = true;
+                addCategoryBtn.textContent = '';
+                addCategoryBtn.classList.add('editing');
+                requestAnimationFrame(() => {
+                    addCategoryBtn.focus();
+                    const range = document.createRange();
+                    range.selectNodeContents(addCategoryBtn);
+                    range.collapse(true);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                });
+            }
+        };
+        const saveCategory = async () => {
+            const newCategoryName = addCategoryBtn.textContent.trim();
+            console.log('Saving new category:', newCategoryName);
+            if (newCategoryName && !/^\s+$/.test(newCategoryName) && newCategoryName !== '...' && !categoriesList.some(c => c.name === newCategoryName)) {
+                const parentCategory = level === 1 ? null : level === 2 ? selectedExpense.category1 : selectedExpense.category2;
+                if (parentCategory && !categoriesList.some(c => c.name === parentCategory)) {
+                    console.error('Error adding category: Parent category does not exist');
+                    categoryButtons.innerHTML = '<p class="no-data">Error: Parent category does not exist</p>';
+                    addCategoryBtn.textContent = '...';
+                    addCategoryBtn.contentEditable = false;
+                    addCategoryBtn.classList.remove('editing');
+                    requestAnimationFrame(() => addCategoryBtn.focus());
+                    return;
+                }
+                const result = await window.addNewCategory(newCategoryName, parentCategory);
+                if (result.success) {
+                    console.log('New category added:', newCategoryName);
+                    addCategoryBtn.textContent = '...';
+                    addCategoryBtn.contentEditable = false;
+                    addCategoryBtn.classList.remove('editing');
+                    const event = new CustomEvent('categoryUpdated');
+                    document.getElementById('category-buttons').dispatchEvent(event);
+                } else {
+                    console.error('Error adding category:', result.message);
+                    categoryButtons.innerHTML = '<p class="no-data">Error adding category</p>';
+                }
+            } else {
+                addCategoryBtn.textContent = '...';
+                addCategoryBtn.contentEditable = false;
+                addCategoryBtn.classList.remove('editing');
+                requestAnimationFrame(() => addCategoryBtn.focus());
+            }
+        };
+        addCategoryBtn.onkeydown = async (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                await saveCategory();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                addCategoryBtn.textContent = '...';
+                addCategoryBtn.contentEditable = false;
+                addCategoryBtn.classList.remove('editing');
+                requestAnimationFrame(() => addCategoryBtn.focus());
+            }
+        };
+        addCategoryBtn.onblur = saveCategory;
+        categoryButtons.appendChild(addCategoryBtn);
+        console.log('updateCategoryButtons completed');
+    },
+
+    async deleteWithDescendants(categoryName, categoriesList) {
+        console.log('deleteWithDescendants started for:', categoryName);
+        const getDescendantNames = (parentName, visited = new Set()) => {
+            if (visited.has(parentName)) return [];
+            visited.add(parentName);
+            const descendants = [];
+            const children = categoriesList.filter(c => c.parent === parentName);
+            for (const child of children) {
+                descendants.push(child.name);
+                descendants.push(...getDescendantNames(child.name, visited));
+            }
+            return descendants;
+        };
+        const namesToDelete = [categoryName, ...getDescendantNames(categoryName)];
+        const deletedIds = [];
+
+        for (const name of namesToDelete) {
+            const category = categoriesList.find(c => c.name === name);
+            if (category) {
+                const result = await window.deleteSingleCategory(name);
+                if (result.success) {
+                    deletedIds.push(category.id);
+                } else {
+                    return { success: false, message: result.message };
+                }
+            }
+        }
+        console.log('deleteWithDescendants completed, deleted:', namesToDelete);
+        return { success: true, data: { deletedNames: namesToDelete } };
+    },
+
+    async removeCategoryFromExpense(expense, level) {
+        console.log('removeCategoryFromExpense called for expense:', expense.id, 'level:', level);
+        const updatedExpense = { ...expense };
+        if (level <= 3) updatedExpense.category3 = null;
+        if (level <= 2) updatedExpense.category2 = null;
+        if (level <= 1) updatedExpense.category1 = null;
+
+        const result = await window.assignCategoryToExpense(updatedExpense, level, null);
+        if (result.success) {
+            console.log('Category removed from expense:', expense.id, 'level:', level);
+            return { success: true, data: result.data };
+        } else {
+            console.error('Error removing category:', result.message);
+            return { success: false, message: result.message };
+        }
+    }
+};
+
+window.categoriesManager = categoriesManager;
+
+****************
+Filename: src/categorizationPage/expenseManager.js
+/* Existing styles (unchanged except for expense-item and related) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-right: 32px;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-button:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-button-active {
+  background-color: #000;
+  color: #fff;
+}
+
+.main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 100%;
+}
+
+.expense-column, .category-column {
+  padding: 16px;
+  overflow-y: auto; /* Ensure scrolling within columns */
+}
+
+.column-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.expense-list {
+  list-style: none;
+}
+
+/* Updated expense-item styles */
+.expense-item {
+  padding: 8px 12px; /* Reduced padding for compact layout */
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+  font-size: 16px; /* Slightly smaller for 30px height */
+  color: #000;
+  transition: background-color 0.2s;
+  display: grid;
+  grid-template-rows: 30px 30px; /* 50% data, 50% categories */
+  grid-template-columns: 20% 65% 15%; /* Date, Description, Amount */
+  align-items: center;
+  gap: 8px;
+  height: 60px; /* Fixed height */
+}
+
+.expense-item:hover {
+  background-color: #f9fafb;
+}
+
+.expense-item.selected {
+  background-color: #e5e7eb;
+}
+
+.expense-date, .expense-description, .expense-amount {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  grid-row: 1 / 2; /* Top row */
+}
+
+.expense-date {
+  grid-column: 1 / 2;
+}
+
+.expense-description {
+  grid-column: 2 / 3;
+}
+
+.expense-amount {
+  grid-column: 3 / 4;
+  font-weight: bold;
+  text-align: right;
+}
+
+.expense-negative .expense-amount {
+  color: #dc2626;
+}
+
+.expense-positive .expense-amount {
+  color: #16a34a;
+}
+
+.category-tags {
+  grid-row: 2 / 3; /* Bottom row */
+  grid-column: 1 / -1; /* Span all columns */
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 24px; /* Fits tags in 30px row */
+}
+
+.expense-category-button {
+  padding: 4px 8px; /* Smaller for tags */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.expense-category-button.level-1 {
+  background-color: #16a34a; /* Green */
+}
+
+.expense-category-button.level-1:hover {
+  background-color: #15803d;
+}
+
+.expense-category-button.level-2 {
+  background-color: #2563eb; /* Blue */
+}
+
+.expense-category-button.level-2:hover {
+  background-color: #1d4ed8;
+}
+
+.expense-category-button.level-3 {
+  background-color: #dc2626; /* Red */
+}
+
+.expense-category-button.level-3:hover {
+  background-color: #b91c1c;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+}
+
+.delete-toggle-button {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  padding: 4px 8px;
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.delete-toggle-button:hover {
+  background-color: #b91c1c;
+}
+
+.category-buttons.delete-mode .category-button.level-1 {
+  background-color: #86efac;
+}
+
+.category-buttons.delete-mode .category-button.level-1:hover {
+  background-color: #4ade80;
+}
+
+.category-buttons.delete-mode .category-button.level-2 {
+  background-color: #93c5fd;
+}
+
+.category-buttons.delete-mode .category-button.level-2:hover {
+  background-color: #60a5fa;
+}
+
+.category-buttons.delete-mode .category-button.level-3 {
+  background-color: #fca5a5;
+}
+
+.category-buttons.delete-mode .category-button.level-3:hover {
+  background-color: #f87171;
+}
+
+.category-button {
+  padding: 8px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.category-button.level-1 {
+  background-color: #16a34a;
+}
+
+.category-button.level-1:hover {
+  background-color: #15803d;
+}
+
+.category-button.level-2 {
+  background-color: #2563eb;
+}
+
+.category-button.level-2:hover {
+  background-color: #1d4ed8;
+}
+
+.category-button.level-3 {
+  background-color: #dc2626;
+}
+
+.category-button.level-3:hover {
+  background-color: #b91c1c;
+}
+
+.category-button.editing {
+  color: #fff;
+  border: none;
+  min-width: 100px;
+  outline: none;
+}
+
+.category-button.editing::selection {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.no-data {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.upload-space {
+  height: 200px;
+  border: 2px dashed #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin: 20px 0;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px 16px;
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #b91c1c;
+}
+
+****************
+Filename: src/categorizationPage/rulesManager.js
+
+
+****************
+Filename: src/uploadPage/fileParser.js
+ // Placeholder for file parsing logic
+
+
+****************
+Filename: src/uploadPage/uploadPage.js
+ // Placeholder for upload page logic
+function dropHandler(ev) {
+  ev.preventDefault();
+  console.log('File dropped');
+}
+
+function dragOverHandler(ev) {
+  ev.preventDefault();
+}
+
+
+****************
+Filename: src/visualizationPage/visualizationPage.js
+ // Placeholder for visualization page logic
+

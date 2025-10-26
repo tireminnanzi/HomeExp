@@ -1,0 +1,268 @@
+Index of Files:
+1. server.js
+2. db.json
+
+****************
+Filename: server.js
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+const express = require('express');
+
+server.use(express.json());
+server.use(middlewares);
+
+// Ensure CORS for frontend requests
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+// Check for duplicate expenses and assign sequential ID
+server.post('/expenses', (req, res) => {
+  const { date, description, amount } = req.body;
+  const expenses = router.db.get('expenses').value();
+  const isDuplicate = expenses.some(
+    expense => expense.date === date && 
+               expense.description === description && 
+               expense.amount === amount
+  );
+  if (isDuplicate) {
+    console.log('Server: Duplicate expense detected', { date, description, amount });
+    return res.status(400).json({ error: 'Duplicate expense detected' });
+  }
+  // Assign sequential ID
+  const lastId = expenses.length > 0 ? Math.max(...expenses.map(e => parseInt(e.id || 0))) : 0;
+  const newId = (lastId + 1).toString();
+  const newExpense = { ...req.body, id: newId };
+  router.db.get('expenses').push(newExpense).write();
+  console.log('Server: Saved expense to db.json:', newExpense); // Detailed log
+  res.status(201).json(newExpense); // Return expense with ID
+});
+
+// Delete all expenses
+server.delete('/expenses', (req, res) => {
+  router.db.set('expenses', []).write();
+  console.log('Server: All expenses deleted');
+  res.status(200).json({ message: 'All expenses deleted' });
+});
+
+// Check for duplicate categories and assign sequential ID
+server.post('/categories', (req, res) => {
+  const { name, parent } = req.body;
+  const categories = router.db.get('categories').value();
+  const exists = categories.some(cat => cat.name === name && cat.parent === parent);
+  if (exists) {
+    console.log('Server: Duplicate category detected', { name, parent });
+    return res.status(400).json({ error: 'Category already exists' });
+  }
+  // Assign sequential ID
+  const lastId = categories.length > 0 ? Math.max(...categories.map(c => parseInt(c.id || 0))) : 0;
+  const newId = (lastId + 1).toString();
+  const newCategory = { ...req.body, id: newId };
+  router.db.get('categories').push(newCategory).write();
+  console.log('Server: Saved category to db.json:', newCategory); // Detailed log
+  res.status(201).json(newCategory); // Return category with ID
+});
+
+server.use(router);
+server.listen(3000, () => {
+  console.log('JSON Server running on port 3000');
+});
+
+****************
+Filename: db.json
+{
+  "expenses": [
+    {
+      "id": "1",
+      "date": "2025-10-15",
+      "description": "Grocery shopping at supermarket",
+      "amount": -45.3,
+      "source": "CSV",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "2",
+      "date": "2025-10-16",
+      "description": "Bus ticket to work",
+      "amount": -2.5,
+      "source": "PDF_ING",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "3",
+      "date": "2025-10-17",
+      "description": "Salary deposit",
+      "amount": 1500,
+      "source": "CSV",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "4",
+      "date": "2025-10-18",
+      "description": "Restaurant dinner",
+      "amount": -65,
+      "source": "PDF_AMAZON",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    },
+    {
+      "id": "5",
+      "date": "2025-10-19",
+      "description": "Gasoline for car",
+      "amount": -50,
+      "source": "CSV",
+      "category1": null,
+      "category2": null,
+      "category3": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Food",
+      "parent": null
+    },
+    {
+      "id": "2",
+      "name": "Groceries",
+      "parent": "Food"
+    },
+    {
+      "id": "3",
+      "name": "Vegetables",
+      "parent": "Groceries"
+    },
+    {
+      "id": "4",
+      "name": "Meat",
+      "parent": "Groceries"
+    },
+    {
+      "id": "5",
+      "name": "Dining",
+      "parent": "Food"
+    },
+    {
+      "id": "6",
+      "name": "Fast Food",
+      "parent": "Dining"
+    },
+    {
+      "id": "7",
+      "name": "Fine Dining",
+      "parent": "Dining"
+    },
+    {
+      "id": "8",
+      "name": "Transport",
+      "parent": null
+    },
+    {
+      "id": "9",
+      "name": "Public Transit",
+      "parent": "Transport"
+    },
+    {
+      "id": "10",
+      "name": "Bus",
+      "parent": "Public Transit"
+    },
+    {
+      "id": "11",
+      "name": "Metro",
+      "parent": "Public Transit"
+    },
+    {
+      "id": "12",
+      "name": "Car",
+      "parent": "Transport"
+    },
+    {
+      "id": "13",
+      "name": "Fuel",
+      "parent": "Car"
+    },
+    {
+      "id": "14",
+      "name": "Income",
+      "parent": null
+    },
+    {
+      "id": "15",
+      "name": "Salary",
+      "parent": "Income"
+    },
+    {
+      "id": "16",
+      "name": "Full-Time",
+      "parent": "Salary"
+    },
+    {
+      "id": "17",
+      "name": "Freelance",
+      "parent": "Income"
+    },
+    {
+      "id": "18",
+      "name": "Consulting",
+      "parent": "Freelance"
+    },
+    {
+      "id": "19",
+      "name": "Calories",
+      "parent": null
+    },
+    {
+      "id": "22",
+      "name": "Tranist",
+      "parent": "Transport"
+    },
+    {
+      "id": "23",
+      "name": "Walter",
+      "parent": "Transport"
+    },
+    {
+      "id": "26",
+      "name": "sss",
+      "parent": "Tranist"
+    },
+    {
+      "id": "27",
+      "name": "Fish",
+      "parent": "Groceries"
+    },
+    {
+      "id": "28",
+      "name": "Dessert",
+      "parent": "Groceries"
+    },
+    {
+      "id": "29",
+      "name": "f",
+      "parent": "Calories"
+    },
+    {
+      "id": "30",
+      "name": "fffd",
+      "parent": "Calories"
+    },
+    {
+      "id": "31",
+      "name": "dd",
+      "parent": "f"
+    }
+  ]
+}

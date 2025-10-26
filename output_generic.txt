@@ -1,3 +1,28 @@
+Project Folder Structure:
+├── .gitignore
+├── Frontend
+│   ├── index.html
+│   ├── script.js
+│   ├── src/backendCommunications.js
+│   ├── src/categorizationPage/categoriesManager.js
+│   ├── src/categorizationPage/categorizationPage.js
+│   ├── src/categorizationPage/expenseManager.js
+│   ├── src/categorizationPage/rulesManager.js
+│   ├── src/uploadPage/fileParser.js
+│   ├── src/uploadPage/uploadPage.js
+│   ├── src/visualizationPage/visualizationPage.js
+│   └── style.css
+├── README.md
+└── backend
+    ├── db.json
+    └── server.js
+
+Index of Files:
+1. README.md
+2. .gitignore
+
+****************
+Filename: README.md
 # expensesHome
 home expenses log
 Purpose is to have a platform to store and analyze the expenses, where I can upload the documents from bank or credit card, then every line is split by a text analyzer routine and proposed to add one or more categories in levels. Once I have the database I can visualize the expenses per categories. We start from emptz cateogries, then I add it time by time. (i.e. first level cateogries: home expenses, travels, transports, foor, second level for trasporti, car gasoline or bus, or metro)
@@ -93,3 +118,15 @@ C:\PROG\HomeExp\
 │   ├── db.json
 │   └── node_modules/
 └── README.md
+
+
+****************
+Filename: .gitignore
+ node_modules/
+frontend/node_modules/
+backend/node_modules/
+.env
+dist/
+build/
+output1.txt
+output2.txt
