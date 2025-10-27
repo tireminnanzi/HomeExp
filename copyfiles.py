@@ -23,6 +23,7 @@ frontend_files = [
     "src/categorizationPage/categoriesManager.js",
     "src/categorizationPage/expenseManager.js",
     "src/categorizationPage/rulesManager.js",
+    "src/categorizationPage/StyleExpCategorization.css",
     "src/uploadPage/fileParser.js",
     "src/uploadPage/uploadPage.js",
     "src/visualizationPage/visualizationPage.js"

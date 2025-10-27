@@ -1,3 +1,4 @@
+// frontend/script.js
 console.log('script.js loaded and starting');
 
 function loadPage(page) {
@@ -14,29 +15,7 @@ function loadPage(page) {
         </nav>
       </div>
     </header>
-    <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}">
-      ${page === 'upload' ? `
-        <h2>Upload</h2>
-        <div id="upload-space" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" class="upload-space">
-          Drop files here (CSV, PDF AMAZON, PDF ING)
-        </div>
-        <button id="delete-data" class="delete-button" onclick="window.deleteAllExpenses()">Delete All Data</button>
-      ` : page === 'categorize' ? `
-        <div class="grid-container">
-          <div class="expense-column">
-            <h2 class="column-title">Expenses</h2>
-            <ul id="expense-list" class="expense-list"></ul>
-          </div>
-          <div class="category-column">
-            <h2 class="column-title">Categories</h2>
-            <div id="category-buttons" class="category-buttons"></div>
-          </div>
-        </div>
-      ` : `
-        <h2>Visualize</h2>
-        <p>Visualization page placeholder</p>
-      `}
-    </main>
+    <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}" id="main-content"></main>
   `;
   console.log('HTML content updated for page:', page);
 
@@ -55,6 +34,12 @@ function loadPage(page) {
   // Load page-specific scripts and styles with debug
   if (page === 'upload') {
     console.log('Loading upload page script');
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = 'src/uploadPage/uploadPage.css'; // Assuming a CSS file exists
+    style.dataset.page = 'upload';
+    document.head.appendChild(style);
+
     const script = document.createElement('script');
     script.src = 'src/uploadPage/uploadPage.js';
     script.type = 'module';
@@ -84,12 +69,21 @@ function loadPage(page) {
       document.body.appendChild(categoriesScript);
 
       categoriesScript.onload = () => {
-        console.log('categoriesManager.js loaded, loading categorizationPage.js');
-        const pageScript = document.createElement('script');
-        pageScript.src = 'src/categorizationPage/categorizationPage.js';
-        pageScript.type = 'module';
-        pageScript.dataset.page = 'categorize';
-        document.body.appendChild(pageScript);
+        console.log('categoriesManager.js loaded, loading rulesManager.js');
+        const rulesScript = document.createElement('script');
+        rulesScript.src = 'src/categorizationPage/rulesManager.js';
+        rulesScript.type = 'module';
+        rulesScript.dataset.page = 'categorize';
+        document.body.appendChild(rulesScript);
+
+        rulesScript.onload = () => {
+          console.log('rulesManager.js loaded, loading categorizationPage.js');
+          const pageScript = document.createElement('script');
+          pageScript.src = 'src/categorizationPage/categorizationPage.js';
+          pageScript.type = 'module';
+          pageScript.dataset.page = 'categorize';
+          document.body.appendChild(pageScript);
+        };
       };
     };
   } else if (page === 'visualize') {

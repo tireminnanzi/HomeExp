@@ -83,8 +83,8 @@ Filename: db.json
       "description": "Grocery shopping at supermarket",
       "amount": -45.3,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
+      "category1": "Transport",
+      "category2": "Car",
       "category3": null
     },
     {
@@ -93,9 +93,9 @@ Filename: db.json
       "description": "Bus ticket to work",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": null,
-      "category2": null,
-      "category3": null
+      "category1": "Income",
+      "category2": "Freelance",
+      "category3": "Consulting"
     },
     {
       "id": "3",
@@ -103,9 +103,9 @@ Filename: db.json
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
-      "category3": null
+      "category1": "Transport",
+      "category2": "Walter",
+      "category3": "."
     },
     {
       "id": "4",
@@ -123,7 +123,7 @@ Filename: db.json
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": null,
+      "category1": "Transport",
       "category2": null,
       "category3": null
     }
@@ -220,11 +220,6 @@ Filename: db.json
       "parent": "Freelance"
     },
     {
-      "id": "19",
-      "name": "Calories",
-      "parent": null
-    },
-    {
       "id": "22",
       "name": "Tranist",
       "parent": "Transport"
@@ -251,18 +246,48 @@ Filename: db.json
     },
     {
       "id": "29",
-      "name": "f",
-      "parent": "Calories"
+      "name": "Cena",
+      "parent": "Food"
     },
     {
       "id": "30",
-      "name": "fffd",
-      "parent": "Calories"
+      "name": "cena",
+      "parent": null
     },
     {
       "id": "31",
-      "name": "dd",
-      "parent": "f"
+      "name": "Walter",
+      "parent": "Groceries"
+    },
+    {
+      "id": "32",
+      "name": ".",
+      "parent": "Walter"
+    },
+    {
+      "id": "33",
+      "name": "Pasta",
+      "parent": "Groceries"
+    },
+    {
+      "id": "34",
+      "name": "Hello",
+      "parent": "Cena"
+    },
+    {
+      "id": "35",
+      "name": "Prova",
+      "parent": "Car"
+    },
+    {
+      "id": "36",
+      "name": "Fuele",
+      "parent": "Car"
+    },
+    {
+      "id": "37",
+      "name": "Provai",
+      "parent": "Car"
     }
   ]
 }

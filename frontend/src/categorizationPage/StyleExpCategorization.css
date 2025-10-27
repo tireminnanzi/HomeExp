@@ -2,270 +2,428 @@
  * CATEGORIZATION PAGE LAYOUT
  **********************************/
 .main-container-categorize {
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* Override any inherited max-width or centering */
-  max-width: 100vw !important;
-  /* Remove any inherited margin or padding from parent */
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 70% 30%; /* Confirmed working */
-  width: 100vw;
-  height: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  /* Ensure no inherited constraints */
-  max-width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100vw;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .expense-column {
-  padding: 16px;
-  /* Remove vertical scrollbar by allowing growth */
-  overflow-y: visible;
-  box-sizing: border-box;
-  /* Remove any height constraint to fit content */
-  height: auto;
-  max-width: 100%;
+    padding: 16px;
+    overflow-y: visible;
+    box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
 }
 
 .category-column {
-  padding: 16px;
-  overflow-y: auto; /* Keep for category column */
-  box-sizing: border-box;
-  /* Contain padding within the 30% width */
-  max-width: 100%;
+    padding: 16px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.category-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-top: 1px solid #e5e5e5; /* Separator above Add a Rule button */
 }
 
 .column-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 16px;
 }
 
 /**********************************
  * EXPENSE LIST STYLES
  **********************************/
-/* Ensure expense table is visible and contained */
 .expense-list {
-  list-style: none;
-  width: 100%; /* Ensure full width within column */
-  max-width: 100%; /* Prevent overflow */
-  padding: 0; /* Remove any default padding */
-  margin: 0; /* Remove any default margin */
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .expense-item {
-  padding: 8px 12px;
-  border-bottom: 1px solid #e5e5e5;
-  cursor: pointer;
-  font-size: 16px;
-  color: #000;
-  transition: background-color 0.2s;
-  display: grid;
-  grid-template-rows: 30px auto; /* Top row fixed, bottom row auto */
-  grid-template-columns: 10% 75% 15%; /* Stable division */
-  align-items: center;
-  gap: 8px;
-  /* Minimum height to accommodate content */
-  min-height: 60px; /* Adjusted as categories are in the column */
-  box-sizing: border-box;
-  max-width: 100%; /* Prevent overflow */
-  overflow-x: hidden;
-  padding-right: 16px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    transition: background-color 0.2s;
+    display: grid;
+    grid-template-rows: 30px auto;
+    grid-template-columns: 10% 70% 20%;
+    align-items: center;
+    gap: 8px;
+    height: 80px;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-right: 16px;
 }
 
 .expense-item:hover {
-  background-color: #f9fafb;
+    background-color: #f9fafb;
 }
 
 .expense-item.selected {
-  background-color: #e5e7eb;
+    background-color: #e5e7eb;
 }
 
 .expense-date {
-  grid-column: 1 / 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
+    grid-column: 1 / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-description {
-  grid-column: 2 / 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
+    grid-column: 2 / 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-amount {
-  grid-column: 3 / 4;
-  font-weight: bold;
-  text-align: right;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 10ch;
-  max-width: 100%;
+    grid-column: 3 / 4;
+    font-weight: bold;
+    text-align: right;
+    overflow: visible;
+    white-space: nowrap;
+    min-width: 8ch;
+    max-width: 100%;
+    padding-right: 4px;
 }
 
 .expense-negative .expense-amount {
-  color: #dc2626;
+    color: #dc2626;
 }
 
 .expense-positive .expense-amount {
-  color: #16a34a;
+    color: #16a34a;
 }
 
 /**********************************
  * CATEGORY TAGS AND BUTTONS
  **********************************/
-/* Assigned categories (if rendered in expense-item, optional) */
 .category-tags {
-  grid-row: 2 / 3;
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: row; /* Horizontal for tags if used */
-  gap: 4px;
-  align-items: center;
-  min-height: 0;
-  max-width: 100%;
-  overflow-x: auto;
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    min-height: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    flex-shrink: 0;
+    max-height: 30px;
 }
 
 .expense-category-button {
-  padding: 4px 8px;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.2s;
-  background-color: #dc2626;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 80px;
-  max-width: 100%;
+    padding: 4px 8px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 80px;
+    max-width: 100%;
 }
 
 .expense-category-button:hover {
-  background-color: #b91c1c;
+    /* No default hover, rely on level hover styles */
+}
+
+.expense-category-button.level-1 {
+    background-color: #3b82f6; /* Blue for Level 1 */
+}
+
+.expense-category-button.level-1:hover {
+    background-color: #2563eb;
 }
 
 .expense-category-button.level-2 {
-  background-color: #f97316;
+    background-color: #f97316; /* Orange for Level 2 */
 }
 
 .expense-category-button.level-2:hover {
-  background-color: #ea580c;
+    background-color: #ea580c;
 }
 
 .expense-category-button.level-3 {
-  background-color: #b45309;
+    background-color: #dc2626; /* Red for Level 3 */
 }
 
 .expense-category-button.level-3:hover {
-  background-color: #92400e;
+    background-color: #b91c1c;
 }
 
 /* Category selection buttons in category column */
 #category-buttons {
-  display: flex;
-  flex-direction: row; /* Horizontal alignment */
-  flex-wrap: wrap; /* Wrap if too many buttons */
-  gap: 8px;
-  margin-top: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    position: relative; /* For positioning delete-toggle-container */
 }
 
-.delete-toggle-button {
-  padding: 4px 8px;
-  background-color: #dc2626;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.2s;
+.delete-toggle-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10; /* Ensure it’s above other buttons */
 }
 
-.delete-toggle-button:hover {
-  background-color: #b91c1c;
+.delete-toggle {
+    width: 32px; /* Square button */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px; /* Large X */
+    font-weight: bold;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.delete-toggle.level-1 {
+    background-color: #3b82f6; /* Blue for Level 1 */
+}
+
+.delete-toggle.level-1:hover {
+    background-color: #2563eb;
+}
+
+.delete-toggle.level-2 {
+    background-color: #f97316; /* Orange for Level 2 */
+}
+
+.delete-toggle.level-2:hover {
+    background-color: #ea580c;
+}
+
+.delete-toggle.level-3 {
+    background-color: #dc2626; /* Red for Level 3 */
+}
+
+.delete-toggle.level-3:hover {
+    background-color: #b91c1c;
+}
+
+.delete-toggle.delete-mode-active {
+    border: 2px solid #fff; /* White border to indicate active delete mode */
 }
 
 #category-buttons.delete-mode .category-button {
-  background-color: #fca5a5;
+    background-color: #93c5fd; /* Lighter blue for Level 1 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button:hover {
-  background-color: #f87171;
+    background-color: #2563eb; /* Darker blue on hover */
 }
 
 #category-buttons.delete-mode .category-button.level-2 {
-  background-color: #fed7aa;
+    background-color: #fed7aa; /* Lighter orange for Level 2 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button.level-2:hover {
-  background-color: #fb923c;
+    background-color: #ea580c;
 }
 
 #category-buttons.delete-mode .category-button.level-3 {
-  background-color: #fef3c7;
+    background-color: #fecaca; /* Lighter red for Level 3 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button.level-3:hover {
-  background-color: #fcd34d;
+    background-color: #b91c1c;
 }
 
 .category-button {
-  padding: 8px 16px;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-  white-space: nowrap;
-  background-color: #dc2626;
+    padding: 8px 16px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    background-color: #3b82f6;
 }
 
 .category-button:hover {
-  background-color: #b91c1c;
+    background-color: #2563eb;
 }
 
 .category-button.level-2 {
-  background-color: #f97316;
+    background-color: #f97316;
 }
 
 .category-button.level-2:hover {
-  background-color: #ea580c;
+    background-color: #ea580c;
 }
 
 .category-button.level-3 {
-  background-color: #b45309;
+    background-color: #dc2626;
 }
 
 .category-button.level-3:hover {
-  background-color: #92400e;
+    background-color: #b91c1c;
+}
+
+.category-button.add-category {
+    padding: 8px;
+    min-width: 32px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-button.add-category.level-1 {
+    background-color: #3b82f6;
+}
+
+.category-button.add-category.level-1:hover {
+    background-color: #2563eb;
+}
+
+.category-button.add-category.level-2 {
+    background-color: #f97316;
+}
+
+.category-button.add-category.level-2:hover {
+    background-color: #ea580c;
+}
+
+.category-button.add-category.level-3 {
+    background-color: #dc2626;
+}
+
+.category-button.add-category.level-3:hover {
+    background-color: #b91c1c;
+}
+
+.category-button.add-category.disabled {
+    background-color: #d1d5db; /* Gray when disabled */
+    cursor: not-allowed;
+}
+
+.category-button.add-category.disabled:hover {
+    background-color: #d1d5db; /* No hover effect when disabled */
 }
 
 .category-button.editing {
-  color: #fff;
-  border: none;
-  min-width: 100px;
-  outline: none;
+    color: #fff;
+    border: none;
+    min-width: 100px;
+    outline: none;
+    caret-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
 }
 
 .category-button.editing::selection {
-  background: rgba(255, 255, 255, 0.3);
-  color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+/* Rules section styles */
+#rules-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.add-rule-button {
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #6b7280; /* Gray for distinct aesthetic */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    align-self: center; /* Center horizontally */
+    margin: 8px 0; /* Vertical spacing to act as divider */
+    width: 100%; /* Full width for divider effect */
+    text-align: center;
+}
+
+.add-rule-button:hover {
+    background-color: #4b5563; /* Darker gray on hover */
+}
+
+.add-rule-button.active {
+    background-color: #4b5563; /* Darker gray when active */
+}
+
+.rule-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.rule-input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px; /* Limit input width */
+    background-color: #f9fafb;
+}
+
+.rule-input:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.rule-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }

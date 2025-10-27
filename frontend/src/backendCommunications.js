@@ -1,3 +1,4 @@
+// frontend/src/backendCommunications.js
 async function fetchAllExpenses() {
   try {
     const response = await fetch('http://localhost:3000/expenses');
@@ -137,6 +138,74 @@ async function deleteAllExpenses() {
   }
 }
 
+// Fetch all rules from db.json
+async function fetchAllRules() {
+  try {
+    const response = await fetch('http://localhost:3000/rules');
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Server response: Rules fetched successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching rules:', error);
+    return { success: false, data: [], message: error.message };
+  }
+}
+
+// Add a new rule to db.json
+async function addNewRule(rule) {
+  try {
+    // Check for duplicate rules (based on words and categories)
+    const rulesResponse = await fetch('http://localhost:3000/rules');
+    const allRules = await rulesResponse.json();
+    const isDuplicate = allRules.some(existingRule => 
+      existingRule.words === rule.words && 
+      JSON.stringify(existingRule.categories.sort()) === JSON.stringify(rule.categories.sort())
+    );
+    if (isDuplicate) {
+      console.log('Duplicate rule detected:', rule);
+      return { success: false, message: 'Duplicate rule detected' };
+    }
+
+    // Assign sequential ID
+    const lastId = allRules.length > 0 ? Math.max(...allRules.map(r => parseInt(r.id || 0))) : 0;
+    const newId = (lastId + 1).toString();
+    const newRule = { ...rule, id: newId };
+
+    const response = await fetch('http://localhost:3000/rules', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newRule)
+    });
+    const data = await response.json();
+    console.log('Server response: Rule added successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error adding rule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+// Delete a rule from db.json by ID
+async function deleteRule(ruleId) {
+  try {
+    const response = await fetch(`http://localhost:3000/rules/${ruleId}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      console.log('Server response: Rule deleted successfully', { id: ruleId });
+      return { success: true };
+    } else {
+      throw new Error('Failed to delete rule');
+    }
+  } catch (error) {
+    console.error('Error deleting rule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
 // Expose functions to window object
 window.fetchAllExpenses = fetchAllExpenses;
 window.fetchAllCategories = fetchAllCategories;
@@ -144,3 +213,6 @@ window.assignCategoryToExpense = assignCategoryToExpense;
 window.addNewCategory = addNewCategory;
 window.deleteSingleCategory = deleteSingleCategory;
 window.deleteAllExpenses = deleteAllExpenses;
+window.fetchAllRules = fetchAllRules;
+window.addNewRule = addNewRule;
+window.deleteRule = deleteRule;

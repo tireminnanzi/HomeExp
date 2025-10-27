@@ -1,109 +1,256 @@
 // frontend/src/categorizationPage/categorizationPage.js
 console.log('categorizationPage.js loaded');
 
-let selectedExpenseId = null;
-let expensesList = [];
-let categoriesList = [];
-let isDeleteMode = false;
-
-// Map category fields to a single category field with debug
-function mapCategory(expense) {
-    const category = expense.category1 || expense.category2 || expense.category3 || null;
-    console.log('Mapping category for expense', expense.id, ':', { category1: expense.category1, category2: expense.category2, category3: expense.category3 }, '->', category);
-    return category;
-}
-
+// Initialize the categorization page and start the loading process
 export async function initializeCategorization() {
     console.log('initializeCategorization started');
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) {
+        console.error('main-content element not found');
+        return;
+    }
+
+    // Set up the page-specific content
+    mainContent.innerHTML = `
+        <div class="grid-container">
+            <div class="expense-column">
+                <h2 class="column-title">Expenses</h2>
+                <ul id="expense-list" class="expense-list"></ul>
+            </div>
+            <div class="category-column">
+                <div class="category-top">
+                    <h2 class="column-title">Categories</h2>
+                    <div id="category-buttons" class="category-buttons"></div>
+                </div>
+                <div class="category-bottom">
+                    <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
+                    <form id="rule-form" class="rule-form" style="display: none;">
+                        <input type="text" id="rule-input" class="rule-input" placeholder="Enter words to match" disabled>
+                    </form>
+                    <div id="rules-list" class="rules-list"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    console.log('Categorization page HTML set up');
+
+    // Set up event listeners for the "Add a Rule" button and form
+    const addRuleButton = document.getElementById('add-rule-button');
+    const ruleForm = document.getElementById('rule-form');
+    const ruleInput = document.getElementById('rule-input');
+    const rulesList = document.getElementById('rules-list');
+
+    if (addRuleButton && ruleForm && ruleInput && rulesList) {
+        addRuleButton.addEventListener('click', () => {
+            console.log('Add a Rule button clicked');
+            ruleForm.style.display = 'block';
+            ruleInput.disabled = false;
+            ruleInput.focus();
+            addRuleButton.classList.add('active');
+        });
+
+        // Handle form submission on Enter key
+        ruleInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleRuleSubmission();
+            }
+        });
+
+        // Handle form submission on blur
+        ruleInput.addEventListener('blur', handleRuleSubmission);
+
+        async function handleRuleSubmission() {
+            const inputValue = ruleInput.value.trim();
+            console.log('Rule input submitted:', inputValue);
+
+            // Reset form
+            ruleForm.style.display = 'none';
+            ruleInput.disabled = true;
+            ruleInput.value = '';
+            addRuleButton.classList.remove('active');
+
+            // Validate input
+            if (!inputValue) {
+                console.log('Input is empty, action cancelled');
+                return;
+            }
+
+            // Check if a valid expense is selected
+            if (!selectedExpenseId || !window.expensesList) {
+                console.log('No expense selected or expenses list not available, action cancelled');
+                return;
+            }
+
+            const selectedExpense = window.expensesList.find(expense => expense.id === selectedExpenseId);
+            if (!selectedExpense) {
+                console.log('Selected expense not found, action cancelled');
+                return;
+            }
+
+            // Split input into words and check if any match the expense description
+            const inputWords = inputValue.toLowerCase().split(/\s+/);
+            const descriptionWords = selectedExpense.description.toLowerCase().split(/\s+/);
+            const hasMatchingWord = inputWords.some(word => descriptionWords.includes(word));
+
+            if (!hasMatchingWord) {
+                console.log('No matching words in expense description, action cancelled');
+                return;
+            }
+
+            // Prepare rule data
+            const categories = [
+                selectedExpense.category1,
+                selectedExpense.category2,
+                selectedExpense.category3
+            ].filter(cat => cat !== null && cat !== undefined);
+            const ruleData = {
+                words: inputValue,
+                categories: categories
+            };
+
+            // Show confirmation popup
+            const categoriesDisplay = categories.length > 0 ? categories.join(' > ') : 'None';
+            const confirmationMessage = `Create rule with words "${inputValue}" for categories: ${categoriesDisplay}?`;
+            console.log('Showing confirmation popup:', confirmationMessage);
+            const confirmed = confirm(confirmationMessage);
+
+            if (confirmed) {
+                console.log('Rule creation confirmed, storing rule:', ruleData);
+                // Store rule using rulesManager
+                try {
+                    const result = await window.rulesManager.addNewRule(ruleData);
+                    if (result.success) {
+                        console.log('Rule added successfully:', result.data);
+                        // Add rule to rules-list display
+                        const ruleElement = document.createElement('div');
+                        ruleElement.className = 'rule-item';
+                        ruleElement.dataset.ruleId = result.data.id;
+                        ruleElement.innerHTML = `
+                            <span class="rule-text">${result.data.words}: ${categoriesDisplay}</span>
+                            <button class="rule-delete-button" title="Delete Rule">X</button>
+                        `;
+                        rulesList.appendChild(ruleElement);
+                        console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+                        // Add delete button event listener
+                        const deleteButton = ruleElement.querySelector('.rule-delete-button');
+                        deleteButton.addEventListener('click', async (e) => {
+                            e.stopPropagation();
+                            console.log('Delete rule button clicked for ID:', result.data.id);
+                            const deleteResult = await window.rulesManager.deleteRule(result.data.id);
+                            if (deleteResult.success) {
+                                ruleElement.remove();
+                                console.log('Rule deleted from UI and db.json:', result.data.id);
+                            } else {
+                                console.error('Failed to delete rule:', deleteResult.message);
+                                alert('Failed to delete rule: ' + deleteResult.message);
+                            }
+                        });
+                    } else {
+                        console.error('Failed to add rule:', result.message);
+                        alert('Failed to add rule: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error storing rule:', error);
+                    alert('Error storing rule: ' + error.message);
+                }
+            } else {
+                console.log('Rule creation cancelled');
+            }
+        }
+    } else {
+        console.error('Failed to find add-rule-button, rule-form, rule-input, or rules-list elements');
+    }
+
     await loadPage();
 }
 
+// Load page data and set up the initial display
 async function loadPage() {
     console.log('loadPage started');
     const expenseList = document.getElementById('expense-list');
-    const categoryButtons = document.getElementById('category-buttons');
-    if (!expenseList || !categoryButtons) {
-        console.error('Required elements not found:', { expenseList, categoryButtons });
+    const rulesList = document.getElementById('rules-list');
+    if (!expenseList || !rulesList) {
+        console.error('expense-list or rules-list element not found');
         return;
     }
     expenseList.innerHTML = '';
+    rulesList.innerHTML = '';
 
     try {
-        console.log('Fetching expenses and categories...');
-        const [fetchExpensesResult, fetchCategoriesResult] = await Promise.all([
+        console.log('Fetching expenses, categories, and rules...');
+        const [fetchExpensesResult, fetchCategoriesResult, fetchRulesResult] = await Promise.all([
             window.fetchAllExpenses(),
-            window.fetchAllCategories()
+            window.fetchAllCategories(),
+            window.fetchAllRules()
         ]);
-        expensesList = fetchExpensesResult.success ? fetchExpensesResult.data.map(exp => ({
-            ...exp,
-            category: mapCategory(exp)
-        })) : [];
-        categoriesList = fetchCategoriesResult.success ? fetchCategoriesResult.data : [];
-        console.log('Expenses list at startup:', expensesList.map(exp => ({
-            id: exp.id,
-            description: exp.description,
-            category: exp.category
-        })));
-        console.log('Categories list:', categoriesList);
+        window.expensesList = fetchExpensesResult.success ? fetchExpensesResult.data : [];
+        window.categoriesList = fetchCategoriesResult.success ? fetchCategoriesResult.data : [];
+        const rulesListData = fetchRulesResult.success ? fetchRulesResult.data : [];
+        console.log('Expenses list at startup:', window.expensesList);
+        console.log('Categories list:', window.categoriesList);
+        console.log('Rules list:', rulesListData);
+
+        // Populate rules-list
+        rulesListData.forEach(rule => {
+            const categoriesDisplay = rule.categories.length > 0 ? rule.categories.join(' > ') : 'None';
+            const ruleElement = document.createElement('div');
+            ruleElement.className = 'rule-item';
+            ruleElement.dataset.ruleId = rule.id;
+            ruleElement.innerHTML = `
+                <span class="rule-text">${rule.words}: ${categoriesDisplay}</span>
+                <button class="rule-delete-button" title="Delete Rule">X</button>
+            `;
+            rulesList.appendChild(ruleElement);
+            console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+            // Add delete button event listener
+            const deleteButton = ruleElement.querySelector('.rule-delete-button');
+            deleteButton.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                console.log('Delete rule button clicked for ID:', rule.id);
+                const deleteResult = await window.rulesManager.deleteRule(rule.id);
+                if (deleteResult.success) {
+                    ruleElement.remove();
+                    console.log('Rule deleted from UI and db.json:', rule.id);
+                } else {
+                    console.error('Failed to delete rule:', deleteResult.message);
+                    alert('Failed to delete rule: ' + deleteResult.message);
+                }
+            });
+        });
     } catch (error) {
         console.error('Fetch error in loadPage:', error);
-        expensesList = [];
-        categoriesList = [];
+        window.expensesList = [];
+        window.categoriesList = [];
     }
 
-    if (expensesList.length > 0) {
+    if (window.expensesList.length > 0) {
         console.log('Initializing expense selection...');
-        initializeExpenseSelection();
-        console.log('Updating expense display...');
+        selectedExpenseId = window.expensesList[0].id; // Select the first expense
+        console.log('Selected expense ID:', selectedExpenseId);
         updateExpenseDisplay();
-        console.log('Updating category display...');
-        updateCategoryDisplay();
+        window.categoriesManager.updateCategoryButtons(selectedExpenseId, window.expensesList, window.categoriesList);
     } else {
         console.log('No expenses found, setting no-data message');
         expenseList.innerHTML = '<p class="no-data">No expenses found</p>';
-        categoryButtons.innerHTML = '<p class="no-data">No expenses to categorize</p>';
     }
     console.log('loadPage completed');
 }
 
-function initializeExpenseSelection() {
-    console.log('initializeExpenseSelection started');
-    if (!selectedExpenseId || !expensesList.some(exp => exp.id === selectedExpenseId)) {
-        const firstUncategorized = expensesList.find(exp => !exp.category) || expensesList[0];
-        selectedExpenseId = firstUncategorized ? firstUncategorized.id : null;
-        window.selectedExpenseId = selectedExpenseId; // Expose globally
-    }
-    console.log('Selected expense ID:', selectedExpenseId);
-    console.log('initializeExpenseSelection completed');
-}
-
+// Update the display of expenses based on the current list and selection
 function updateExpenseDisplay() {
     console.log('updateExpenseDisplay called');
     if (window.expenseManager) {
-        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
+        window.expenseManager.updateExpenseDisplay(window.expensesList, selectedExpenseId);
     } else {
         console.error('expenseManager not found');
     }
     console.log('updateExpenseDisplay completed');
 }
 
-function updateCategoryDisplay() {
-    console.log('updateCategoryDisplay called');
-    const selectedExpense = expensesList.find(exp => exp.id === selectedExpenseId);
-    const loggedExpense = {
-        id: selectedExpense?.id,
-        description: selectedExpense?.description,
-        category: selectedExpense?.category
-    };
-    console.log('Selected expense for category display:', loggedExpense);
-    if (selectedExpense && window.categoriesManager) {
-        window.categoriesManager.updateCategoryButtons(selectedExpense, categoriesList, isDeleteMode);
-    } else {
-        console.log('No selected expense or categoriesManager not found:', { selectedExpense, categoriesManager: window.categoriesManager });
-        document.getElementById('category-buttons').innerHTML = '<p class="no-data">No expense selected or categoriesManager not loaded</p>';
-    }
-    console.log('updateCategoryDisplay completed');
-}
+let selectedExpenseId = null;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -115,38 +262,10 @@ if (document.readyState === 'loading') {
     initializeCategorization();
 }
 
+// Handle expense selection events to update the display
 document.getElementById('expense-list')?.addEventListener('expenseSelected', (e) => {
     console.log('expenseSelected event received, new ID:', e.detail.id);
     selectedExpenseId = e.detail.id;
-    window.selectedExpenseId = selectedExpenseId; // Update global
     updateExpenseDisplay();
-    updateCategoryDisplay();
-});
-
-document.getElementById('category-buttons')?.addEventListener('categoryUpdated', async (e) => {
-    console.log('categoryUpdated event received');
-    try {
-        const fetchExpensesResult = await window.fetchAllExpenses();
-        expensesList = fetchExpensesResult.success ? fetchExpensesResult.data.map(exp => ({
-            ...exp,
-            category: mapCategory(exp)
-        })) : [];
-        const selectedExpense = expensesList.find(exp => exp.id === selectedExpenseId);
-        console.log('Expense after update:', {
-            id: selectedExpense?.id,
-            description: selectedExpense?.description,
-            category: selectedExpense?.category
-        });
-        if (selectedExpense) {
-            console.log('Updating single expense display for:', selectedExpense);
-            window.expenseManager.updateSingleExpenseDisplay(selectedExpense);
-            updateCategoryDisplay();
-        } else {
-            console.log('No selected expense to update, refreshing all');
-            updateExpenseDisplay();
-            updateCategoryDisplay();
-        }
-    } catch (error) {
-        console.error('Error updating expenses after category change:', error);
-    }
+    window.categoriesManager.updateCategoryButtons(selectedExpenseId, window.expensesList, window.categoriesList);
 });

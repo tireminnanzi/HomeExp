@@ -3,12 +3,12 @@
     {
       "id": "1",
       "date": "2025-10-15",
-      "description": "Grocery shopping at supermarket",
+      "description": "Grocery shopping at Netto",
       "amount": -45.3,
       "source": "CSV",
       "category1": "Food",
       "category2": "Groceries",
-      "category3": null,
+      "category3": "Fish"
     },
     {
       "id": "2",
@@ -16,9 +16,9 @@
       "description": "Bus ticket to work",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "Food",
-      "category2": "Cena",
-      "category3": null,
+      "category1": "Income",
+      "category2": "Freelance",
+      "category3": "Consulting"
     },
     {
       "id": "3",
@@ -27,8 +27,8 @@
       "amount": 1500,
       "source": "CSV",
       "category1": "Transport",
-      "category2": "Car",
-      "category3": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "4",
@@ -36,19 +36,19 @@
       "description": "Restaurant dinner",
       "amount": -65,
       "source": "PDF_AMAZON",
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Food",
+      "category2": "Groceries",
+      "category3": "Meat"
     },
-    {s
+    {
       "id": "5",
       "date": "2025-10-19",
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Transport",
+      "category2": "Car",
+      "category3": "Fuele"
     }
   ],
   "categories": [
@@ -148,11 +148,6 @@
       "parent": "Transport"
     },
     {
-      "id": "23",
-      "name": "Walter",
-      "parent": "Transport"
-    },
-    {
       "id": "26",
       "name": "sss",
       "parent": "Tranist"
@@ -173,9 +168,45 @@
       "parent": "Food"
     },
     {
-      "id": "30",
-      "name": "cena",
-      "parent": null
+      "id": "32",
+      "name": ".",
+      "parent": "Walter"
+    },
+    {
+      "id": "33",
+      "name": "Pasta",
+      "parent": "Groceries"
+    },
+    {
+      "id": "34",
+      "name": "Hello",
+      "parent": "Cena"
+    },
+    {
+      "id": "35",
+      "name": "Prova",
+      "parent": "Car"
+    },
+    {
+      "id": "36",
+      "name": "Fuele",
+      "parent": "Car"
+    },
+    {
+      "id": "37",
+      "name": "Provai",
+      "parent": "Car"
+    }
+  ],
+  "rules": [
+    {
+      "words": "Netto",
+      "categories": [
+        "Food",
+        "Groceries",
+        "Fish"
+      ],
+      "id": "1"
     }
   ]
 }

@@ -6,13 +6,17 @@ Purpose is to have a platform to store and analyze the expenses, where I can upl
   There will be a backend where the data is stored in a database and a front end where the user can enter data, categorize and visualize. 
  1.1 BACKEND
      1.1.1 DATABASES
-         Must be created two databases: expenses and categories
+         Must be created three databases: expenses, categories and rules
          1.1.1.1 EXPENSES DATABASE
              The Expenses database contains any single expense with date, description, amount, source (CVS, PDF AMAZON, PDF ING) first level category, second level category, third level category, a numeric id and nothing else.
              - Verification of uniqueness: There is a verification for duplicates for this database that check if any two expenses have the same data, the same description and the same amount, in this case one of the two is eliminated. This function routine is called everytime an expense is pushed from the front end.
+             Expenses can be added by documents, but thez can be modified or deleted by user. 
           1.1.1.2 CATEGORIES DATABASE
-             This database includes the categories divided in the three levels. So we have the full list of the categories, with only one characteristic that is the belonging cateogory valid for the second level and third level category, if this belonging category feature is empty, it means the category is first level. 
-             The user can add one category. In the categorization page, for each categorization level button group, the last button is "new category". When user clicks on it, it can write in the button the name of the new category. If this is not equal to any other category in the same level, it is accepted, the button is modified, a "new category" button is added in case another category is needed. The front end send the add category command to the server.   
+             This database includes the categories divided in the three levels. Here we have the full list of the categories, not separated in the three levels. To recognize a second or third level category there is a feature called parent, it´s the categorz it descend from. If parent is null, then the category is first level, if parent category has no parent is second level, otherwise is third level.
+             The user can assign categories to the expenses in the three levels. User can also create new categories or delete any. One emptz categorz button allows to add a new category. When user clicks on it, it can write in the button the name of the new category. If this is not equal to any other category in the same level, it is accepted, the button is modified, a "new category" button is added. The front end send the add category command to the server to update the database.   
+          1.1.1.3 RULES DATABASE
+             User can create a rule, that means that if the expense description contains one or more words, it is automatically assigned a set of categories. 
+             Rules can be deleted.
       1.1.2 IMPLEMENTATION
           The implementation is based on local server on development and debug, it will be deployed on a cloud server later.
           JSON Server is used for the database interaction and communication
@@ -23,7 +27,7 @@ Purpose is to have a platform to store and analyze the expenses, where I can upl
              in this page there is a space in the middle where the user can drop three kind of docuemnts from bank or credit card, in 2 different PDF structures or a CSV file to extract data. There is also a red button in the bottom right corner to delete all data and restart" the press of this button requres confirmation from a popup window. Once the file is dropped to the upload space, it is parsed for the expenses data and once data is extracted is pushed to the server. During this procedure a progression bard is visualized to check the status of the upload. When the upload is finished the visualization is automatically transferred to Data categorization. 
          1.2.1.2 PAGE DATA CATEGORIZATION
              on the left there is the list of expenses that is read from the server when entering this page. At webpage reload this page is visualized with the first expense selected, expense list can be navigated bz the up and down arrows to select each expense, or clicking on it with the mouse. On the right there is a space for categorization buttons, when a button is clicked it is added below the expense line. When is pressed on the expenses line, it is deleted from the line. There are three level of characterization, for example Food - groceries - Aldi. first level categories can be food, house, transport. Second level categories can be for food: groceries, small shop, restaurants. third level can be for groceries: vegetables, meat, drinks. The button visualization is automatical on the highest categorization to be chosen on the selected expense.
-             When the expenses has no category, only first level category are visualized with the color Red, once one category is chosen and added to the expense it appear the second level buttons in orange, once chosen the third level category is visualized in dark yellow color. When one category is deleted form one expense it deletes also the subcategories and pull the button visualization for the higher category choice.
+             When the expenses has no category, only first level category are visualized with the color Blue, once one category is chosen and added to the expense it appear the second level buttons in orange, once chosen the third level category is visualized in Red color. When one category is deleted form one expense it deletes also the subcategories and pull the button visualization for the higher category choice.
          1.1.3 Page "Data visualization"
              This page is not yet defined, it will be defined once finished the data storage management
  1.3 COMMUNICATION BETWEEN FRONTEN AND BACKEND
@@ -75,6 +79,7 @@ C:\PROG\HomeExp\
 │   │   │   └── categoriesManager.js
 │   │   │   └── expenseManager.js
 │   │   │   └── rulesManager.js
+│   │   │   └── StyleExpCategorization.css
 │   │   ├── visualizationPage/
 │   │   │   └── visualizationPage.js
 │   │   └── backendCommunications.js
@@ -84,7 +89,6 @@ C:\PROG\HomeExp\
 │   script.js
 │   package.json
 │   package-lock.json
-│ 
 ├── backend/
 │   ├── db.json (JSON Server database)
 │   ├── package.json
