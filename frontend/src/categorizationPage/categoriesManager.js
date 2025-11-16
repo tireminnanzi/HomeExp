@@ -50,22 +50,28 @@ const categoriesManager = {
             }
         }
 
-        // Add container for delete toggle button to position it top-right
-        const deleteToggleContainer = document.createElement('div');
-        deleteToggleContainer.className = 'delete-toggle-container';
-        const deleteToggleButton = document.createElement('button');
-        deleteToggleButton.textContent = 'X';
-        deleteToggleButton.className = `category-button delete-toggle level-${levelToDisplay} ${this.isDeleteMode ? 'delete-mode-active' : ''}`;
-        deleteToggleButton.title = this.isDeleteMode ? 'Exit Delete Mode' : 'Enter Delete Mode';
-        deleteToggleButton.onclick = () => {
-            this.isDeleteMode = !this.isDeleteMode;
-            console.log(`Delete mode ${this.isDeleteMode ? 'enabled' : 'disabled'}`);
-            // Update class on category-buttons to reflect delete mode
-            categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
-            this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList); // Refresh buttons
-        };
-        deleteToggleContainer.appendChild(deleteToggleButton);
-        categoryButtons.appendChild(deleteToggleContainer);
+        // === SPOSTA PULSANTE X NEL TITOLO "Categories" (usa CSS esistente) ===
+        const titleContainer = document.querySelector('.category-top');
+        const existingToggle = document.querySelector('.delete-toggle-container');
+
+        if (titleContainer && !existingToggle) {
+            const deleteToggleContainer = document.createElement('div');
+            deleteToggleContainer.className = 'delete-toggle-container';
+
+            const deleteToggleButton = document.createElement('button');
+            deleteToggleButton.textContent = 'X';
+            deleteToggleButton.className = `category-button delete-toggle level-${levelToDisplay} ${this.isDeleteMode ? 'delete-mode-active' : ''}`;
+            deleteToggleButton.title = this.isDeleteMode ? 'Esci da Modalità Elimina' : 'Entra in Modalità Elimina';
+            deleteToggleButton.onclick = () => {
+                this.isDeleteMode = !this.isDeleteMode;
+                console.log(`Modalità Elimina: ${this.isDeleteMode ? 'ATTIVA' : 'DISATTIVA'}`);
+                categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
+                this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+            };
+
+            deleteToggleContainer.appendChild(deleteToggleButton);
+            titleContainer.insertBefore(deleteToggleContainer, titleContainer.firstChild);
+        }
 
         // Filter categories based on the determined level and parent
         const categoriesToShow = categoriesList.filter(cat => {

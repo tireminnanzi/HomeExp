@@ -427,3 +427,24 @@
     border-color: #3b82f6;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
+/* === ALLINEA X CON TITOLO "Categories" === */
+.category-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px; /* Spazio per il pulsante X */
+}
+
+.category-top .column-title {
+    margin: 0;
+    flex: 1;
+}
+
+/* Assicura che X sia sempre in alto a destra */
+.delete-toggle-container {
+    position: absolute !important;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
