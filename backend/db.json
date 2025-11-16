@@ -7,18 +7,18 @@
       "amount": -45.3,
       "source": "CSV",
       "category1": "Food",
-      "category2": "Groceries",
-      "category3": "Fish"
+      "category2": null,
+      "category3": null
     },
     {
       "id": "2",
       "date": "2025-10-16",
-      "description": "Bus ticket to work",
+      "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "Income",
-      "category2": "Freelance",
-      "category3": "Consulting"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "3",
@@ -26,7 +26,7 @@
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": "Transport",
+      "category1": null,
       "category2": null,
       "category3": null
     },
@@ -36,9 +36,9 @@
       "description": "Restaurant dinner",
       "amount": -65,
       "source": "PDF_AMAZON",
-      "category1": "Food",
-      "category2": "Groceries",
-      "category3": "Meat"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "5",
@@ -46,9 +46,9 @@
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": "Transport",
-      "category2": "Car",
-      "category3": "Fuele"
+      "category1": null,
+      "category2": null,
+      "category3": null
     }
   ],
   "categories": [
@@ -198,15 +198,5 @@
       "parent": "Car"
     }
   ],
-  "rules": [
-    {
-      "words": "Netto",
-      "categories": [
-        "Food",
-        "Groceries",
-        "Fish"
-      ],
-      "id": "1"
-    }
-  ]
+  "rules": []
 }

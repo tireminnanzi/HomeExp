@@ -80,22 +80,22 @@ Filename: db.json
     {
       "id": "1",
       "date": "2025-10-15",
-      "description": "Grocery shopping at supermarket",
+      "description": "Grocery shopping at Netto",
       "amount": -45.3,
       "source": "CSV",
-      "category1": "Transport",
-      "category2": "Car",
-      "category3": null
+      "category1": "Food",
+      "category2": "Groceries",
+      "category3": "Pasta"
     },
     {
       "id": "2",
       "date": "2025-10-16",
-      "description": "Bus ticket to work",
+      "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "Income",
-      "category2": "Freelance",
-      "category3": "Consulting"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "3",
@@ -103,9 +103,9 @@ Filename: db.json
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": "Transport",
-      "category2": "Walter",
-      "category3": "."
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "4",
@@ -123,7 +123,7 @@ Filename: db.json
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": "Transport",
+      "category1": null,
       "category2": null,
       "category3": null
     }
@@ -225,11 +225,6 @@ Filename: db.json
       "parent": "Transport"
     },
     {
-      "id": "23",
-      "name": "Walter",
-      "parent": "Transport"
-    },
-    {
       "id": "26",
       "name": "sss",
       "parent": "Tranist"
@@ -248,16 +243,6 @@ Filename: db.json
       "id": "29",
       "name": "Cena",
       "parent": "Food"
-    },
-    {
-      "id": "30",
-      "name": "cena",
-      "parent": null
-    },
-    {
-      "id": "31",
-      "name": "Walter",
-      "parent": "Groceries"
     },
     {
       "id": "32",
@@ -289,5 +274,6 @@ Filename: db.json
       "name": "Provai",
       "parent": "Car"
     }
-  ]
+  ],
+  "rules": []
 }

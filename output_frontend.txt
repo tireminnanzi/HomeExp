@@ -34,6 +34,7 @@ Filename: index.html
 
 ****************
 Filename: script.js
+// frontend/script.js
 console.log('script.js loaded and starting');
 
 function loadPage(page) {
@@ -50,29 +51,7 @@ function loadPage(page) {
         </nav>
       </div>
     </header>
-    <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}">
-      ${page === 'upload' ? `
-        <h2>Upload</h2>
-        <div id="upload-space" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" class="upload-space">
-          Drop files here (CSV, PDF AMAZON, PDF ING)
-        </div>
-        <button id="delete-data" class="delete-button" onclick="window.deleteAllExpenses()">Delete All Data</button>
-      ` : page === 'categorize' ? `
-        <div class="grid-container">
-          <div class="expense-column">
-            <h2 class="column-title">Expenses</h2>
-            <ul id="expense-list" class="expense-list"></ul>
-          </div>
-          <div class="category-column">
-            <h2 class="column-title">Categories</h2>
-            <div id="category-buttons" class="category-buttons"></div>
-          </div>
-        </div>
-      ` : `
-        <h2>Visualize</h2>
-        <p>Visualization page placeholder</p>
-      `}
-    </main>
+    <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}" id="main-content"></main>
   `;
   console.log('HTML content updated for page:', page);
 
@@ -91,6 +70,12 @@ function loadPage(page) {
   // Load page-specific scripts and styles with debug
   if (page === 'upload') {
     console.log('Loading upload page script');
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = 'src/uploadPage/uploadPage.css'; // Assuming a CSS file exists
+    style.dataset.page = 'upload';
+    document.head.appendChild(style);
+
     const script = document.createElement('script');
     script.src = 'src/uploadPage/uploadPage.js';
     script.type = 'module';
@@ -120,12 +105,21 @@ function loadPage(page) {
       document.body.appendChild(categoriesScript);
 
       categoriesScript.onload = () => {
-        console.log('categoriesManager.js loaded, loading categorizationPage.js');
-        const pageScript = document.createElement('script');
-        pageScript.src = 'src/categorizationPage/categorizationPage.js';
-        pageScript.type = 'module';
-        pageScript.dataset.page = 'categorize';
-        document.body.appendChild(pageScript);
+        console.log('categoriesManager.js loaded, loading rulesManager.js');
+        const rulesScript = document.createElement('script');
+        rulesScript.src = 'src/categorizationPage/rulesManager.js';
+        rulesScript.type = 'module';
+        rulesScript.dataset.page = 'categorize';
+        document.body.appendChild(rulesScript);
+
+        rulesScript.onload = () => {
+          console.log('rulesManager.js loaded, loading categorizationPage.js');
+          const pageScript = document.createElement('script');
+          pageScript.src = 'src/categorizationPage/categorizationPage.js';
+          pageScript.type = 'module';
+          pageScript.dataset.page = 'categorize';
+          document.body.appendChild(pageScript);
+        };
       };
     };
   } else if (page === 'visualize') {
@@ -257,6 +251,7 @@ html, body {
 
 ****************
 Filename: src/backendCommunications.js
+// frontend/src/backendCommunications.js
 async function fetchAllExpenses() {
   try {
     const response = await fetch('http://localhost:3000/expenses');
@@ -396,6 +391,74 @@ async function deleteAllExpenses() {
   }
 }
 
+// Fetch all rules from db.json
+async function fetchAllRules() {
+  try {
+    const response = await fetch('http://localhost:3000/rules');
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Server response: Rules fetched successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching rules:', error);
+    return { success: false, data: [], message: error.message };
+  }
+}
+
+// Add a new rule to db.json
+async function addNewRule(rule) {
+  try {
+    // Check for duplicate rules (based on words and categories)
+    const rulesResponse = await fetch('http://localhost:3000/rules');
+    const allRules = await rulesResponse.json();
+    const isDuplicate = allRules.some(existingRule => 
+      existingRule.words === rule.words && 
+      JSON.stringify(existingRule.categories.sort()) === JSON.stringify(rule.categories.sort())
+    );
+    if (isDuplicate) {
+      console.log('Duplicate rule detected:', rule);
+      return { success: false, message: 'Duplicate rule detected' };
+    }
+
+    // Assign sequential ID
+    const lastId = allRules.length > 0 ? Math.max(...allRules.map(r => parseInt(r.id || 0))) : 0;
+    const newId = (lastId + 1).toString();
+    const newRule = { ...rule, id: newId };
+
+    const response = await fetch('http://localhost:3000/rules', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newRule)
+    });
+    const data = await response.json();
+    console.log('Server response: Rule added successfully', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error adding rule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+// Delete a rule from db.json by ID
+async function deleteRule(ruleId) {
+  try {
+    const response = await fetch(`http://localhost:3000/rules/${ruleId}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      console.log('Server response: Rule deleted successfully', { id: ruleId });
+      return { success: true };
+    } else {
+      throw new Error('Failed to delete rule');
+    }
+  } catch (error) {
+    console.error('Error deleting rule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
 // Expose functions to window object
 window.fetchAllExpenses = fetchAllExpenses;
 window.fetchAllCategories = fetchAllCategories;
@@ -403,6 +466,9 @@ window.assignCategoryToExpense = assignCategoryToExpense;
 window.addNewCategory = addNewCategory;
 window.deleteSingleCategory = deleteSingleCategory;
 window.deleteAllExpenses = deleteAllExpenses;
+window.fetchAllRules = fetchAllRules;
+window.addNewRule = addNewRule;
+window.deleteRule = deleteRule;
 
 ****************
 Filename: src/categorizationPage/categorizationPage.js
@@ -412,6 +478,165 @@ console.log('categorizationPage.js loaded');
 // Initialize the categorization page and start the loading process
 export async function initializeCategorization() {
     console.log('initializeCategorization started');
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) {
+        console.error('main-content element not found');
+        return;
+    }
+
+    // Set up the page-specific content
+    mainContent.innerHTML = `
+        <div class="grid-container">
+            <div class="expense-column">
+                <h2 class="column-title">Expenses</h2>
+                <ul id="expense-list" class="expense-list"></ul>
+            </div>
+            <div class="category-column">
+                <div class="category-top">
+                    <h2 class="column-title">Categories</h2>
+                    <div id="category-buttons" class="category-buttons"></div>
+                </div>
+                <div class="category-bottom">
+                    <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
+                    <form id="rule-form" class="rule-form" style="display: none;">
+                        <input type="text" id="rule-input" class="rule-input" placeholder="Enter words to match" disabled>
+                    </form>
+                    <div id="rules-list" class="rules-list"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    console.log('Categorization page HTML set up');
+
+    // Set up event listeners for the "Add a Rule" button and form
+    const addRuleButton = document.getElementById('add-rule-button');
+    const ruleForm = document.getElementById('rule-form');
+    const ruleInput = document.getElementById('rule-input');
+    const rulesList = document.getElementById('rules-list');
+
+    if (addRuleButton && ruleForm && ruleInput && rulesList) {
+        addRuleButton.addEventListener('click', () => {
+            console.log('Add a Rule button clicked');
+            ruleForm.style.display = 'block';
+            ruleInput.disabled = false;
+            ruleInput.focus();
+            addRuleButton.classList.add('active');
+        });
+
+        // Handle form submission on Enter key
+        ruleInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleRuleSubmission();
+            }
+        });
+
+        // Handle form submission on blur
+        ruleInput.addEventListener('blur', handleRuleSubmission);
+
+        async function handleRuleSubmission() {
+            const inputValue = ruleInput.value.trim();
+            console.log('Rule input submitted:', inputValue);
+
+            // Reset form
+            ruleForm.style.display = 'none';
+            ruleInput.disabled = true;
+            ruleInput.value = '';
+            addRuleButton.classList.remove('active');
+
+            // Validate input
+            if (!inputValue) {
+                console.log('Input is empty, action cancelled');
+                return;
+            }
+
+            // Check if a valid expense is selected
+            if (!selectedExpenseId || !window.expensesList) {
+                console.log('No expense selected or expenses list not available, action cancelled');
+                return;
+            }
+
+            const selectedExpense = window.expensesList.find(expense => expense.id === selectedExpenseId);
+            if (!selectedExpense) {
+                console.log('Selected expense not found, action cancelled');
+                return;
+            }
+
+            // Split input into words and check if any match the expense description
+            const inputWords = inputValue.toLowerCase().split(/\s+/);
+            const descriptionWords = selectedExpense.description.toLowerCase().split(/\s+/);
+            const hasMatchingWord = inputWords.some(word => descriptionWords.includes(word));
+
+            if (!hasMatchingWord) {
+                console.log('No matching words in expense description, action cancelled');
+                return;
+            }
+
+            // Prepare rule data
+            const categories = [
+                selectedExpense.category1,
+                selectedExpense.category2,
+                selectedExpense.category3
+            ].filter(cat => cat !== null && cat !== undefined);
+            const ruleData = {
+                words: inputValue,
+                categories: categories
+            };
+
+            // Show confirmation popup
+            const categoriesDisplay = categories.length > 0 ? categories.join(' > ') : 'None';
+            const confirmationMessage = `Create rule with words "${inputValue}" for categories: ${categoriesDisplay}?`;
+            console.log('Showing confirmation popup:', confirmationMessage);
+            const confirmed = confirm(confirmationMessage);
+
+            if (confirmed) {
+                console.log('Rule creation confirmed, storing rule:', ruleData);
+                // Store rule using rulesManager
+                try {
+                    const result = await window.rulesManager.addNewRule(ruleData);
+                    if (result.success) {
+                        console.log('Rule added successfully:', result.data);
+                        // Add rule to rules-list display
+                        const ruleElement = document.createElement('div');
+                        ruleElement.className = 'rule-item';
+                        ruleElement.dataset.ruleId = result.data.id;
+                        ruleElement.innerHTML = `
+                            <span class="rule-text">${result.data.words}: ${categoriesDisplay}</span>
+                            <button class="rule-delete-button" title="Delete Rule">X</button>
+                        `;
+                        rulesList.appendChild(ruleElement);
+                        console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+                        // Add delete button event listener
+                        const deleteButton = ruleElement.querySelector('.rule-delete-button');
+                        deleteButton.addEventListener('click', async (e) => {
+                            e.stopPropagation();
+                            console.log('Delete rule button clicked for ID:', result.data.id);
+                            const deleteResult = await window.rulesManager.deleteRule(result.data.id);
+                            if (deleteResult.success) {
+                                ruleElement.remove();
+                                console.log('Rule deleted from UI and db.json:', result.data.id);
+                            } else {
+                                console.error('Failed to delete rule:', deleteResult.message);
+                                alert('Failed to delete rule: ' + deleteResult.message);
+                            }
+                        });
+                    } else {
+                        console.error('Failed to add rule:', result.message);
+                        alert('Failed to add rule: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error storing rule:', error);
+                    alert('Error storing rule: ' + error.message);
+                }
+            } else {
+                console.log('Rule creation cancelled');
+            }
+        }
+    } else {
+        console.error('Failed to find add-rule-button, rule-form, rule-input, or rules-list elements');
+    }
+
     await loadPage();
 }
 
@@ -419,22 +644,56 @@ export async function initializeCategorization() {
 async function loadPage() {
     console.log('loadPage started');
     const expenseList = document.getElementById('expense-list');
-    if (!expenseList) {
-        console.error('expense-list element not found');
+    const rulesList = document.getElementById('rules-list');
+    if (!expenseList || !rulesList) {
+        console.error('expense-list or rules-list element not found');
         return;
     }
     expenseList.innerHTML = '';
+    rulesList.innerHTML = '';
 
     try {
-        console.log('Fetching expenses and categories...');
-        const [fetchExpensesResult, fetchCategoriesResult] = await Promise.all([
+        console.log('Fetching expenses, categories, and rules...');
+        const [fetchExpensesResult, fetchCategoriesResult, fetchRulesResult] = await Promise.all([
             window.fetchAllExpenses(),
-            window.fetchAllCategories()
+            window.fetchAllCategories(),
+            window.fetchAllRules()
         ]);
         window.expensesList = fetchExpensesResult.success ? fetchExpensesResult.data : [];
         window.categoriesList = fetchCategoriesResult.success ? fetchCategoriesResult.data : [];
+        const rulesListData = fetchRulesResult.success ? fetchRulesResult.data : [];
         console.log('Expenses list at startup:', window.expensesList);
         console.log('Categories list:', window.categoriesList);
+        console.log('Rules list:', rulesListData);
+
+        // Populate rules-list
+        rulesListData.forEach(rule => {
+            const categoriesDisplay = rule.categories.length > 0 ? rule.categories.join(' > ') : 'None';
+            const ruleElement = document.createElement('div');
+            ruleElement.className = 'rule-item';
+            ruleElement.dataset.ruleId = rule.id;
+            ruleElement.innerHTML = `
+                <span class="rule-text">${rule.words}: ${categoriesDisplay}</span>
+                <button class="rule-delete-button" title="Delete Rule">X</button>
+            `;
+            rulesList.appendChild(ruleElement);
+            console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+            // Add delete button event listener
+            const deleteButton = ruleElement.querySelector('.rule-delete-button');
+            deleteButton.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                console.log('Delete rule button clicked for ID:', rule.id);
+                const deleteResult = await window.rulesManager.deleteRule(rule.id);
+                if (deleteResult.success) {
+                    ruleElement.remove();
+                    console.log('Rule deleted from UI and db.json:', rule.id);
+                } else {
+                    console.error('Failed to delete rule:', deleteResult.message);
+                    alert('Failed to delete rule: ' + deleteResult.message);
+                }
+            });
+        });
     } catch (error) {
         console.error('Fetch error in loadPage:', error);
         window.expensesList = [];
@@ -491,6 +750,9 @@ Filename: src/categorizationPage/categoriesManager.js
 console.log('categoriesManager.js loaded');
 
 const categoriesManager = {
+    // Track delete mode state
+    isDeleteMode: false,
+
     // Update category buttons based on the selected expense ID
     updateCategoryButtons(selectedExpenseId, expensesList, categoriesList) {
         console.log('updateCategoryButtons called for expense ID:', selectedExpenseId);
@@ -536,6 +798,23 @@ const categoriesManager = {
             }
         }
 
+        // Add container for delete toggle button to position it top-right
+        const deleteToggleContainer = document.createElement('div');
+        deleteToggleContainer.className = 'delete-toggle-container';
+        const deleteToggleButton = document.createElement('button');
+        deleteToggleButton.textContent = 'X';
+        deleteToggleButton.className = `category-button delete-toggle level-${levelToDisplay} ${this.isDeleteMode ? 'delete-mode-active' : ''}`;
+        deleteToggleButton.title = this.isDeleteMode ? 'Exit Delete Mode' : 'Enter Delete Mode';
+        deleteToggleButton.onclick = () => {
+            this.isDeleteMode = !this.isDeleteMode;
+            console.log(`Delete mode ${this.isDeleteMode ? 'enabled' : 'disabled'}`);
+            // Update class on category-buttons to reflect delete mode
+            categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
+            this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList); // Refresh buttons
+        };
+        deleteToggleContainer.appendChild(deleteToggleButton);
+        categoryButtons.appendChild(deleteToggleContainer);
+
         // Filter categories based on the determined level and parent
         const categoriesToShow = categoriesList.filter(cat => {
             if (levelToDisplay === 1) return !cat.parent; // Level 1: no parent
@@ -553,39 +832,74 @@ const categoriesManager = {
             button.textContent = cat.name;
             button.className = `category-button level-${levelToDisplay}`;
             button.onclick = async () => {
-                console.log(`Assigning category ${cat.name} at level ${levelToDisplay} to expense ${selectedExpenseId}`);
-                const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);
-                if (result.success) {
-                    console.log('Category assigned successfully:', result.data);
-                    const index = expensesList.findIndex(e => e.id === selectedExpenseId);
-                    if (index !== -1) {
-                        expensesList[index] = result.data;
-                    }
-                    window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
-                    // Auto-select next expense after Level 3 assignment
-                    if (levelToDisplay === 3) {
-                        console.log('Level 3 assigned, selecting next expense');
-                        const currentIndex = expensesList.findIndex(e => e.id === selectedExpenseId);
-                        const nextIndex = currentIndex + 1 < expensesList.length ? currentIndex + 1 : 0;
-                        const nextExpenseId = expensesList[nextIndex].id;
-                        console.log(`Dispatching expenseSelected event for next expense ID: ${nextExpenseId}, index: ${nextIndex}`);
-                        const expenseList = document.getElementById('expense-list');
-                        if (expenseList) {
-                            expenseList.dispatchEvent(new CustomEvent('expenseSelected', { detail: { id: nextExpenseId } }));
-                            // Scroll to top if selecting first expense
-                            if (nextIndex === 0) {
-                                expenseList.scrollTop = 0;
-                                console.log('Scrolled to top of expense list');
-                            }
-                        } else {
-                            console.error('expense-list not found for dispatching event');
+                if (this.isDeleteMode) {
+                    // Delete mode: delete the category
+                    console.log(`Deleting category ${cat.name}`);
+                    const result = await window.deleteSingleCategory(cat.name);
+                    if (result.success) {
+                        console.log('Category deleted successfully:', cat.name);
+                        // Remove category from categoriesList
+                        const index = categoriesList.findIndex(c => c.name === cat.name);
+                        if (index !== -1) {
+                            categoriesList.splice(index, 1);
+                            console.log('Removed category from categoriesList:', cat.name);
                         }
-                    } else {
+                        // Update expensesList to reflect category removal
+                        expensesList.forEach(expense => {
+                            if (expense.category1 === cat.name) {
+                                expense.category1 = null;
+                                expense.category2 = null;
+                                expense.category3 = null;
+                            } else if (expense.category2 === cat.name) {
+                                expense.category2 = null;
+                                expense.category3 = null;
+                            } else if (expense.category3 === cat.name) {
+                                expense.category3 = null;
+                            }
+                        });
+                        // Refresh UI
+                        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
                         this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                    } else {
+                        console.error('Failed to delete category:', result.message);
+                        alert('Failed to delete category: ' + result.message);
                     }
                 } else {
-                    console.error('Failed to assign category:', result.message);
-                    alert('Failed to assign category: ' + result.message);
+                    // Normal mode: assign category
+                    console.log(`Assigning category ${cat.name} at level ${levelToDisplay} to expense ${selectedExpenseId}`);
+                    const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);
+                    if (result.success) {
+                        console.log('Category assigned successfully:', result.data);
+                        const index = expensesList.findIndex(e => e.id === selectedExpenseId);
+                        if (index !== -1) {
+                            expensesList[index] = result.data;
+                        }
+                        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
+                        // Auto-select next expense after Level 3 assignment
+                        if (levelToDisplay === 3) {
+                            console.log('Level 3 assigned, selecting next expense');
+                            const currentIndex = expensesList.findIndex(e => e.id === selectedExpenseId);
+                            const nextIndex = currentIndex + 1 < expensesList.length ? currentIndex + 1 : 0;
+                            const nextExpenseId = expensesList[nextIndex].id;
+                            console.log(`Dispatching expenseSelected event for next expense ID: ${nextExpenseId}, index: ${nextIndex}`);
+                            const expenseList = document.getElementById('expense-list');
+                            if (expenseList) {
+                                expenseList.dispatchEvent(new CustomEvent('expenseSelected', { detail: { id: nextExpenseId } }));
+                                // Scroll to top if selecting first expense
+                                if (nextIndex === 0) {
+                                    expenseList.scrollTop = 0;
+                                    console.log('Scrolled to top of expense list');
+                                }
+                            } else {
+                                console.error('expense-list not found for dispatching event');
+                            }
+                        } else {
+                            this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                        }
+                    } else {
+                        console.error('Failed to assign category:', result.message);
+                        alert('Failed to assign category: ' + result.message);
+                    }
                 }
             };
             categoryButtons.appendChild(button);
@@ -593,10 +907,15 @@ const categoriesManager = {
 
         // Add three dots button for adding a new category
         const addButton = document.createElement('button');
-        addButton.className = `category-button add-category level-${levelToDisplay}`;
+        addButton.className = `category-button add-category level-${levelToDisplay} ${this.isDeleteMode ? 'disabled' : ''}`;
         addButton.innerHTML = '⋮'; // Three dots symbol
         addButton.title = `Add new category to Level ${levelToDisplay}`;
         addButton.onclick = () => {
+            // Disable add category in delete mode
+            if (this.isDeleteMode) {
+                console.log('Cannot add category in delete mode');
+                return;
+            }
             // Replace button with input field
             const input = document.createElement('input');
             input.type = 'text';
@@ -765,7 +1084,48 @@ console.log('expenseManager initialized');
 
 ****************
 Filename: src/categorizationPage/rulesManager.js
+// frontend/src/categorizationPage/rulesManager.js
+console.log('rulesManager.js loaded');
 
+// Add a new rule via backendCommunications.js
+async function addNewRule(rule) {
+  console.log('Adding new rule:', rule);
+  try {
+    const result = await window.addNewRule(rule);
+    if (result.success) {
+      console.log('Rule added successfully via backendCommunications:', result.data);
+    } else {
+      console.log('Failed to add rule:', result.message);
+    }
+    return result;
+  } catch (error) {
+    console.error('Error in rulesManager.addNewRule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+// Delete a rule via backendCommunications.js
+async function deleteRule(ruleId) {
+  console.log('Deleting rule with ID:', ruleId);
+  try {
+    const result = await window.deleteRule(ruleId);
+    if (result.success) {
+      console.log('Rule deleted successfully via backendCommunications:', { id: ruleId });
+    } else {
+      console.log('Failed to delete rule:', result.message);
+    }
+    return result;
+  } catch (error) {
+    console.error('Error in rulesManager.deleteRule:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+// Expose functions to window.rulesManager
+window.rulesManager = {
+  addNewRule,
+  deleteRule
+};
 
 ****************
 Filename: src/categorizationPage/StyleExpCategorization.css
@@ -773,310 +1133,430 @@ Filename: src/categorizationPage/StyleExpCategorization.css
  * CATEGORIZATION PAGE LAYOUT
  **********************************/
 .main-container-categorize {
- width: 100vw;
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- max-width: 100vw !important;
- margin-left: 0 !important;
- margin-right: 0 !important;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .grid-container {
- display: grid;
- grid-template-columns: 70% 30%;
- width: 100vw;
- height: 100%;
- box-sizing: border-box;
- overflow-x: hidden;
- max-width: 100vw !important;
- margin: 0 !important;
- padding: 0 !important;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100vw;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .expense-column {
- padding: 16px;
- overflow-y: visible;
- box-sizing: border-box;
- height: auto;
- max-width: 100%;
+    padding: 16px;
+    overflow-y: visible;
+    box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
 }
 
 .category-column {
- padding: 16px;
- overflow-y: auto;
- box-sizing: border-box;
- max-width: 100%;
+    padding: 16px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.category-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-top: 1px solid #e5e5e5; /* Separator above Add a Rule button */
 }
 
 .column-title {
- font-size: 20px;
- font-weight: bold;
- color: #1f2937;
- margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 16px;
 }
 
 /**********************************
  * EXPENSE LIST STYLES
  **********************************/
 .expense-list {
- list-style: none;
- width: 100%;
- max-width: 100%;
- padding: 0;
- margin: 0;
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .expense-item {
- padding: 8px 12px;
- border-bottom: 1px solid #e5e5e5;
- cursor: pointer;
- font-size: 16px;
- color: #000;
- transition: background -color 0.2s;
- display: grid;
- grid-template-rows: 30px auto;
- grid-template-columns: 10% 70% 20%;
- align-items: center;
- gap: 8px;
- height: 80px;
- box-sizing: border-box;
- max-width: 100%;
- overflow-x: hidden;
- padding-right: 16px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    transition: background-color 0.2s;
+    display: grid;
+    grid-template-rows: 30px auto;
+    grid-template-columns: 10% 70% 20%;
+    align-items: center;
+    gap: 8px;
+    height: 80px;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-right: 16px;
 }
 
 .expense-item:hover {
- background-color: #f9fafb;
+    background-color: #f9fafb;
 }
 
 .expense-item.selected {
- background-color: #e5e7eb;
+    background-color: #e5e7eb;
 }
 
 .expense-date {
- grid-column: 1 / 2;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
- min-width: 0;
+    grid-column: 1 / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-description {
- grid-column: 2 / 3;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
- min-width: 0;
+    grid-column: 2 / 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-amount {
- grid-column: 3 / 4;
- font-weight: bold;
- text-align: right;
- overflow: visible;
- white-space: nowrap;
- min-width: 8ch;
- max-width: 100%;
- padding-right: 4px;
+    grid-column: 3 / 4;
+    font-weight: bold;
+    text-align: right;
+    overflow: visible;
+    white-space: nowrap;
+    min-width: 8ch;
+    max-width: 100%;
+    padding-right: 4px;
 }
 
 .expense-negative .expense-amount {
- color: #dc2626;
+    color: #dc2626;
 }
 
 .expense-positive .expense-amount {
- color: #16a34a;
+    color: #16a34a;
 }
 
 /**********************************
  * CATEGORY TAGS AND BUTTONS
  **********************************/
 .category-tags {
- grid-row: 2 / 3;
- grid-column: 1 / -1;
- display: flex;
- flex-direction: row;
- gap: 4px;
- align-items: center;
- min-height: 0;
- max-width: 100%;
- overflow-x: auto;
- flex-shrink: 0;
- max-height: 30px;
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    min-height: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    flex-shrink: 0;
+    max-height: 30px;
 }
 
 .expense-category-button {
- padding: 4px 8px;
- color: #fff;
- border: none;
- border-radius: 4px;
- cursor: pointer;
- font-size: 12px;
- transition: background-color 0.2s;
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
- min-width: 80px;
- max-width: 100%;
+    padding: 4px 8px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 80px;
+    max-width: 100%;
 }
 
 .expense-category-button:hover {
- /* No default hover, rely on level hover styles */
+    /* No default hover, rely on level hover styles */
 }
 
 .expense-category-button.level-1 {
- background-color: #3b82f6;
+    background-color: #3b82f6; /* Blue for Level 1 */
 }
 
 .expense-category-button.level-1:hover {
- background-color: #2563eb;
+    background-color: #2563eb;
 }
 
 .expense-category-button.level-2 {
- background-color: #f97316;
+    background-color: #f97316; /* Orange for Level 2 */
 }
 
 .expense-category-button.level-2:hover {
- background-color: #ea580c;
+    background-color: #ea580c;
 }
 
 .expense-category-button.level-3 {
- background-color: #dc2626;
+    background-color: #dc2626; /* Red for Level 3 */
 }
 
 .expense-category-button.level-3:hover {
- background-color: #b91c1c;
+    background-color: #b91c1c;
 }
 
 /* Category selection buttons in category column */
 #category-buttons {
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- gap: 8px;
- margin-top: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    position: relative; /* For positioning delete-toggle-container */
 }
 
-.delete-toggle-button {
- padding: 4px 8px;
- background-color: #dc2626;
- color: #fff;
- border: none;
- border-radius: 4px;
- cursor: pointer;
- font-size: 12px;
- transition: background-color 0.2s;
+.delete-toggle-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10; /* Ensure it’s above other buttons */
 }
 
-.delete-toggle-button:hover {
- background-color: #b91c1c;
+.delete-toggle {
+    width: 32px; /* Square button */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px; /* Large X */
+    font-weight: bold;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.delete-toggle.level-1 {
+    background-color: #3b82f6; /* Blue for Level 1 */
+}
+
+.delete-toggle.level-1:hover {
+    background-color: #2563eb;
+}
+
+.delete-toggle.level-2 {
+    background-color: #f97316; /* Orange for Level 2 */
+}
+
+.delete-toggle.level-2:hover {
+    background-color: #ea580c;
+}
+
+.delete-toggle.level-3 {
+    background-color: #dc2626; /* Red for Level 3 */
+}
+
+.delete-toggle.level-3:hover {
+    background-color: #b91c1c;
+}
+
+.delete-toggle.delete-mode-active {
+    border: 2px solid #fff; /* White border to indicate active delete mode */
 }
 
 #category-buttons.delete-mode .category-button {
- background-color: #bfdbfe;
+    background-color: #93c5fd; /* Lighter blue for Level 1 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button:hover {
- background-color: #60a5fa;
+    background-color: #2563eb; /* Darker blue on hover */
 }
 
 #category-buttons.delete-mode .category-button.level-2 {
- background-color: #fed7aa;
+    background-color: #fed7aa; /* Lighter orange for Level 2 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button.level-2:hover {
- background-color: #fb923c;
+    background-color: #ea580c;
 }
 
 #category-buttons.delete-mode .category-button.level-3 {
- background-color: #fecaca;
+    background-color: #fecaca; /* Lighter red for Level 3 in delete mode */
 }
 
 #category-buttons.delete-mode .category-button.level-3:hover {
- background-color: #f87171;
+    background-color: #b91c1c;
 }
 
 .category-button {
- padding: 8px 16px;
- color: #fff;
- border: none;
- border-radius: 4px;
- cursor: pointer;
- font-size: 14px;
- transition: background-color 0.2s;
- white-space: nowrap;
- background-color: #3b82f6;
+    padding: 8px 16px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    background-color: #3b82f6;
 }
 
 .category-button:hover {
- background-color: #2563eb;
+    background-color: #2563eb;
 }
 
 .category-button.level-2 {
- background-color: #f97316;
+    background-color: #f97316;
 }
 
 .category-button.level-2:hover {
- background-color: #ea580c;
+    background-color: #ea580c;
 }
 
 .category-button.level-3 {
- background-color: #dc2626;
+    background-color: #dc2626;
 }
 
 .category-button.level-3:hover {
- background-color: #b91c1c;
+    background-color: #b91c1c;
 }
 
 .category-button.add-category {
- padding: 8px;
- min-width: 32px;
- font-size: 16px;
- color: #fff;
- border: none;
- display: flex;
- align-items: center;
- justify-content: center;
+    padding: 8px;
+    min-width: 32px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .category-button.add-category.level-1 {
- background-color: #3b82f6;
+    background-color: #3b82f6;
 }
 
 .category-button.add-category.level-1:hover {
- background-color: #2563eb;
+    background-color: #2563eb;
 }
 
 .category-button.add-category.level-2 {
- background-color: #f97316;
+    background-color: #f97316;
 }
 
 .category-button.add-category.level-2:hover {
- background-color: #ea580c;
+    background-color: #ea580c;
 }
 
 .category-button.add-category.level-3 {
- background-color: #dc2626;
+    background-color: #dc2626;
 }
 
 .category-button.add-category.level-3:hover {
- background-color: #b91c1c;
+    background-color: #b91c1c;
+}
+
+.category-button.add-category.disabled {
+    background-color: #d1d5db; /* Gray when disabled */
+    cursor: not-allowed;
+}
+
+.category-button.add-category.disabled:hover {
+    background-color: #d1d5db; /* No hover effect when disabled */
 }
 
 .category-button.editing {
- color: #fff;
- border: none;
- min-width: 100px;
- outline: none;
- caret-color: #fff;
- font-weight: normal; /* Match category button font */
- font-size: 14px; /* Match category button font */
+    color: #fff;
+    border: none;
+    min-width: 100px;
+    outline: none;
+    caret-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
 }
 
 .category-button.editing::selection {
- background: rgba(255, 255, 255, 0.3);
- color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+/* Rules section styles */
+#rules-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.add-rule-button {
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #6b7280; /* Gray for distinct aesthetic */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    align-self: center; /* Center horizontally */
+    margin: 8px 0; /* Vertical spacing to act as divider */
+    width: 100%; /* Full width for divider effect */
+    text-align: center;
+}
+
+.add-rule-button:hover {
+    background-color: #4b5563; /* Darker gray on hover */
+}
+
+.add-rule-button.active {
+    background-color: #4b5563; /* Darker gray when active */
+}
+
+.rule-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.rule-input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px; /* Limit input width */
+    background-color: #f9fafb;
+}
+
+.rule-input:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.rule-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
 ****************
