@@ -77,12 +77,12 @@ export async function initializeCategorization() {
             }
 
             // Check if a valid expense is selected
-            if (!selectedExpenseId || !window.expensesList) {
+            if (!window.selectedExpenseId || !window.expensesList) {
                 console.log('No expense selected or expenses list not available, action cancelled');
                 return;
             }
 
-            const selectedExpense = window.expensesList.find(expense => expense.id === selectedExpenseId);
+            const selectedExpense = window.expensesList.find(expense => expense.id === window.selectedExpenseId);
             if (!selectedExpense) {
                 console.log('Selected expense not found, action cancelled');
                 return;
@@ -164,6 +164,7 @@ export async function initializeCategorization() {
     }
 
     await loadPage();
+    await window.rulesManager.applyAllRulesToExpenses(); // ← APPLICA REGOLE AL CARICAMENTO
 }
 
 // Load page data and set up the initial display
@@ -228,10 +229,10 @@ async function loadPage() {
 
     if (window.expensesList.length > 0) {
         console.log('Initializing expense selection...');
-        selectedExpenseId = window.expensesList[0].id; // Select the first expense
-        console.log('Selected expense ID:', selectedExpenseId);
+        window.selectedExpenseId = window.expensesList[0].id; // ← GLOBALE
+        console.log('Selected expense ID:', window.selectedExpenseId);
         updateExpenseDisplay();
-        window.categoriesManager.updateCategoryButtons(selectedExpenseId, window.expensesList, window.categoriesList);
+        window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
     } else {
         console.log('No expenses found, setting no-data message');
         expenseList.innerHTML = '<p class="no-data">No expenses found</p>';
@@ -243,14 +244,15 @@ async function loadPage() {
 function updateExpenseDisplay() {
     console.log('updateExpenseDisplay called');
     if (window.expenseManager) {
-        window.expenseManager.updateExpenseDisplay(window.expensesList, selectedExpenseId);
+        window.expenseManager.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
     } else {
         console.error('expenseManager not found');
     }
     console.log('updateExpenseDisplay completed');
 }
 
-let selectedExpenseId = null;
+// ← ESPORTA GLOBALE
+window.selectedExpenseId = null;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -265,7 +267,7 @@ if (document.readyState === 'loading') {
 // Handle expense selection events to update the display
 document.getElementById('expense-list')?.addEventListener('expenseSelected', (e) => {
     console.log('expenseSelected event received, new ID:', e.detail.id);
-    selectedExpenseId = e.detail.id;
+    window.selectedExpenseId = e.detail.id;
     updateExpenseDisplay();
-    window.categoriesManager.updateCategoryButtons(selectedExpenseId, window.expensesList, window.categoriesList);
+    window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
 });
