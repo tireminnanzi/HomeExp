@@ -3,7 +3,7 @@
     {
       "id": "1",
       "date": "2025-10-15",
-      "description": "Grocery shopping at Netto",
+      "description": "Shopping at Netto",
       "amount": -45.3,
       "source": "CSV",
       "category1": "Food",
