@@ -1,0 +1,4 @@
+# Quando vuoi tornare alla versione stabile (anche tra 6 mesi):
+git checkout stable-nov2025
+# oppure
+git merge stable-nov2025    # per riportarla sul main

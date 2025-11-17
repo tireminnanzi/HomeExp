@@ -17,43 +17,32 @@ function loadPage(page) {
     </header>
     <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}" id="main-content"></main>
   `;
-  console.log('HTML content updated for page:', page);
 
-  // Remove existing page scripts and styles
-  const existingScripts = document.querySelectorAll('script[data-page]');
-  existingScripts.forEach(script => {
-    console.log('Removing existing script:', script.src);
-    script.remove();
-  });
-  const existingStyles = document.querySelectorAll('link[data-page]');
-  existingStyles.forEach(style => {
-    console.log('Removing existing style:', style.href);
-    style.remove();
-  });
+  // Rimuovi script e stili delle pagine precedenti
+  document.querySelectorAll('script[data-page]').forEach(s => s.remove());
+  document.querySelectorAll('link[data-page]').forEach(l => l.remove());
 
-  // Load page-specific scripts and styles with debug
+  // ==================== UPLOAD PAGE ====================
   if (page === 'upload') {
-    console.log('Loading upload page script');
-    const style = document.createElement('link');
-    style.rel = 'stylesheet';
-    style.href = 'src/uploadPage/uploadPage.css'; // Assuming a CSS file exists
-    style.dataset.page = 'upload';
-    document.head.appendChild(style);
-
+    console.log('Caricamento pagina Upload');
     const script = document.createElement('script');
     script.src = 'src/uploadPage/uploadPage.js';
     script.type = 'module';
     script.dataset.page = 'upload';
     document.body.appendChild(script);
+
+  // ==================== CATEGORIZE PAGE ====================
   } else if (page === 'categorize') {
-    console.log('Loading categorize page styles and scripts');
+    console.log('Caricamento pagina Categorize');
+
+    // CSS
     const style = document.createElement('link');
     style.rel = 'stylesheet';
     style.href = 'src/categorizationPage/StyleExpCategorization.css';
     style.dataset.page = 'categorize';
     document.head.appendChild(style);
-    console.log('Added StyleExpCategorization.css link:', style.href);
 
+    // 1. expenseManager
     const expenseScript = document.createElement('script');
     expenseScript.src = 'src/categorizationPage/expenseManager.js';
     expenseScript.type = 'module';
@@ -61,7 +50,7 @@ function loadPage(page) {
     document.body.appendChild(expenseScript);
 
     expenseScript.onload = () => {
-      console.log('expenseManager.js loaded, loading categoriesManager.js');
+      // 2. categoriesManager
       const categoriesScript = document.createElement('script');
       categoriesScript.src = 'src/categorizationPage/categoriesManager.js';
       categoriesScript.type = 'module';
@@ -69,7 +58,7 @@ function loadPage(page) {
       document.body.appendChild(categoriesScript);
 
       categoriesScript.onload = () => {
-        console.log('categoriesManager.js loaded, loading rulesManager.js');
+        // 3. rulesManager
         const rulesScript = document.createElement('script');
         rulesScript.src = 'src/categorizationPage/rulesManager.js';
         rulesScript.type = 'module';
@@ -77,17 +66,25 @@ function loadPage(page) {
         document.body.appendChild(rulesScript);
 
         rulesScript.onload = () => {
-          console.log('rulesManager.js loaded, loading categorizationPage.js');
+          // 4. categorizationPage.js → poi avvia
           const pageScript = document.createElement('script');
           pageScript.src = 'src/categorizationPage/categorizationPage.js';
           pageScript.type = 'module';
           pageScript.dataset.page = 'categorize';
           document.body.appendChild(pageScript);
+
+          pageScript.onload = () => {
+            if (window.initializeCategorization) {
+              window.initializeCategorization();
+            }
+          };
         };
       };
     };
+
+  // ==================== VISUALIZE PAGE ====================
   } else if (page === 'visualize') {
-    console.log('Loading visualize page script');
+    console.log('Caricamento pagina Visualize');
     const script = document.createElement('script');
     script.src = 'src/visualizationPage/visualizationPage.js';
     script.type = 'module';
@@ -96,6 +93,8 @@ function loadPage(page) {
   }
 }
 
-// Load default page
-console.log('Initializing with default page: categorize');
+// Avvio iniziale
 loadPage('categorize');
+
+// Rendi loadPage visibile ai pulsanti onclick
+window.loadPage = loadPage;

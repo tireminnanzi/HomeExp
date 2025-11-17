@@ -6,8 +6,8 @@
       "description": "Shopping at Netto",
       "amount": -45.3,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
+      "category1": "Food",
+      "category2": "Groceries",
       "category3": null
     },
     {
@@ -16,7 +16,7 @@
       "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": null,
+      "category1": "Food",
       "category2": null,
       "category3": null
     },
