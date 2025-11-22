@@ -1,150 +1,103 @@
 // frontend/src/categorizationPage/rulesManager.js
-console.log('rulesManager.js loaded');
+console.log('rulesManager.js – VERSIONE FINALE CON RENDERROW');
 
-// === APPLICA TUTTE LE REGOLE AL CARICAMENTO PAGINA ===
 async function applyAllRulesToExpenses() {
-  console.log('Applying ALL rules on page load...');
+    const { data: expenses } = await window.fetchAllExpenses();
+    const { data: rules } = await window.fetchAllRules();
+    if (!rules?.length) return;
 
-  const { success: expOk, data: expenses } = await window.fetchAllExpenses();
-  const { success: ruleOk, data: rules } = await window.fetchAllRules();
+    const promises = [];
 
-  if (!expOk || !ruleOk || rules.length === 0) return;
-
-  const updatePromises = [];
-
-  for (const expense of expenses) {
-    let applied = false;
-    let cats = [null, null, null];
-
-    for (const rule of rules) {
-      const words = rule.words.toLowerCase().split(',').map(w => w.trim()).filter(Boolean);
-      if (words.some(w => expense.description.toLowerCase().includes(w))) {
-        cats = [rule.categories[0] || null, rule.categories[1] || null, rule.categories[2] || null];
-        applied = true;
-        break;
-      }
+    for (const expense of expenses) {
+        for (const rule of rules) {
+            const words = rule.words.toLowerCase().split(',').map(w => w.trim());
+            if (words.some(w => expense.description.toLowerCase().includes(w))) {
+                const updated = {
+                    ...expense,
+                    category1: rule.categories[0] || null,
+                    category2: rule.categories[1] || null,
+                    category3: rule.categories[2] || null
+                };
+                promises.push(
+                    fetch(`http://localhost:3000/expenses/${expense.id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updated)
+                    }).then(r => r.json())
+                );
+                break;
+            }
+        }
     }
 
-    if (applied) {
-      const updated = { ...expense, category1: cats[0], category2: cats[1], category3: cats[2] };
-      updatePromises.push(
-        fetch(`http://localhost:3000/expenses/${expense.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updated)
-        }).then(() => updated)
-      );
+    if (promises.length > 0) {
+        const results = await Promise.all(promises);
+        results.forEach(exp => {
+            const idx = window.expensesList.findIndex(e => e.id === exp.id);
+            if (idx !== -1) {
+                window.expensesList[idx] = exp;
+                window.expenseManager.renderRow(exp, exp.id === window.selectedExpenseId);
+            }
+        });
+        if (window.selectedExpenseId) {
+            window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+        }
     }
-  }
-
-  const updatedExpenses = await Promise.all(updatePromises);
-  updatedExpenses.forEach(exp => {
-    const i = window.expensesList.findIndex(e => e.id === exp.id);
-    if (i !== -1) window.expensesList[i] = exp;
-  });
-
-  // Usa window.selectedExpenseId (globale)
-  if (window.expenseManager && window.selectedExpenseId) {
-    window.expenseManager.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
-    if (window.categoriesManager) {
-      window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
-    }
-  }
 }
 
-// === ADD NEW RULE + APPLICA SUBITO ===
 async function addNewRule(rule) {
-  console.log('Adding rule and applying immediately:', rule);
-
-  const result = await window.addNewRule(rule);
-  if (!result.success) return result;
-
-  const newRule = result.data;
-  const words = newRule.words.toLowerCase().split(',').map(w => w.trim()).filter(Boolean);
-  const cats = [newRule.categories[0] || null, newRule.categories[1] || null, newRule.categories[2] || null];
-
-  const { data: expenses } = await window.fetchAllExpenses();
-  const updatePromises = [];
-
-  for (const expense of expenses) {
-    if (words.some(w => expense.description.toLowerCase().includes(w))) {
-      const updated = { ...expense, category1: cats[0], category2: cats[1], category3: cats[2] };
-      updatePromises.push(
-        fetch(`http://localhost:3000/expenses/${expense.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updated)
-        }).then(() => updated)
-      );
+    const res = await window.addNewRule(rule);
+    if (res.success) {
+        await applyAllRulesToExpenses();
     }
-  }
-
-  const updatedExpenses = await Promise.all(updatePromises);
-  updatedExpenses.forEach(exp => {
-    const i = window.expensesList.findIndex(e => e.id === exp.id);
-    if (i !== -1) window.expensesList[i] = exp;
-  });
-
-  // Usa window.selectedExpenseId
-  if (window.expenseManager && window.selectedExpenseId) {
-    window.expenseManager.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
-    if (window.categoriesManager) {
-      window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
-    }
-  }
-
-  return result;
+    return res;
 }
 
-// === DELETE RULE + RIMUOVI SOLO LE SUE CATEGORIE ===
 async function deleteRule(ruleId) {
-  const { data: rules } = await window.fetchAllRules();
-  const rule = rules.find(r => r.id === ruleId);
-  if (!rule) return { success: false };
+    const { data: rules } = await window.fetchAllRules();
+    const rule = rules.find(r => r.id === ruleId);
+    if (!rule) return;
 
-  const words = rule.words.toLowerCase().split(',').map(w => w.trim()).filter(Boolean);
-  const cats = rule.categories;
+    const words = rule.words.toLowerCase().split(',').map(w => w.trim());
+    const cats = rule.categories;
 
-  const { data: expenses } = await window.fetchAllExpenses();
-  const updatePromises = [];
+    const { data: expenses } = await window.fetchAllExpenses();
+    const promises = [];
 
-  for (const expense of expenses) {
-    const descMatch = words.some(w => expense.description.toLowerCase().includes(w));
-    const catsMatch = [expense.category1, expense.category2, expense.category3].every((c, i) => c === (cats[i] || null));
-
-    if (descMatch && catsMatch) {
-      const updated = { ...expense, category1: null, category2: null, category3: null };
-      updatePromises.push(
-        fetch(`http://localhost:3000/expenses/${expense.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updated)
-        }).then(() => updated)
-      );
+    for (const exp of expenses) {
+        const matchesDesc = words.some(w => exp.description.toLowerCase().includes(w));
+        const matchesCats = [exp.category1, exp.category2, exp.category3].every((c, i) => c === (cats[i] || null));
+        if (matchesDesc && matchesCats) {
+            const cleaned = { ...exp, category1: null, category2: null, category3: null };
+            promises.push(
+                fetch(`http://localhost:3000/expenses/${exp.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(cleaned)
+                }).then(r => r.json())
+            );
+        }
     }
-  }
 
-  const updatedExpenses = await Promise.all(updatePromises);
-  updatedExpenses.forEach(exp => {
-    const i = window.expensesList.findIndex(e => e.id === exp.id);
-    if (i !== -1) window.expensesList[i] = exp;
-  });
-
-  if (window.expenseManager && window.selectedExpenseId) {
-    window.expenseManager.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
-    if (window.categoriesManager) {
-      window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+    if (promises.length) {
+        const results = await Promise.all(promises);
+        results.forEach(exp => {
+            const idx = window.expensesList.findIndex(e => e.id === exp.id);
+            if (idx !== -1) {
+                window.expensesList[idx] = exp;
+                window.expenseManager.renderRow(exp, exp.id === window.selectedExpenseId);
+            }
+        });
+        if (window.selectedExpenseId) {
+            window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+        }
     }
-  }
 
-  return await window.deleteRule(ruleId);
+    return await window.deleteRule(ruleId);
 }
 
-// === ESPORTA ===
 window.rulesManager = {
-  addNewRule,
-  deleteRule,
-  applyAllRulesToExpenses
+    applyAllRulesToExpenses,
+    addNewRule,
+    deleteRule
 };
-
-console.log('rulesManager ready with instant UI update');

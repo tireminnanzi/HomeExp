@@ -6,9 +6,9 @@
       "description": "shopping at netto",
       "amount": -45.3,
       "source": "CSV",
-      "category1": "Food",
-      "category2": "Groceries",
-      "category3": "Pasta"
+      "category2": null,
+      "category3": null,
+      "category1": "Home"
     },
     {
       "id": "2",
@@ -16,9 +16,9 @@
       "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "Food",
-      "category2": "Groceries",
-      "category3": "Fish"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "3",
@@ -26,9 +26,9 @@
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": null,
-      "category2": null,
-      "category3": null
+      "category1": "Home",
+      "category2": "Furnitures",
+      "category3": "Bedroom"
     },
     {
       "id": "4",
@@ -36,7 +36,6 @@
       "description": "Restaurant dinner",
       "amount": -65,
       "source": "PDF_AMAZON",
-      "category1": null,
       "category2": null,
       "category3": null
     },
@@ -46,17 +45,12 @@
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": null,
+      "category1": "Home",
       "category2": null,
       "category3": null
     }
   ],
   "categories": [
-    {
-      "id": "1",
-      "name": "Food",
-      "parent": null
-    },
     {
       "id": "2",
       "name": "Groceries",
@@ -76,11 +70,6 @@
       "id": "6",
       "name": "Fast Food",
       "parent": "Dining"
-    },
-    {
-      "id": "8",
-      "name": "Transport",
-      "parent": null
     },
     {
       "id": "9",
@@ -188,10 +177,38 @@
       "parent": "Food"
     },
     {
-      "id": "41",
-      "name": "Income",
+      "id": "42",
+      "name": "Home",
+      "parent": null
+    },
+    {
+      "id": "44",
+      "name": "Furnitures",
+      "parent": "Home"
+    },
+    {
+      "id": "45",
+      "name": "Bedroom",
+      "parent": "Furnitures"
+    },
+    {
+      "id": "46",
+      "name": "prova",
+      "parent": "Home"
+    },
+    {
+      "id": "47",
+      "name": "Work",
       "parent": null
     }
   ],
-  "rules": []
+  "rules": [
+    {
+      "words": "Neto",
+      "categories": [
+        "Home"
+      ],
+      "id": "1"
+    }
+  ]
 }

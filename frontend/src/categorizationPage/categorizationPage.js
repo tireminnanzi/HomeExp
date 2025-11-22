@@ -1,14 +1,9 @@
 // frontend/src/categorizationPage/categorizationPage.js
-console.log('categorizationPage.js loaded');
+console.log('categorizationPage.js – VERSIONE FINALE CON SINGLE LINE REFRESH');
 
-// ← FUNZIONE PRINCIPALE (senza export)
 async function initializeCategorization() {
-    console.log('initializeCategorization started');
     const mainContent = document.getElementById('main-content');
-    if (!mainContent) {
-        console.error('main-content element not found');
-        return;
-    }
+    if (!mainContent) return console.error('main-content not found');
 
     mainContent.innerHTML = `
         <div class="grid-container">
@@ -19,113 +14,94 @@ async function initializeCategorization() {
             <div class="category-column">
                 <div class="category-top">
                     <h2 class="column-title">Categories</h2>
-                    <div id="category-buttons" class="category-buttons"></div>
+                    <div id="category-buttons"></div>
                 </div>
                 <div class="category-bottom">
                     <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
-                    <form id="rule-form" class="rule-form" style="display: none;">
-                        <input type="text" id="rule-input" class="rule-input" placeholder="Enter words to match" disabled>
+                    <form id="rule-form" class="rule-form" style="display:none;">
+                        <input type="text" id="rule-input" class="rule-input" placeholder="Parole da cercare..." disabled>
                     </form>
-                    <div id="rules-list" class="rules-list"></div>
+                    <div id="rules-list"></div>
                 </div>
-            </ div>
+            </div>
         </div>
     `;
 
-    // === LOGICA ADD RULE (tutto il tuo codice che avevi prima) ===
     const addRuleButton = document.getElementById('add-rule-button');
     const ruleForm = document.getElementById('rule-form');
     const ruleInput = document.getElementById('rule-input');
     const rulesList = document.getElementById('rules-list');
 
-    if (addRuleButton && ruleForm && ruleInput && rulesList) {
-        addRuleButton.addEventListener('click', () => {
-            ruleForm.style.display = 'block';
-            ruleInput.disabled = false;
-            ruleInput.focus();
-            addRuleButton.classList.add('active');
-        });
+    // BLOCCA ADD RULE SE NESSUNA CATEGORIA ASSEGNATA
+    addRuleButton.addEventListener('click', () => {
+        if (!window.selectedExpenseId) {
+            alert('Seleziona una spesa prima');
+            return;
+        }
+        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
+        if (!expense || (!expense.category1 && !expense.category2 && !expense.category3)) {
+            alert('Assegna almeno una categoria alla spesa prima di creare una regola.');
+            return;
+        }
 
-        const handleSubmit = async () => {
-            const words = ruleInput.value.trim();
-            if (!words) return;
+        ruleForm.style.display = 'block';
+        ruleInput.disabled = false;
+        ruleInput.focus();
+        addRuleButton.classList.add('active');
+    });
 
-            ruleForm.style.display = 'none';
-            ruleInput.disabled = true;
-            ruleInput.value = '';
-            addRuleButton.classList.remove('active');
+    // Gestione invio regola
+    const submitRule = async () => {
+        const words = ruleInput.value.trim();
+        if (!words) return;
 
-            if (!window.selectedExpenseId || !window.expensesList) return;
-            const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-            if (!expense) return;
+        ruleForm.style.display = 'none';
+        ruleInput.value = '';
+        ruleInput.disabled = true;
+        addRuleButton.classList.remove('active');
 
-            const descWords = expense.description.toLowerCase().split(/\s+/);
-            if (!words.toLowerCase().split(/\s+/).some(w => descWords.includes(w))) return;
+        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
+        if (!expense) return;
 
-            const categories = [expense.category1, expense.category2, expense.category3].filter(Boolean);
-            const display = categories.length ? categories.join(' > ') : 'None';
+        const categories = [expense.category1, expense.category2, expense.category3].filter(Boolean);
+        if (confirm(`Creare regola: "${words}" → ${categories.join(' > ')}?`)) {
+            await window.rulesManager.addNewRule({ words, categories });
+        }
+    };
 
-            if (confirm(`Create rule "${words}" → ${display}?`)) {
-                const result = await window.rulesManager.addNewRule({ words, categories });
-                if (result.success) {
-                    const el = document.createElement('div');
-                    el.className = 'rule-item';
-                    el.dataset.ruleId = result.data.id;
-                    el.innerHTML = `<span class="rule-text">${words}: ${display}</span><button class="rule-delete-button">X</button>`;
-                    rulesList.appendChild(el);
-                    el.querySelector('.rule-delete-button').onclick = () => window.rulesManager.deleteRule(result.data.id).then(() => el.remove());
-                }
-            }
-        };
+    ruleInput.addEventListener('keydown', e => e.key === 'Enter' && (e.preventDefault(), submitRule()));
+    ruleInput.addEventListener('blur', submitRule);
 
-        ruleInput.addEventListener('keypress', e => e.key === 'Enter' && (e.preventDefault(), handleSubmit()));
-        ruleInput.addEventListener('blur', handleSubmit);
-    }
-
-    await loadPageData();
+    await loadData();
     await window.rulesManager.applyAllRulesToExpenses();
 }
 
-async function loadPageData() {
-    const expenseList = document.getElementById('expense-list');
-    const rulesList = document.getElementById('rules-list');
-    if (!expenseList || !rulesList) return;
+async function loadData() {
+    const [expRes, catRes, rulesRes] = await Promise.all([
+        window.fetchAllExpenses(),
+        window.fetchAllCategories(),
+        window.fetchAllRules()
+    ]);
 
-    try {
-        const [exp, cat, rules] = await Promise.all([
-            window.fetchAllExpenses(),
-            window.fetchAllCategories(),
-            window.fetchAllRules()
-        ]);
+    window.expensesList = expRes.success ? expRes.data : [];
+    window.categoriesList = catRes.success ? catRes.data : [];
 
-        window.expensesList = exp.success ? exp.data : [];
-        window.categoriesList = cat.success ? cat.data : [];
-
-        rules.success && rules.data.forEach(rule => {
-            const display = rule.categories.length ? rule.categories.join(' > ') : 'None';
+    document.getElementById('rules-list').innerHTML = '';
+    if (rulesRes.success) {
+        rulesRes.data.forEach(rule => {
+            const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
             const el = document.createElement('div');
             el.className = 'rule-item';
-            el.dataset.ruleId = rule.id;
-            el.innerHTML = `<span class="rule-text">${rule.words}: ${display}</span><button class="rule-delete-button">X</button>`;
-            rulesList.appendChild(el);
-            el.querySelector('.rule-delete-button').onclick = () => window.rulesManager.deleteRule(rule.id).then(() => el.remove());
+            el.innerHTML = `<span>${rule.words}: ${display}</span><button class="rule-delete">X</button>`;
+            el.querySelector('.rule-delete').onclick = () => 
+                window.rulesManager.deleteRule(rule.id).then(() => el.remove());
+            document.getElementById('rules-list').appendChild(el);
         });
+    }
 
-        if (window.expensesList.length > 0) {
-            window.selectedExpenseId = window.expensesList[0].id;
-            window.expenseManager?.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
-            window.categoriesManager?.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
-        } else {
-            expenseList.innerHTML = '<p class="no-data">No expenses found</p>';
-        }
-    } catch (e) { console.error(e); }
+    if (window.expensesList.length > 0) {
+        window.expenseManager.renderAll(window.expensesList);
+    }
 }
 
-function updateExpenseDisplay() {
-    window.expenseManager?.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
-}
-
-// ← ESPORTAZIONE GLOBALE (UNICA RIGA IMPORTANTE)
 window.initializeCategorization = initializeCategorization;
-
-// ← NIENT'ALTRO QUI SOTTO! (niente DOMContentLoaded, niente listener)

@@ -1,152 +1,167 @@
 // frontend/src/categorizationPage/expenseManager.js
-console.log('expenseManager.js loaded - initializing with logs');
+console.log('expenseManager.js → SINGLE LINE REFRESH + TUTTO PERFETTO');
 
-// OGGETTO PRINCIPALE: contiene la funzione per disegnare la lista delle spese
 const expenseManager = {
-  // Funzione principale: RICOSTRUISCE TUTTA la lista delle spese nell'HTML
-  updateExpenseDisplay(expenses, selectedExpenseId) {
-    console.log('updateExpenseDisplay called:', { count: expenses.length, selected: selectedExpenseId });
-    
-    // Prende il <ul> dove vanno le spese
-    const expenseList = document.getElementById('expense-list');
-    if (!expenseList) {
-      console.error('expense-list not found!');
-      return;
+  rows: new Map(),
+
+  renderRow(expense, isSelected = false) {
+    let row = this.rows.get(expense.id);
+    if (!row) {
+      row = document.createElement('li');
+      row.className = 'expense-item';
+      row.dataset.expenseId = expense.id;
+      document.getElementById('expense-list').appendChild(row);
+      this.rows.set(expense.id, row);
     }
-    
-    // SVUOTA completamente la lista (importante: ogni volta si ricostruisce da zero)
-    expenseList.innerHTML = '';
 
-    // Per OGNI spesa nel database...
-    expenses.forEach(expense => {
-      // Crea un <li> per la singola riga
-      const expenseItem = document.createElement('li');
-      expenseItem.className = 'expense-item';
-      expenseItem.dataset.expenseId = expense.id;  // utile per trovare la riga dopo
+    row.className = 'expense-item';
+    if (isSelected) row.classList.add('selected');
+    if (expense.amount < 0) row.classList.add('expense-negative');
+    if (expense.amount > 0) row.classList.add('expense-positive');
 
-      // HTML base della riga: data, descrizione, importo
-      expenseItem.innerHTML = `
-        <span class="expense-date">${expense.date}</span>
-        <span class="expense-description" contenteditable="false">${expense.description}</span>
-        <span class="expense-amount ${expense.amount < 0 ? 'expense-negative' : 'expense-positive'}">
-          ${expense.amount.toFixed(2)} €
-        </span>
-      `;
+    row.innerHTML = `
+      <span class="expense-date">${expense.date}</span>
+      <span class="expense-description" contenteditable="false">${expense.description}</span>
+      <span class="expense-amount ${expense.amount < 0 ? 'expense-negative' : 'expense-positive'}">
+        ${expense.amount.toFixed(2)} €
+      </span>
+      <div class="category-tags"></div>
+    `;
 
-      // Colorazione riga intera se positivo/negativo
-      if (expense.amount < 0) expenseItem.classList.add('expense-negative');
-      else if (expense.amount > 0) expenseItem.classList.add('expense-positive');
+    const tagsContainer = row.querySelector('.category-tags');
+    tagsContainer.innerHTML = '';
 
-      // === CREAZIONE TAG CATEGORIE (es. Food → Groceries → Pasta) ===
-      const categoryTags = document.createElement('div');
-      categoryTags.className = 'category-tags';
+    ['category1', 'category2', 'category3'].forEach((key, i) => {
+      if (expense[key]) {
+        const btn = document.createElement('button');
+        btn.textContent = expense[key];
+        btn.className = `expense-category-button level-${i+1}`;
+        btn.title = 'Clicca per rimuovere';
 
-      // Prende solo le categorie assegnate (massimo 3 livelli)
-      const categories = [
-        { name: expense.category1, level: 1 },
-        { name: expense.category2, level: 2 },
-        { name: expense.category3, level: 3 }
-      ].filter(c => c.name);  // filtra quelle vuote
-
-      categories.forEach(cat => {
-        const tag = document.createElement('button');
-        tag.textContent = cat.name;
-        tag.className = `expense-category-button level-${cat.level}`;  // per colore
-        tag.onclick = (e) => {
-          e.stopPropagation();  // importante: non triggera click sulla riga
-          console.log('Category tag clicked:', cat.name, 'on expense:', expense.id);
-          
-          // Chiama funzione globale che rimuove la categoria dal backend
-          window.assignCategoryToExpense(expense, cat.level, null).then(result => {
-            if (result.success) {
-              // Aggiorna i dati in memoria
-              const idx = expenses.findIndex(e => e.id === expense.id);
-              if (idx !== -1) expenses[idx] = result.data;
-              if (window.expensesList) {
-                const gIdx = window.expensesList.findIndex(e => e.id === expense.id);
-                if (gIdx !== -1) window.expensesList[gIdx] = result.data;
-              }
-              // Spara un evento personalizzato: "ehi, ho cambiato selezione!"
-              expenseList.dispatchEvent(new CustomEvent('expenseSelected', { 
-                detail: { id: expense.id } 
-              }));
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          if (window.selectedExpenseId !== expense.id) {
+            this.selectExpense(expense.id);
+          }
+          window.assignCategoryToExpense(expense, i+1, null).then(res => {
+            if (res.success) {
+              const idx = window.expensesList.findIndex(e => e.id === expense.id);
+              if (idx !== -1) window.expensesList[idx] = res.data;
+              this.renderRow(res.data, true);
             }
           });
         };
-        categoryTags.appendChild(tag);
-      });
-      expenseItem.appendChild(categoryTags);
-
-      // === CLICK SU QUALSIASI PARTE DELLA RIGA → seleziona questa spesa ===
-      expenseItem.addEventListener('click', (e) => {
-        // Ignora se ho cliccato su un tag categoria o sto modificando la descrizione
-        if (e.target.closest('.expense-category-button') || 
-            (e.target.classList.contains('expense-description') && e.target.isContentEditable)) {
-          return;
-        }
-
-        console.log('CLICK RIGA → seleziono ID:', expense.id);
-        // Spara lo stesso evento usato sopra
-        expenseList.dispatchEvent(new CustomEvent('expenseSelected', { 
-          detail: { id: expense.id } 
-        }));
-      });
-
-      // === DOPPIO CLICK sulla descrizione → la modifica ===
-      const descriptionSpan = expenseItem.querySelector('.expense-description');
-      descriptionSpan.style.cursor = 'text';
-      descriptionSpan.title = 'Doppio click per modificare';
-
-      descriptionSpan.addEventListener('dblclick', (e) => {
-        // ... tutto il codice di modifica inline (funzionante, non lo tocco)
-      });
-
-      // === Evidenzia la riga selezionata (classe .selected) ===
-      if (expense.id === selectedExpenseId) {
-        expenseItem.classList.add('selected');
+        tagsContainer.appendChild(btn);
       }
-
-      // Aggiunge la riga al <ul>
-      expenseList.appendChild(expenseItem);
     });
+
+    row.onclick = (e) => {
+      if (e.target.closest('.expense-category-button') || e.target.isContentEditable) return;
+      this.selectExpense(expense.id);
+    };
+
+    const desc = row.querySelector('.expense-description');
+    desc.style.cursor = 'text';
+    desc.title = 'Doppio click per modificare';
+
+    let clickTimeout = null;
+    desc.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (clickTimeout) clearTimeout(clickTimeout);
+      clickTimeout = setTimeout(() => {
+        this.selectExpense(expense.id);
+        clickTimeout = null;
+      }, 250);
+    });
+    desc.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      if (clickTimeout) clearTimeout(clickTimeout);
+      this.editDescription(expense, desc);
+    });
+
+    if (isSelected && window.categoriesManager) {
+      window.categoriesManager.updateCategoryButtons(expense.id, window.expensesList, window.categoriesList);
+    }
+
+    return row;
+  },
+
+  selectExpense(newId) {
+    if (window.selectedExpenseId === newId) return;
+    const oldId = window.selectedExpenseId;
+    window.selectedExpenseId = newId;
+
+    if (oldId) {
+      const oldExp = window.expensesList.find(e => e.id === oldId);
+      if (oldExp) this.renderRow(oldExp, false);
+    }
+
+    const newExp = window.expensesList.find(e => e.id === newId);
+    if (newExp) {
+      this.renderRow(newExp, true);
+      this.rows.get(newId)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  },
+
+  renderAll(expenses, initialSelectedId = null) {
+    this.rows.clear();
+    document.getElementById('expense-list').innerHTML = '';
+    window.expensesList = expenses;
+
+    expenses.forEach(exp => {
+      const selected = exp.id === (initialSelectedId || expenses[0]?.id);
+      this.renderRow(exp, selected);
+    });
+
+    if (expenses.length > 0 && !window.selectedExpenseId) {
+      window.selectedExpenseId = initialSelectedId || expenses[0].id;
+    }
+  },
+
+  editDescription(expense, span) {
+    const original = span.textContent;
+    span.contentEditable = true;
+    span.focus();
+    document.getSelection().selectAllChildren(span);
+
+    const save = () => {
+      const nuovo = span.textContent.trim();
+      if (nuovo && nuovo !== original) {
+        fetch(`http://localhost:3000/expenses/${expense.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...expense, description: nuovo })
+        })
+        .then(r => r.json())
+        .then(data => {
+          const idx = window.expensesList.findIndex(e => e.id === data.id);
+          if (idx !== -1) window.expensesList[idx] = data;
+          this.renderRow(data, data.id === window.selectedExpenseId);
+        });
+      }
+      span.contentEditable = false;
+    };
+
+    span.onblur = save;
+    span.onkeydown = e => {
+      if (e.key === 'Enter') { e.preventDefault(); span.blur(); }
+      if (e.key === 'Escape') { span.textContent = original; span.blur(); }
+    };
   }
 };
 
-// === NAVIGAZIONE CON FRECCE SU/GIÙ (funziona già) ===
-document.addEventListener('keydown', (e) => {
-  // Ignora se sto scrivendo da qualche parte
-  if (document.activeElement?.isContentEditable || ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
-    return;
-  }
-
-  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-    e.preventDefault();
-    navigateWithArrows(e.key);  // ← funzione qui sotto
-  }
+document.addEventListener('keydown', e => {
+  if (!['ArrowUp', 'ArrowDown'].includes(e.key) || document.activeElement?.isContentEditable) return;
+  e.preventDefault();
+  const list = window.expensesList;
+  if (!list?.length) return;
+  const idx = list.findIndex(ex => ex.id === window.selectedExpenseId);
+  if (idx === -1) return;
+  let newIdx = e.key === 'ArrowUp' ? idx - 1 : idx + 1;
+  if (newIdx < 0) newIdx = list.length - 1;
+  if (newIdx >= list.length) newIdx = 0;
+  expenseManager.selectExpense(list[newIdx].id);
 });
 
-// Questa funzione fa esattamente quello che vogliamo anche per il click!
-function navigateWithArrows(key) {
-  const currentIdx = window.expensesList.findIndex(e => e.id === window.selectedExpenseId);
-  let newIdx = currentIdx;
-
-  if (key === 'ArrowUp' && currentIdx > 0) newIdx--;
-  if (key === 'ArrowDown' && currentIdx < window.expensesList.length - 1) newIdx++;
-
-  if (newIdx !== currentIdx) {
-    const newExpense = window.expensesList[newIdx];
-    window.selectedExpenseId = newExpense.id;
-
-    // ← Fa esattamente quello che vogliamo: aggiorna tutto!
-    window.expenseManager.updateExpenseDisplay(window.expensesList, newExpense.id);
-    window.categoriesManager.updateCategoryButtons(newExpense.id, window.expensesList, window.categoriesList);
-
-    // Scroll dolce alla riga
-    const item = document.querySelector(`li[data-expense-id="${newExpense.id}"]`);
-    if (item) item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-
-// Esporta l'oggetto così lo possono usare gli altri file
 window.expenseManager = expenseManager;
-console.log('expenseManager inizializzato con LOG completi');
+console.log('expenseManager → SINGLE LINE REFRESH ATTIVO');
