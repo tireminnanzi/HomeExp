@@ -3,12 +3,12 @@
     {
       "id": "1",
       "date": "2025-10-15",
-      "description": "Shopping at Netto",
+      "description": "shopping at netto",
       "amount": -45.3,
       "source": "CSV",
       "category1": "Food",
       "category2": "Groceries",
-      "category3": null
+      "category3": "Pasta"
     },
     {
       "id": "2",
@@ -17,8 +17,8 @@
       "amount": -2.5,
       "source": "PDF_ING",
       "category1": "Food",
-      "category2": null,
-      "category3": null
+      "category2": "Groceries",
+      "category3": "Fish"
     },
     {
       "id": "3",
@@ -73,11 +73,6 @@
       "parent": "Groceries"
     },
     {
-      "id": "5",
-      "name": "Dining",
-      "parent": "Food"
-    },
-    {
       "id": "6",
       "name": "Fast Food",
       "parent": "Dining"
@@ -111,11 +106,6 @@
       "id": "13",
       "name": "Fuel",
       "parent": "Car"
-    },
-    {
-      "id": "14",
-      "name": "Income",
-      "parent": null
     },
     {
       "id": "15",
@@ -158,11 +148,6 @@
       "parent": "Groceries"
     },
     {
-      "id": "29",
-      "name": "Cena",
-      "parent": "Food"
-    },
-    {
       "id": "32",
       "name": ".",
       "parent": "Walter"
@@ -171,11 +156,6 @@
       "id": "33",
       "name": "Pasta",
       "parent": "Groceries"
-    },
-    {
-      "id": "34",
-      "name": "Hello",
-      "parent": "Cena"
     },
     {
       "id": "35",
@@ -201,6 +181,16 @@
       "id": "39",
       "name": "ddsf",
       "parent": "Dining"
+    },
+    {
+      "id": "40",
+      "name": "Cena",
+      "parent": "Food"
+    },
+    {
+      "id": "41",
+      "name": "Income",
+      "parent": null
     }
   ],
   "rules": []

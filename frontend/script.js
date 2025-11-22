@@ -23,13 +23,30 @@ function loadPage(page) {
   document.querySelectorAll('link[data-page]').forEach(l => l.remove());
 
   // ==================== UPLOAD PAGE ====================
-  if (page === 'upload') {
+   if (page === 'upload') {
     console.log('Caricamento pagina Upload');
+
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = 'src/uploadPage/uploadPage.css';
+    style.dataset.page = 'upload';
+    document.head.appendChild(style);
+
     const script = document.createElement('script');
     script.src = 'src/uploadPage/uploadPage.js';
     script.type = 'module';
     script.dataset.page = 'upload';
     document.body.appendChild(script);
+
+    // QUESTO È IL TRUCCHETTO CHE MANCAVA (come in Categorize)
+    script.onload = () => {
+      if (typeof window.renderUploadPage === 'function') {
+        console.log('uploadPage.js caricato → avvio renderUploadPage');
+        window.renderUploadPage();
+      } else {
+        console.error('renderUploadPage non trovata!');
+      }
+    };
 
   // ==================== CATEGORIZE PAGE ====================
   } else if (page === 'categorize') {
@@ -84,12 +101,23 @@ function loadPage(page) {
 
   // ==================== VISUALIZE PAGE ====================
   } else if (page === 'visualize') {
-    console.log('Caricamento pagina Visualize');
+    console.log('→ Caricamento pagina Visualize');
+
     const script = document.createElement('script');
     script.src = 'src/visualizationPage/visualizationPage.js';
     script.type = 'module';
     script.dataset.page = 'visualize';
     document.body.appendChild(script);
+
+    // ← STESSO TRUCCO DI UPLOAD E CATEGORIZE
+    script.onload = () => {
+      console.log('visualizationPage.js caricato → avvio render');
+      if (typeof window.renderVisualizationPage === 'function') {
+        window.renderVisualizationPage();
+      } else {
+        console.error('window.renderVisualizationPage non trovata!');
+      }
+    };
   }
 }
 
