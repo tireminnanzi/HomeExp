@@ -7,7 +7,7 @@
       "amount": -45.3,
       "source": "CSV",
       "category2": "Furnitures",
-      "category3": null,
+      "category3": "Lampade",
       "category1": "Home"
     },
     {
@@ -17,7 +17,7 @@
       "amount": -2.5,
       "source": "PDF_ING",
       "category1": "Home",
-      "category2": null,
+      "category2": "Furnitures",
       "category3": null
     },
     {
@@ -36,9 +36,9 @@
       "description": "Restaurant dinner",
       "amount": -65,
       "source": "PDF_AMAZON",
-      "category2": "prova",
+      "category2": null,
       "category3": null,
-      "category1": "Home"
+      "category1": "Travels"
     },
     {
       "id": "5",
@@ -219,8 +219,8 @@
     },
     {
       "id": "53",
-      "name": "Salotto",
-      "parent": "Furnitures"
+      "name": "Prova",
+      "parent": "Travels"
     }
   ],
   "rules": []

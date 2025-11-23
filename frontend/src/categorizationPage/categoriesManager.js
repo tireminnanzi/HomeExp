@@ -1,9 +1,9 @@
 // frontend/src/categorizationPage/categoriesManager.js
-console.log('categoriesManager.js → VERSIONE DEFINITIVA + USCITA MODALITÀ DELETE CON CLICK FUORI');
+console.log('categoriesManager.js → VERSIONE FINALE – PULSANTE X COLORE SINCRONIZZATO 100%');
 
 const categoriesManager = {
     isDeleteMode: false,
-    currentClickOutsideHandler: null, // ← memorizza il listener per rimuoverlo dopo
+    currentClickOutsideHandler: null,
 
     updateCategoryButtons(selectedExpenseId, expensesList, categoriesList) {
         const categoryButtons = document.getElementById('category-buttons');
@@ -26,30 +26,35 @@ const categoriesManager = {
             parentCategoryName = expense.category2;
         }
 
-        // PULSANTE X – UNA SOLA VOLTA
+        // === PULSANTE X – COLORE SEMPRE CORRETTO CON IL LIVELLO ===
         const titleContainer = document.querySelector('.category-top');
         if (titleContainer && !document.querySelector('.delete-toggle-container')) {
             const div = document.createElement('div');
             div.className = 'delete-toggle-container';
+
             const btn = document.createElement('button');
             btn.textContent = 'X';
-            btn.className = `category-button delete-toggle level-${levelToDisplay} ${this.isDeleteMode ? 'delete-mode-active' : ''}`;
+            btn.className = `category-button delete-toggle level-${levelToDisplay}`;
+
+            // Aggiorna classe level ogni volta (importante!)
+            const updateLevelClass = () => {
+                btn.classList.remove('level-1', 'level-2', 'level-3');
+                btn.classList.add(`level-${levelToDisplay}`);
+            };
+
+            updateLevelClass();
 
             btn.onclick = (e) => {
                 e.stopPropagation();
                 this.isDeleteMode = !this.isDeleteMode;
-
-                // Aggiorna classi
                 categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
                 btn.classList.toggle('delete-mode-active', this.isDeleteMode);
 
-                // Rimuovi vecchio listener (se esiste)
                 if (this.currentClickOutsideHandler) {
                     document.removeEventListener('click', this.currentClickOutsideHandler);
                     this.currentClickOutsideHandler = null;
                 }
 
-                // Se entri in modalità delete → aggiungi listener per click fuori
                 if (this.isDeleteMode) {
                     this.currentClickOutsideHandler = (ev) => {
                         if (!ev.target.closest('.category-button') && !ev.target.closest('.delete-toggle')) {
@@ -61,10 +66,7 @@ const categoriesManager = {
                             this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
                         }
                     };
-                    // Ritardo per evitare che il click che ha attivato la modalità venga catturato
-                    setTimeout(() => {
-                        document.addEventListener('click', this.currentClickOutsideHandler);
-                    }, 10);
+                    setTimeout(() => document.addEventListener('click', this.currentClickOutsideHandler), 10);
                 }
 
                 this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
@@ -75,7 +77,7 @@ const categoriesManager = {
             titleContainer.appendChild(div);
         }
 
-        // CATEGORIE DEL LIVELLO CORRENTE
+        // === CATEGORIE DEL LIVELLO CORRENTE ===
         const categoriesToShow = categoriesList.filter(cat => {
             if (levelToDisplay === 1) return !cat.parent;
             return cat.parent === parentCategoryName;
@@ -86,7 +88,7 @@ const categoriesManager = {
             btn.textContent = cat.name;
             btn.className = `category-button level-${levelToDisplay}`;
             btn.onclick = async (e) => {
-                e.stopPropagation(); // blocca propagazione anche qui
+                e.stopPropagation();
 
                 if (this.isDeleteMode) {
                     if (!confirm(`Eliminare la categoria "${cat.name}" da tutte le spese?`)) return;
@@ -128,8 +130,7 @@ const categoriesManager = {
             categoryButtons.appendChild(btn);
         });
 
-
-        // PULSANTE AGGIUNGI NUOVA CATEGORIA
+        // === PULSANTE AGGIUNGI NUOVA CATEGORIA ===
         const addButton = document.createElement('button');
         addButton.className = `category-button add-category level-${levelToDisplay} ${this.isDeleteMode ? 'disabled' : ''}`;
         addButton.innerHTML = '⋮';
@@ -140,26 +141,17 @@ const categoriesManager = {
             const input = document.createElement('input');
             input.type = 'text';
             input.placeholder = 'Nuova categoria...';
-            input.value = '';
-
-            // STILE INPUT MOLTO CHIARO E PROFESSIONALE
             input.style.cssText = `
-                padding: 10px 14px;
-                font-size: 15px;
-                font-weight: 500;
-                border: 2px solid #3b82f6;
-                border-radius: 8px;
-                background: white;
-                color: #1f2937;
-                outline: none;
-                min-width: 180px;
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                padding: 10px 14px; font-size: 15px; font-weight: 500;
+                border: 2px solid #3b82f6; border-radius: 8px;
+                background: white; color: #1f2937; outline: none;
+                min-width: 180px; box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
                 caret-color: #3b82f6;
             `;
 
             categoryButtons.replaceChild(input, addButton);
             input.focus();
-            input.select(); // seleziona tutto per scrittura immediata
+            input.select();
 
             let submitted = false;
             const submit = async () => {
@@ -192,10 +184,8 @@ const categoriesManager = {
             input.onblur = () => { if (!submitted) submit(); };
         };
         categoryButtons.appendChild(addButton);
-
-
     }
 };
 
 window.categoriesManager = categoriesManager;
-console.log('categoriesManager → PRONTO, PERFETTO, UX PROFESSIONALE');
+console.log('categoriesManager → PRONTO – PULSANTE X COLORE 100% SINCRONIZZATO');
