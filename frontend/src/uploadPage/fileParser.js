@@ -1,96 +1,107 @@
-// src/fileParser.js
-console.log('fileParser.js caricato');
+// frontend/src/uploadPage/fileParser.js
+console.log('fileParser.js caricato – versione finale con log e scrittura sicura');
 
-// Parsing specifico per CSV Commerzbank (testato su file reali)
 async function parseAndUploadCommerzbankCSV(file) {
-  const statusElement = document.getElementById('upload-status');
-  if (!statusElement) return;
+  const statusEl = document.getElementById('upload-status');
+  if (!statusEl) {
+    console.error('Errore: #upload-status non trovato');
+    return;
+  }
 
-  statusElement.innerHTML = `<p style="color:#60a5fa">Lettura del file in corso...</p>`;
+  statusEl.innerHTML = `<p style="color:#60a5fa">Lettura del file ${file.name} in corso...</p>`;
+
+  // Controllo che createExpense esista
+  if (typeof window.createExpense !== 'function') {
+    console.error('FATAL: window.createExpense non è definito! backendCommunications.js non è stato caricato?');
+    statusEl.innerHTML = `<p style="color:#ef4444">Errore: comunicazione con il server non pronta</p>`;
+    return;
+  }
 
   try {
     const text = await file.text();
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-    if (lines.length < 2) throw new Error('File vuoto o non valido');
+    if (lines.length <= 1) throw new Error('File vuoto o senza dati');
 
-    let processed = 0;
     let added = 0;
     let skipped = 0;
 
-    // Salta la riga di intestazione
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i];
-      const fields = line.split(';');
+    statusEl.innerHTML += `<p style="color:#94a3b8">Trovate ${lines.length - 1} righe – inizio elaborazione...</p>`;
 
-      // Commerzbank usa virgolette, togliamole
+    for (let i = 1; i < lines.length; i++) {
+      const fields = lines[i].split(';');
       const clean = fields.map(f => f.replace(/^"|"$/g, '').trim());
 
       if (clean.length < 7) continue;
 
-      const rawDate = clean[0];           // "15.03.2025"
-      const description = clean[4] || clean[1] || 'Sconosciuto';
-      const rawAmount = clean[6] || clean[5] || '';
+      const rawDate = clean[0];
+      const description = (clean[4] || clean[1] || 'Sconosciuto').substring(0, 100);
+      const rawAmount = clean[6] || clean[5] || '0';
 
       if (!rawDate || !rawAmount) continue;
 
-      // Data: DD.MM.YYYY → YYYY-MM-DD
       const [day, month, year] = rawDate.split('.');
       if (!day || !month || !year) continue;
-      const date = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 
-      // Importo: "1.234,56" o "-567,89" → numero
+      const date = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
       const amountStr = rawAmount.replace(/\./g, '').replace(',', '.');
       const amount = parseFloat(amountStr);
+
       if (isNaN(amount)) continue;
 
       const expense = {
         date,
-        description: description.substring(0, 100),
-        amount: Math.abs(amount),           // sempre positivo per il confronto
-        originalAmount: amount,             // conserva il segno reale
+        description,
+        amount: Math.abs(amount),
+        originalAmount: amount,
         category1: null,
         category2: null,
         category3: null
       };
 
+      // LOG CHIARE COME NEL TEST CHE FUNZIONAVA
+      console.log(`Spesa estratta [${i}]: ${date} | ${description} | ${amount.toFixed(2)} €`);
+
       const result = await window.createExpense(expense);
 
-      if (result.success) added++;
-      else if (result.message?.includes('duplicato')) skipped++;
+      if (result.success) {
+        console.log(`SCRITTA NEL DB con ID: ${result.data?.id || 'OK'}`);
+        added++;
+      } else if (result.message?.includes('duplicato')) {
+        console.log(`DUPLICATO ignorato`);
+        skipped++;
+      } else {
+        console.error(`ERRORE invio:`, result);
+      }
 
-      processed++;
-      statusElement.innerHTML = `
+      statusEl.innerHTML = `
         <p style="color:#60a5fa">
-          Elaborate: ${processed}/${lines.length - 1} → 
+          Elaborate: ${i}/${lines.length - 1} → 
           Aggiunte: ${added} | Duplicate: ${skipped}
         </p>
       `;
     }
 
-    statusElement.innerHTML = `
+    statusEl.innerHTML = `
       <div style="background:#1f2937;padding:1.5rem;border-radius:0.75rem;margin-top:1rem;">
-        <p style="color:#34d399;font-size:1.8rem;font-weight:bold;">Caricamento completato!</p>
+        <p style="color:#34d399;font-size:1.8rem;font-weight:bold;">Upload completato!</p>
         <p style="color:#e5e7eb;margin-top:0.75rem;">
           Nuove transazioni: <strong>${added}</strong> | 
           Già presenti: <strong>${skipped}</strong>
         </p>
         <p style="color:#34d399;font-size:1.5rem;font-weight:bold;margin-top:1rem;">
-          Tutto pronto per la categorizzazione →
+          Totale righe elaborate: ${lines.length - 1}
         </p>
       </div>
     `;
 
-    // Vai automaticamente alla pagina di categorizzazione
-    setTimeout(() => {
-      window.location.hash = '#categorize';
-      if (window.renderCategorizationPage) window.renderCategorizationPage();
-    }, 2500);
+    console.log(`FINITO: ${added} aggiunte, ${skipped} duplicate`);
+    setTimeout(() => window.loadPage('categorize'), 2500);
 
   } catch (err) {
-    console.error(err);
-    statusElement.innerHTML = `<p style="color:#ef4444">Errore: ${err.message}</p>`;
+    console.error('Errore fatale:', err);
+    statusEl.innerHTML = `<p style="color:#ef4444">Errore: ${err.message}</p>`;
   }
 }
 
-// Esposizione globale
 window.parseAndUploadCommerzbankCSV = parseAndUploadCommerzbankCSV;
+console.log('fileParser.js → funzione esposta e pronta');
