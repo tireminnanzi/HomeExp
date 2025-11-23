@@ -1,79 +1,108 @@
 // frontend/src/categorizationPage/rulesManager.js
-console.log('rulesManager.js → VERSIONE FINALE CORRETTA E COMPLETA');
 
 const rulesManager = {
+    _isAddingRule: false, // ← IL FIX MAGICO ANTI-DOPPIA CHIAMATA
 
     async canCreateRule(expense, words) {
         if (!expense || !words?.trim()) return { ok: false, message: "Parole chiave mancanti" };
+        if (!expense.category1 && !expense.category2 && !expense.category3)
+            return { ok: false, message: "Nessuna categoria assegnata alla spesa" };
 
-        const hasCategory = expense.category1 || expense.category2 || expense.category3;
-        if (!hasCategory) return { ok: false, message: "Nessuna categoria assegnata alla spesa" };
-
-        const keywords = words.toLowerCase().split(/\s+/).filter(Boolean);
-        const descLower = expense.description.toLowerCase();
-        if (!keywords.some(kw => descLower.includes(kw))) {
-            return { ok: false, message: "Nessuna parola chiave trovata nella descrizione" };
-        }
+        const keywords = words.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        if (!keywords.some(kw => expense.description.toLowerCase().includes(kw)))
+            return { ok: false, message: "Parola chiave non trovata nella descrizione" };
 
         const { data: rules } = await window.fetchAllRules();
         const normalized = keywords.sort().join(' ');
-        const exists = rules.some(r => {
-            const existing = r.words.toLowerCase().split(/\s+/).filter(Boolean).sort().join(' ');
-            return existing === normalized;
-        });
+        const exists = rules.some(r =>
+            r.words.toLowerCase().trim().split(/\s+/).filter(Boolean).sort().join(' ') === normalized
+        );
 
-        if (exists) return { ok: false, message: "Regola già esistente con queste parole chiave" };
-
-        return { ok: true };
+        return exists
+            ? { ok: false, message: "Regola già esistente con queste parole chiave" }
+            : { ok: true };
     },
 
     async addNewRule({ words, categories }) {
- 
- if (window.categoriesManager?.isDeleteMode) {
-        window.categoriesManager.exitDeleteMode(
-            window.selectedExpenseId,
-            window.expensesList,
-            window.categoriesList
-        );
-        return { success: false };
-    }
- 
- 
+        // BLOCCO TOTALE DI CHIAMATE DUPLICATE
+        if (this._isAddingRule) {
+            return { success: false, ignored: true };
+        }
+        this._isAddingRule = true;
+
+        // Esci da delete mode se attivo
+        if (window.categoriesManager?.isDeleteMode) {
+            window.categoriesManager.exitDeleteMode(window.selectedExpenseId, window.expensesList, window.categoriesList);
+            this._isAddingRule = false;
+            return { success: false };
+        }
+
         const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
         const check = await this.canCreateRule(expense, words);
+
         if (!check.ok) {
-            alert("Impossibile creare la regola:\n" + check.message);
+            alert("Impossibile creare la regola:\n\n" + check.message);
+            this._isAddingRule = false;
             return { success: false };
         }
 
-        const res = await fetch('http://localhost:3000/rules', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ words: words.trim(), categories: categories.filter(Boolean) })
-        });
+        // UI: disabilita tutto
+        const btn = document.querySelector('.add-rule-button');
+        const input = document.getElementById('rule-text-input');
+        const originalText = btn?.textContent;
 
-        const data = await res.json();
-        if (!res.ok || data.error) {
-            alert("Errore: " + (data.error || "Impossibile salvare"));
-            return { success: false };
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = "Salvataggio...";
         }
+        if (input) input.disabled = true;
 
-        await this.applyAllRulesToExpenses();
-        return { success: true, data };
+        try {
+            const res = await fetch('http://localhost:3000/rules', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    words: words.trim(),
+                    categories: categories.filter(Boolean)
+                })
+            });
+
+            const data = await res.json();
+            if (!res.ok || data.error) throw new Error(data.error || "Errore server");
+
+            // SUCCESSO → aggiorna e chiudi
+            await this.applyAllRulesToExpenses();
+
+            // PULISCI E CHIUDI IL FORM
+            if (input) input.value = '';
+            if (typeof window.closeRuleForm === 'function') {
+                window.closeRuleForm();
+            } else if (document.querySelector('.rule-form')) {
+                document.querySelector('.rule-form').remove();
+            }
+
+            return { success: true, data };
+
+        } catch (err) {
+            alert("Errore: " + err.message);
+            return { success: false };
+        } finally {
+            // RIABILITA SEMPRE
+            this._isAddingRule = false;
+            if (btn && document.body.contains(btn)) {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+            if (input) input.disabled = false;
+        }
     },
 
     async deleteRule(ruleId) {
-// BLOCCA ELIMINAZIONE REGOLE IN DELETE MODE
-    if (window.categoriesManager?.isDeleteMode) {
-        window.categoriesManager.exitDeleteMode(
-            window.selectedExpenseId,
-            window.expensesList,
-            window.categoriesList
-        );
-        return;
-    }
-
-    await fetch(`http://localhost:3000/rules/${ruleId}`, { method: 'DELETE' });
+        if (window.categoriesManager?.isDeleteMode) {
+            window.categoriesManager.exitDeleteMode(window.selectedExpenseId, window.expensesList, window.categoriesList);
+            return;
+        }
+        await fetch(`http://localhost:3000/rules/${ruleId}`, { method: 'DELETE' });
         await this.applyAllRulesToExpenses();
     },
 
@@ -83,10 +112,9 @@ const rulesManager = {
         if (!rules?.length) return;
 
         const promises = [];
-
         for (const expense of expenses) {
             for (const rule of rules) {
-                if (rule.words.toLowerCase().split(/\s+/).some(kw => expense.description.toLowerCase().includes(kw))) {
+                if (rule.words.toLowerCase().trim().split(/\s+/).some(kw => expense.description.toLowerCase().includes(kw))) {
                     const updated = {
                         ...expense,
                         category1: rule.categories[0] || null,
@@ -121,12 +149,9 @@ const rulesManager = {
     }
 };
 
-// ESPORTA TUTTO CORRETTAMENTE
 window.rulesManager = {
     addNewRule: rulesManager.addNewRule.bind(rulesManager),
     deleteRule: rulesManager.deleteRule.bind(rulesManager),
     applyAllRulesToExpenses: rulesManager.applyAllRulesToExpenses.bind(rulesManager),
     canCreateRule: rulesManager.canCreateRule.bind(rulesManager)
 };
-
-console.log('rulesManager → PRONTO E COMPLETO');
