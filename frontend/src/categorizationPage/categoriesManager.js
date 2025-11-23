@@ -104,28 +104,71 @@ exitDeleteMode(selectedExpenseId, expensesList, categoriesList) {
             btn.onclick = async (e) => {
                 e.stopPropagation();
 
-                if (this.isDeleteMode) {
-                    if (!confirm(`Eliminare la categoria "${cat.name}" da tutte le spese?`)) return;
+if (this.isDeleteMode) {
+    if (!confirm(`Eliminare "${cat.name}" e TUTTE le sue sotto-categorie?`)) return;
 
-                    const res = await window.deleteSingleCategory(cat.name);
-                    if (res.success) {
-                        // Rimuovi dalla lista locale
-                        const idx = categoriesList.findIndex(c => c.name === cat.name);
-                        if (idx !== -1) categoriesList.splice(idx, 1);
+    // === STEP 1: Collect all categories to delete (parent + children + grandchildren) ===
+    const toDelete = [cat.name];  // the category being deleted
 
-                        // Pulisci le spese
-                        expensesList.forEach(exp => {
-                            if (exp.category1 === cat.name) exp.category1 = exp.category2 = exp.category3 = null;
-                            else if (exp.category2 === cat.name) exp.category2 = exp.category3 = null;
-                            else if (exp.category3 === cat.name) exp.category3 = null;
-                            window.expenseManager.renderRow(exp, exp.id === selectedExpenseId);
-                        });
+    // First level children
+    const children = categoriesList
+        .filter(c => c.parent === cat.name)
+        .map(c => c.name);
 
-                        // ESCE AUTOMATICAMENTE DA DELETE MODE
-                        this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
-                    }
-                    return;
-                }
+    // Second level children (grandchildren)
+    const grandchildren = [];
+    children.forEach(childName => {
+        const subs = categoriesList
+            .filter(c => c.parent === childName)
+            .map(c => c.name);
+        grandchildren.push(...subs);
+    });
+
+    // Add everything to delete list
+    toDelete.push(...children, ...grandchildren);
+
+    // === STEP 2: Delete from backend one by one ===
+    for (const name of toDelete) {
+        const res = await window.deleteSingleCategory(name);
+        if (!res.success) {
+            alert(`Errore eliminando "${name}"`);
+            // optionally break or continue
+        }
+    }
+
+    // === STEP 3: Remove all from local categoriesList ===
+    toDelete.forEach(name => {
+        const idx = categoriesList.findIndex(c => c.name === name);
+        if (idx !== -1) categoriesList.splice(idx, 1);
+    });
+
+    // === STEP 4: Clean all expenses that used any deleted category ===
+    expensesList.forEach(exp => {
+        let changed = false;
+
+        if (toDelete.includes(exp.category1)) {
+            exp.category1 = exp.category2 = exp.category3 = null;
+            changed = true;
+        } else if (toDelete.includes(exp.category2)) {
+            exp.category2 = exp.category3 = null;
+            changed = true;
+        } else if (toDelete.includes(exp.category3)) {
+            exp.category3 = null;
+            changed = true;
+        }
+
+        if (changed) {
+            window.expenseManager.renderRow(exp, exp.id === selectedExpenseId);
+        }
+    });
+
+    // === STEP 5: Exit delete mode and refresh UI ===
+    this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
+    return;
+}
+
+
+
 
                 // === ASSEGNAZIONE NORMALE ===
                 const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);

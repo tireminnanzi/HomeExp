@@ -6,9 +6,9 @@
       "description": "shopping at netto",
       "amount": -45.3,
       "source": "CSV",
-      "category2": "Furnitures",
-      "category3": null,
-      "category1": "Home"
+      "category2": "furniture",
+      "category3": "letto",
+      "category1": "home"
     },
     {
       "id": "2",
@@ -16,9 +16,9 @@
       "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "Home",
-      "category2": "Furnitures",
-      "category3": null
+      "category1": "home",
+      "category2": "furniture",
+      "category3": "letto"
     },
     {
       "id": "3",
@@ -46,8 +46,8 @@
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
-      "category1": "Home",
-      "category2": "Furnitures",
+      "category1": null,
+      "category2": null,
       "category3": null
     }
   ],
@@ -173,16 +173,6 @@
       "parent": "Food"
     },
     {
-      "id": "42",
-      "name": "Home",
-      "parent": null
-    },
-    {
-      "id": "46",
-      "name": "prova",
-      "parent": "Home"
-    },
-    {
       "id": "47",
       "name": "Work",
       "parent": null
@@ -191,21 +181,6 @@
       "id": "48",
       "name": "Income",
       "parent": "Work"
-    },
-    {
-      "id": "50",
-      "name": "Prova2",
-      "parent": "prova"
-    },
-    {
-      "id": "55",
-      "name": "letto",
-      "parent": "Furnitures"
-    },
-    {
-      "id": "56",
-      "name": "cucina",
-      "parent": "Furnitures"
     },
     {
       "id": "57",
@@ -219,8 +194,28 @@
     },
     {
       "id": "59",
-      "name": "Furnitures",
-      "parent": "Home"
+      "name": "home",
+      "parent": null
+    },
+    {
+      "id": "60",
+      "name": "furniture",
+      "parent": "home"
+    },
+    {
+      "id": "61",
+      "name": "letto",
+      "parent": "home"
+    },
+    {
+      "id": "62",
+      "name": "letto",
+      "parent": "furniture"
+    },
+    {
+      "id": "63",
+      "name": "cucina",
+      "parent": "furniture"
     }
   ],
   "rules": []
