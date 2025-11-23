@@ -6,7 +6,7 @@
       "description": "shopping at netto",
       "amount": -45.3,
       "source": "CSV",
-      "category2": null,
+      "category2": "Furnitures",
       "category3": null,
       "category1": "Home"
     },
@@ -16,7 +16,7 @@
       "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": null,
+      "category1": "Home",
       "category2": null,
       "category3": null
     },
@@ -26,9 +26,9 @@
       "description": "Salary deposit",
       "amount": 1500,
       "source": "CSV",
-      "category1": "Home",
-      "category2": "Furnitures",
-      "category3": "Bedroom"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "4",
@@ -36,8 +36,9 @@
       "description": "Restaurant dinner",
       "amount": -65,
       "source": "PDF_AMAZON",
-      "category2": null,
-      "category3": null
+      "category2": "prova",
+      "category3": null,
+      "category1": "Home"
     },
     {
       "id": "5",
@@ -187,11 +188,6 @@
       "parent": "Home"
     },
     {
-      "id": "45",
-      "name": "Bedroom",
-      "parent": "Furnitures"
-    },
-    {
       "id": "46",
       "name": "prova",
       "parent": "Home"
@@ -200,15 +196,32 @@
       "id": "47",
       "name": "Work",
       "parent": null
+    },
+    {
+      "id": "48",
+      "name": "Income",
+      "parent": "Work"
+    },
+    {
+      "id": "50",
+      "name": "Prova2",
+      "parent": "prova"
+    },
+    {
+      "id": "51",
+      "name": "Travels",
+      "parent": null
+    },
+    {
+      "id": "52",
+      "name": "Lampade",
+      "parent": "Furnitures"
+    },
+    {
+      "id": "53",
+      "name": "Salotto",
+      "parent": "Furnitures"
     }
   ],
-  "rules": [
-    {
-      "words": "Neto",
-      "categories": [
-        "Home"
-      ],
-      "id": "1"
-    }
-  ]
+  "rules": []
 }
