@@ -1,103 +1,111 @@
 // frontend/src/categorizationPage/rulesManager.js
-console.log('rulesManager.js – VERSIONE FINALE CON RENDERROW');
+console.log('rulesManager.js → VERSIONE FINALE CORRETTA E COMPLETA');
 
-async function applyAllRulesToExpenses() {
-    const { data: expenses } = await window.fetchAllExpenses();
-    const { data: rules } = await window.fetchAllRules();
-    if (!rules?.length) return;
+const rulesManager = {
 
-    const promises = [];
+    async canCreateRule(expense, words) {
+        if (!expense || !words?.trim()) return { ok: false, message: "Parole chiave mancanti" };
 
-    for (const expense of expenses) {
-        for (const rule of rules) {
-            const words = rule.words.toLowerCase().split(',').map(w => w.trim());
-            if (words.some(w => expense.description.toLowerCase().includes(w))) {
-                const updated = {
-                    ...expense,
-                    category1: rule.categories[0] || null,
-                    category2: rule.categories[1] || null,
-                    category3: rule.categories[2] || null
-                };
-                promises.push(
-                    fetch(`http://localhost:3000/expenses/${expense.id}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updated)
-                    }).then(r => r.json())
-                );
-                break;
-            }
+        const hasCategory = expense.category1 || expense.category2 || expense.category3;
+        if (!hasCategory) return { ok: false, message: "Nessuna categoria assegnata alla spesa" };
+
+        const keywords = words.toLowerCase().split(/\s+/).filter(Boolean);
+        const descLower = expense.description.toLowerCase();
+        if (!keywords.some(kw => descLower.includes(kw))) {
+            return { ok: false, message: "Nessuna parola chiave trovata nella descrizione" };
         }
-    }
 
-    if (promises.length > 0) {
-        const results = await Promise.all(promises);
-        results.forEach(exp => {
-            const idx = window.expensesList.findIndex(e => e.id === exp.id);
-            if (idx !== -1) {
-                window.expensesList[idx] = exp;
-                window.expenseManager.renderRow(exp, exp.id === window.selectedExpenseId);
-            }
+        const { data: rules } = await window.fetchAllRules();
+        const normalized = keywords.sort().join(' ');
+        const exists = rules.some(r => {
+            const existing = r.words.toLowerCase().split(/\s+/).filter(Boolean).sort().join(' ');
+            return existing === normalized;
         });
-        if (window.selectedExpenseId) {
-            window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+
+        if (exists) return { ok: false, message: "Regola già esistente con queste parole chiave" };
+
+        return { ok: true };
+    },
+
+    async addNewRule({ words, categories }) {
+        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
+        const check = await this.canCreateRule(expense, words);
+        if (!check.ok) {
+            alert("Impossibile creare la regola:\n" + check.message);
+            return { success: false };
         }
-    }
-}
 
-async function addNewRule(rule) {
-    const res = await window.addNewRule(rule);
-    if (res.success) {
-        await applyAllRulesToExpenses();
-    }
-    return res;
-}
-
-async function deleteRule(ruleId) {
-    const { data: rules } = await window.fetchAllRules();
-    const rule = rules.find(r => r.id === ruleId);
-    if (!rule) return;
-
-    const words = rule.words.toLowerCase().split(',').map(w => w.trim());
-    const cats = rule.categories;
-
-    const { data: expenses } = await window.fetchAllExpenses();
-    const promises = [];
-
-    for (const exp of expenses) {
-        const matchesDesc = words.some(w => exp.description.toLowerCase().includes(w));
-        const matchesCats = [exp.category1, exp.category2, exp.category3].every((c, i) => c === (cats[i] || null));
-        if (matchesDesc && matchesCats) {
-            const cleaned = { ...exp, category1: null, category2: null, category3: null };
-            promises.push(
-                fetch(`http://localhost:3000/expenses/${exp.id}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(cleaned)
-                }).then(r => r.json())
-            );
-        }
-    }
-
-    if (promises.length) {
-        const results = await Promise.all(promises);
-        results.forEach(exp => {
-            const idx = window.expensesList.findIndex(e => e.id === exp.id);
-            if (idx !== -1) {
-                window.expensesList[idx] = exp;
-                window.expenseManager.renderRow(exp, exp.id === window.selectedExpenseId);
-            }
+        const res = await fetch('http://localhost:3000/rules', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ words: words.trim(), categories: categories.filter(Boolean) })
         });
-        if (window.selectedExpenseId) {
-            window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+
+        const data = await res.json();
+        if (!res.ok || data.error) {
+            alert("Errore: " + (data.error || "Impossibile salvare"));
+            return { success: false };
+        }
+
+        await this.applyAllRulesToExpenses();
+        return { success: true, data };
+    },
+
+    async deleteRule(ruleId) {
+        await fetch(`http://localhost:3000/rules/${ruleId}`, { method: 'DELETE' });
+        await this.applyAllRulesToExpenses();
+    },
+
+    async applyAllRulesToExpenses() {
+        const { data: expenses } = await window.fetchAllExpenses();
+        const { data: rules } = await window.fetchAllRules();
+        if (!rules?.length) return;
+
+        const promises = [];
+
+        for (const expense of expenses) {
+            for (const rule of rules) {
+                if (rule.words.toLowerCase().split(/\s+/).some(kw => expense.description.toLowerCase().includes(kw))) {
+                    const updated = {
+                        ...expense,
+                        category1: rule.categories[0] || null,
+                        category2: rule.categories[1] || null,
+                        category3: rule.categories[2] || null
+                    };
+                    promises.push(
+                        fetch(`http://localhost:3000/expenses/${expense.id}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(updated)
+                        }).then(r => r.json())
+                    );
+                    break;
+                }
+            }
+        }
+
+        if (promises.length) {
+            const results = await Promise.all(promises);
+            results.forEach(exp => {
+                const idx = window.expensesList.findIndex(e => e.id === exp.id);
+                if (idx !== -1) {
+                    window.expensesList[idx] = exp;
+                    window.expenseManager.renderRow(exp, exp.id === window.selectedExpenseId);
+                }
+            });
+            if (window.selectedExpenseId) {
+                window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+            }
         }
     }
-
-    return await window.deleteRule(ruleId);
-}
-
-window.rulesManager = {
-    applyAllRulesToExpenses,
-    addNewRule,
-    deleteRule
 };
+
+// ESPORTA TUTTO CORRETTAMENTE
+window.rulesManager = {
+    addNewRule: rulesManager.addNewRule.bind(rulesManager),
+    deleteRule: rulesManager.deleteRule.bind(rulesManager),
+    applyAllRulesToExpenses: rulesManager.applyAllRulesToExpenses.bind(rulesManager),
+    canCreateRule: rulesManager.canCreateRule.bind(rulesManager)
+};
+
+console.log('rulesManager → PRONTO E COMPLETO');

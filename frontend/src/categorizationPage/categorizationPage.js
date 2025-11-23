@@ -1,5 +1,5 @@
 // frontend/src/categorizationPage/categorizationPage.js
-console.log('categorizationPage.js – VERSIONE FINALE CON SINGLE LINE REFRESH');
+console.log('categorizationPage.js → VERSIONE FINALE DEFINITIVA');
 
 async function initializeCategorization() {
     const mainContent = document.getElementById('main-content');
@@ -19,7 +19,7 @@ async function initializeCategorization() {
                 <div class="category-bottom">
                     <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
                     <form id="rule-form" class="rule-form" style="display:none;">
-                        <input type="text" id="rule-input" class="rule-input" placeholder="Parole da cercare..." disabled>
+                        <input type="text" id="rule-input" class="rule-input" placeholder="Parole chiave (es. amazon netflix)" disabled>
                     </form>
                     <div id="rules-list"></div>
                 </div>
@@ -32,46 +32,97 @@ async function initializeCategorization() {
     const ruleInput = document.getElementById('rule-input');
     const rulesList = document.getElementById('rules-list');
 
-    // BLOCCA ADD RULE SE NESSUNA CATEGORIA ASSEGNATA
+    // ADD A RULE – BLOCCATO SE NESSUNA CATEGORIA
     addRuleButton.addEventListener('click', () => {
         if (!window.selectedExpenseId) {
-            alert('Seleziona una spesa prima');
+            alert("Seleziona una spesa");
             return;
         }
+
         const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-        if (!expense || (!expense.category1 && !expense.category2 && !expense.category3)) {
-            alert('Assegna almeno una categoria alla spesa prima di creare una regola.');
+        const hasCategory = expense.category1 || expense.category2 || expense.category3;
+
+        if (!hasCategory) {
+            alert("Assegna almeno una categoria alla spesa prima di creare una regola");
             return;
         }
 
         ruleForm.style.display = 'block';
         ruleInput.disabled = false;
+        ruleInput.value = '';
         ruleInput.focus();
         addRuleButton.classList.add('active');
     });
 
-    // Gestione invio regola
+    // SUBMIT REGOLA
     const submitRule = async () => {
         const words = ruleInput.value.trim();
-        if (!words) return;
+        if (!words) {
+            ruleForm.style.display = 'none';
+            ruleInput.disabled = true;
+            addRuleButton.classList.remove('active');
+            return;
+        }
+
+        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
+        const categories = [expense.category1, expense.category2, expense.category3].filter(Boolean);
+
+        const result = await window.rulesManager.addNewRule({ words, categories });
 
         ruleForm.style.display = 'none';
-        ruleInput.value = '';
         ruleInput.disabled = true;
         addRuleButton.classList.remove('active');
 
-        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-        if (!expense) return;
 
-        const categories = [expense.category1, expense.category2, expense.category3].filter(Boolean);
-        if (confirm(`Creare regola: "${words}" → ${categories.join(' > ')}?`)) {
-            await window.rulesManager.addNewRule({ words, categories });
-        }
+if (result.success) {
+    // Ricarica le regole per mostrarle subito
+    const { data: updatedRules } = await window.fetchAllRules();
+    const rulesList = document.getElementById('rules-list');
+    rulesList.innerHTML = '';
+
+    if (updatedRules.length > 0) {
+        updatedRules.forEach(rule => {
+            const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
+            const el = document.createElement('div');
+            el.className = 'rule-item';
+            el.innerHTML = `
+                <span class="rule-text">${rule.words} → ${display}</span>
+                <button class="rule-delete-button">X</button>
+            `;
+            el.querySelector('.rule-delete-button').onclick = () => {
+                if (confirm("Eliminare questa regola?")) {
+                    window.rulesManager.deleteRule(rule.id).then(() => el.remove());
+                }
+            };
+            rulesList.appendChild(el);
+        });
+    } else {
+        rulesList.innerHTML = '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
+    }
+
+    alert("Regola creata con successo!");
+}
+
+
+
+
     };
 
-    ruleInput.addEventListener('keydown', e => e.key === 'Enter' && (e.preventDefault(), submitRule()));
+    ruleInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            submitRule();
+        }
+        if (e.key === 'Escape') {
+            ruleForm.style.display = 'none';
+            ruleInput.disabled = true;
+            addRuleButton.classList.remove('active');
+        }
+    });
+
     ruleInput.addEventListener('blur', submitRule);
 
+    // CARICA DATI
     await loadData();
     await window.rulesManager.applyAllRulesToExpenses();
 }
@@ -86,22 +137,35 @@ async function loadData() {
     window.expensesList = expRes.success ? expRes.data : [];
     window.categoriesList = catRes.success ? catRes.data : [];
 
-    document.getElementById('rules-list').innerHTML = '';
-    if (rulesRes.success) {
+    // Render spese
+    if (window.expensesList.length > 0) {
+        window.expenseManager.renderAll(window.expensesList);
+    }
+
+    // Render regole
+    const rulesList = document.getElementById('rules-list');
+    rulesList.innerHTML = '';
+
+    if (rulesRes.success && rulesRes.data.length > 0) {
         rulesRes.data.forEach(rule => {
             const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
             const el = document.createElement('div');
             el.className = 'rule-item';
-            el.innerHTML = `<span>${rule.words}: ${display}</span><button class="rule-delete">X</button>`;
-            el.querySelector('.rule-delete').onclick = () => 
-                window.rulesManager.deleteRule(rule.id).then(() => el.remove());
-            document.getElementById('rules-list').appendChild(el);
+            el.innerHTML = `
+                <span class="rule-text">${rule.words} → ${display}</span>
+                <button class="rule-delete-button">X</button>
+            `;
+            el.querySelector('.rule-delete-button').onclick = () => {
+                if (confirm("Eliminare questa regola?")) {
+                    window.rulesManager.deleteRule(rule.id).then(() => el.remove());
+                }
+            };
+            rulesList.appendChild(el);
         });
-    }
-
-    if (window.expensesList.length > 0) {
-        window.expenseManager.renderAll(window.expensesList);
+    } else {
+        rulesList.innerHTML = '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
     }
 }
 
 window.initializeCategorization = initializeCategorization;
+console.log('categorizationPage.js → PRONTO E PERFETTO');

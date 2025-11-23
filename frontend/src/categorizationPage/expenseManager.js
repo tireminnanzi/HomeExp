@@ -1,5 +1,5 @@
 // frontend/src/categorizationPage/expenseManager.js
-console.log('expenseManager.js → SINGLE LINE REFRESH + TUTTO PERFETTO');
+console.log('expenseManager.js → SINGLE LINE REFRESH + CATEGORIE SEMPRE SINCRONIZZATE');
 
 const expenseManager = {
   rows: new Map(),
@@ -79,15 +79,22 @@ const expenseManager = {
       this.editDescription(expense, desc);
     });
 
-    if (isSelected && window.categoriesManager) {
-      window.categoriesManager.updateCategoryButtons(expense.id, window.expensesList, window.categoriesList);
+    // UNICO POSTO DOVE AGGIORNARE LE CATEGORIE A DESTRA
+    if (isSelected && window.categoriesManager && window.expensesList && window.categoriesList) {
+      window.categoriesManager.updateCategoryButtons(
+        expense.id,
+        window.expensesList,
+        window.categoriesList
+      );
     }
 
     return row;
   },
 
+  // MINIMALISTA: solo cambia selezione e chiama renderRow
   selectExpense(newId) {
     if (window.selectedExpenseId === newId) return;
+
     const oldId = window.selectedExpenseId;
     window.selectedExpenseId = newId;
 
@@ -132,12 +139,12 @@ const expenseManager = {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...expense, description: nuovo })
         })
-        .then(r => r.json())
-        .then(data => {
-          const idx = window.expensesList.findIndex(e => e.id === data.id);
-          if (idx !== -1) window.expensesList[idx] = data;
-          this.renderRow(data, data.id === window.selectedExpenseId);
-        });
+          .then(r => r.json())
+          .then(data => {
+            const idx = window.expensesList.findIndex(e => e.id === data.id);
+            if (idx !== -1) window.expensesList[idx] = data;
+            this.renderRow(data, data.id === window.selectedExpenseId);
+          });
       }
       span.contentEditable = false;
     };
@@ -164,4 +171,4 @@ document.addEventListener('keydown', e => {
 });
 
 window.expenseManager = expenseManager;
-console.log('expenseManager → SINGLE LINE REFRESH ATTIVO');
+console.log('expenseManager → PRONTO, ROBUSTO, CATEGORIE SEMPRE GIUSTE');
