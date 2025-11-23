@@ -7,7 +7,7 @@
       "amount": -45.3,
       "source": "CSV",
       "category2": "Furnitures",
-      "category3": "Lampade",
+      "category3": null,
       "category1": "Home"
     },
     {
@@ -38,7 +38,7 @@
       "source": "PDF_AMAZON",
       "category2": null,
       "category3": null,
-      "category1": "Travels"
+      "category1": null
     },
     {
       "id": "5",
@@ -47,7 +47,7 @@
       "amount": -50,
       "source": "CSV",
       "category1": "Home",
-      "category2": null,
+      "category2": "Furnitures",
       "category3": null
     }
   ],
@@ -148,11 +148,6 @@
       "parent": "Groceries"
     },
     {
-      "id": "35",
-      "name": "Prova",
-      "parent": "Car"
-    },
-    {
       "id": "36",
       "name": "Fuele",
       "parent": "Car"
@@ -183,11 +178,6 @@
       "parent": null
     },
     {
-      "id": "44",
-      "name": "Furnitures",
-      "parent": "Home"
-    },
-    {
       "id": "46",
       "name": "prova",
       "parent": "Home"
@@ -208,19 +198,29 @@
       "parent": "prova"
     },
     {
-      "id": "51",
-      "name": "Travels",
-      "parent": null
-    },
-    {
-      "id": "52",
-      "name": "Lampade",
+      "id": "55",
+      "name": "letto",
       "parent": "Furnitures"
     },
     {
-      "id": "53",
-      "name": "Prova",
+      "id": "56",
+      "name": "cucina",
+      "parent": "Furnitures"
+    },
+    {
+      "id": "57",
+      "name": "america",
       "parent": "Travels"
+    },
+    {
+      "id": "58",
+      "name": "europa",
+      "parent": "Travels"
+    },
+    {
+      "id": "59",
+      "name": "Furnitures",
+      "parent": "Home"
     }
   ],
   "rules": []

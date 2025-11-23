@@ -315,3 +315,66 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
+
+/* ============================================================= */
+/* DELETE MODE – VERSIONE FINALE ESATTA COME VUOI TU           */
+/* ============================================================= */
+
+/* Overlay blur leggerissimo su tutta la pagina */
+body.delete-mode-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.8px);
+    z-index: 997;
+    pointer-events: none;
+    transition: all 0.35s ease;
+}
+
+/* 1. SFOCA solo: colonna spese + parte bassa regole */
+body.delete-mode-active .expense-column,
+body.delete-mode-active .category-bottom {
+    filter: blur(2px) brightness(0.94);
+    transition: filter 0.35s ease;
+}
+
+/* 2. LASCIA PERFETTAMENTE NITIDA la parte alta categorie + pulsante X */
+body.delete-mode-active .category-top,
+body.delete-mode-active .delete-toggle-container {
+    filter: none !important;
+    position: relative;
+    z-index: 999;
+}
+
+/* 3. Porta in primo piano tutto ciò che deve essere cliccabile */
+body.delete-mode-active .category-top,
+body.delete-mode-active .delete-toggle-container {
+    z-index: 999;
+    pointer-events: auto !important;
+}
+
+/* 4. Effetto PULSE identico su tutte le categorie e sul pulsante X */
+#category-buttons.delete-mode .category-button:not(.add-category):not(.delete-toggle),
+body.delete-mode-active .delete-toggle.delete-mode-active {
+    animation: soft-pulse 1.5s infinite ease-in-out !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.55) !important;
+}
+
+@keyframes soft-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.55);
+    }
+    50% {
+        transform: scale(1.09);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0.2);
+    }
+}
+
+/* 5. Blocca click su tutto tranne la parte alta categorie */
+body.delete-mode-active { pointer-events: none; }
+body.delete-mode-active .category-top,
+body.delete-mode-active .delete-toggle-container {
+    pointer-events: auto !important;
+}

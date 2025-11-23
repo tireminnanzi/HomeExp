@@ -40,6 +40,7 @@ const expenseManager = {
 
         btn.onclick = (e) => {
           e.stopPropagation();
+          if (window.categoriesManager?.isDeleteMode) return;
           if (window.selectedExpenseId !== expense.id) {
             this.selectExpense(expense.id);
           }
@@ -75,6 +76,7 @@ const expenseManager = {
     });
     desc.addEventListener('dblclick', (e) => {
       e.stopPropagation();
+      if (window.categoriesManager?.isDeleteMode) return;
       if (clickTimeout) clearTimeout(clickTimeout);
       this.editDescription(expense, desc);
     });
@@ -93,6 +95,8 @@ const expenseManager = {
 
   // MINIMALISTA: solo cambia selezione e chiama renderRow
   selectExpense(newId) {
+    if (window.categoriesManager?.isDeleteMode) return;
+
     if (window.selectedExpenseId === newId) return;
 
     const oldId = window.selectedExpenseId;
@@ -158,6 +162,7 @@ const expenseManager = {
 };
 
 document.addEventListener('keydown', e => {
+  if (window.categoriesManager?.isDeleteMode) return;
   if (!['ArrowUp', 'ArrowDown'].includes(e.key) || document.activeElement?.isContentEditable) return;
   e.preventDefault();
   const list = window.expensesList;

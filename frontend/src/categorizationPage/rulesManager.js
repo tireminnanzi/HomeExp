@@ -28,6 +28,17 @@ const rulesManager = {
     },
 
     async addNewRule({ words, categories }) {
+ 
+ if (window.categoriesManager?.isDeleteMode) {
+        window.categoriesManager.exitDeleteMode(
+            window.selectedExpenseId,
+            window.expensesList,
+            window.categoriesList
+        );
+        return { success: false };
+    }
+ 
+ 
         const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
         const check = await this.canCreateRule(expense, words);
         if (!check.ok) {
@@ -52,7 +63,17 @@ const rulesManager = {
     },
 
     async deleteRule(ruleId) {
-        await fetch(`http://localhost:3000/rules/${ruleId}`, { method: 'DELETE' });
+// BLOCCA ELIMINAZIONE REGOLE IN DELETE MODE
+    if (window.categoriesManager?.isDeleteMode) {
+        window.categoriesManager.exitDeleteMode(
+            window.selectedExpenseId,
+            window.expensesList,
+            window.categoriesList
+        );
+        return;
+    }
+
+    await fetch(`http://localhost:3000/rules/${ruleId}`, { method: 'DELETE' });
         await this.applyAllRulesToExpenses();
     },
 

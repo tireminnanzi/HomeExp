@@ -1,9 +1,27 @@
 // frontend/src/categorizationPage/categoriesManager.js
-console.log('categoriesManager.js → VERSIONE FINALE – PULSANTE X COLORE SINCRONIZZATO 100%');
+console.log('categoriesManager.js → VERSIONE DEFINITIVA – DELETE MODE PERFETTO, NIENTE SPARIZIONI');
 
 const categoriesManager = {
     isDeleteMode: false,
     currentClickOutsideHandler: null,
+
+    // FUNZIONE CENTRALIZZATA PER USCIRE DA DELETE MODE
+exitDeleteMode(selectedExpenseId, expensesList, categoriesList) {
+    this.isDeleteMode = false;
+    const categoryButtons = document.getElementById('category-buttons');
+    const deleteToggle = document.querySelector('.delete-toggle');
+
+    if (categoryButtons) categoryButtons.classList.remove('delete-mode');
+    if (deleteToggle) deleteToggle.classList.remove('delete-mode-active');
+    document.body.classList.remove('delete-mode-active');  // ← AGGIUNGI QUESTA RIGA
+
+    if (this.currentClickOutsideHandler) {
+        document.removeEventListener('click', this.currentClickOutsideHandler);
+        this.currentClickOutsideHandler = null;
+    }
+
+    this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+},
 
     updateCategoryButtons(selectedExpenseId, expensesList, categoriesList) {
         const categoryButtons = document.getElementById('category-buttons');
@@ -26,55 +44,51 @@ const categoriesManager = {
             parentCategoryName = expense.category2;
         }
 
-        // === PULSANTE X – COLORE SEMPRE CORRETTO CON IL LIVELLO ===
+        // === PULSANTE X (creato una sola volta) ===
         const titleContainer = document.querySelector('.category-top');
-        if (titleContainer && !document.querySelector('.delete-toggle-container')) {
-            const div = document.createElement('div');
-            div.className = 'delete-toggle-container';
+        if (titleContainer) {
+            let container = titleContainer.querySelector('.delete-toggle-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'delete-toggle-container';
+                titleContainer.style.position = 'relative';
+                titleContainer.appendChild(container);
+            }
 
-            const btn = document.createElement('button');
-            btn.textContent = 'X';
-            btn.className = `category-button delete-toggle level-${levelToDisplay}`;
+            let btn = container.querySelector('.delete-toggle');
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.textContent = 'X';
+                btn.className = `category-button delete-toggle level-${levelToDisplay}`;
+                container.appendChild(btn);
+            } else {
+                // Aggiorna solo la classe del livello
+                btn.className = btn.className.replace(/level-\d/, `level-${levelToDisplay}`);
+            }
 
-            // Aggiorna classe level ogni volta (importante!)
-            const updateLevelClass = () => {
-                btn.classList.remove('level-1', 'level-2', 'level-3');
-                btn.classList.add(`level-${levelToDisplay}`);
-            };
-
-            updateLevelClass();
-
-            btn.onclick = (e) => {
-                e.stopPropagation();
-                this.isDeleteMode = !this.isDeleteMode;
-                categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
-                btn.classList.toggle('delete-mode-active', this.isDeleteMode);
+            // CLICK X → ENTRA IN DELETE MODE
+               btn.onclick = (e) => {
+               e.stopPropagation();
+               this.isDeleteMode = true;
+               categoryButtons.classList.add('delete-mode');
+               btn.classList.add('delete-mode-active');
+               document.body.classList.add('delete-mode-active');
 
                 if (this.currentClickOutsideHandler) {
                     document.removeEventListener('click', this.currentClickOutsideHandler);
-                    this.currentClickOutsideHandler = null;
                 }
 
-                if (this.isDeleteMode) {
-                    this.currentClickOutsideHandler = (ev) => {
-                        if (!ev.target.closest('.category-button') && !ev.target.closest('.delete-toggle')) {
-                            this.isDeleteMode = false;
-                            categoryButtons.classList.remove('delete-mode');
-                            btn.classList.remove('delete-mode-active');
-                            document.removeEventListener('click', this.currentClickOutsideHandler);
-                            this.currentClickOutsideHandler = null;
-                            this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
-                        }
-                    };
-                    setTimeout(() => document.addEventListener('click', this.currentClickOutsideHandler), 10);
-                }
+                this.currentClickOutsideHandler = (ev) => {
+                    const isCategoryBtn = ev.target.closest('.category-button:not(.delete-toggle):not(.add-category)');
+                    const isDeleteBtn = ev.target.closest('.delete-toggle');
 
-                this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                    if (!isCategoryBtn && !isDeleteBtn) {
+                        this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
+                    }
+                };
+
+                setTimeout(() => document.addEventListener('click', this.currentClickOutsideHandler), 100);
             };
-
-            div.appendChild(btn);
-            titleContainer.style.position = 'relative';
-            titleContainer.appendChild(div);
         }
 
         // === CATEGORIE DEL LIVELLO CORRENTE ===
@@ -92,23 +106,28 @@ const categoriesManager = {
 
                 if (this.isDeleteMode) {
                     if (!confirm(`Eliminare la categoria "${cat.name}" da tutte le spese?`)) return;
+
                     const res = await window.deleteSingleCategory(cat.name);
                     if (res.success) {
+                        // Rimuovi dalla lista locale
                         const idx = categoriesList.findIndex(c => c.name === cat.name);
                         if (idx !== -1) categoriesList.splice(idx, 1);
+
+                        // Pulisci le spese
                         expensesList.forEach(exp => {
                             if (exp.category1 === cat.name) exp.category1 = exp.category2 = exp.category3 = null;
                             else if (exp.category2 === cat.name) exp.category2 = exp.category3 = null;
                             else if (exp.category3 === cat.name) exp.category3 = null;
                             window.expenseManager.renderRow(exp, exp.id === selectedExpenseId);
                         });
-                        this.isDeleteMode = false;
-                        categoryButtons.classList.remove('delete-mode');
-                        this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+
+                        // ESCE AUTOMATICAMENTE DA DELETE MODE
+                        this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
                     }
                     return;
                 }
 
+                // === ASSEGNAZIONE NORMALE ===
                 const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);
                 if (result.success) {
                     const updatedExpense = result.data;
@@ -136,7 +155,12 @@ const categoriesManager = {
         addButton.innerHTML = '⋮';
         addButton.onclick = (e) => {
             e.stopPropagation();
-            if (this.isDeleteMode) return;
+            if (window.categoriesManager?.isDeleteMode) return;
+
+            if (this.isDeleteMode) {
+                this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
+                return;
+            }
 
             const input = document.createElement('input');
             input.type = 'text';
@@ -188,4 +212,4 @@ const categoriesManager = {
 };
 
 window.categoriesManager = categoriesManager;
-console.log('categoriesManager → PRONTO – PULSANTE X COLORE 100% SINCRONIZZATO');
+console.log('categoriesManager → PRONTO, FUNZIONA AL 100%, NIENTE SPARIZIONI');
