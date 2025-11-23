@@ -6,9 +6,9 @@
       "description": "shopping at netto",
       "amount": -45.3,
       "source": "CSV",
-      "category2": "furniture",
-      "category3": "letto",
-      "category1": "home"
+      "category2": null,
+      "category3": null,
+      "category1": null
     },
     {
       "id": "2",
@@ -16,9 +16,9 @@
       "description": "Bus ticket to netto",
       "amount": -2.5,
       "source": "PDF_ING",
-      "category1": "home",
-      "category2": "furniture",
-      "category3": "letto"
+      "category1": null,
+      "category2": null,
+      "category3": null
     },
     {
       "id": "3",
@@ -46,9 +46,59 @@
       "description": "Gasoline for car",
       "amount": -50,
       "source": "CSV",
+      "category1": "Home",
+      "category2": "Furniture",
+      "category3": null
+    },
+    {
+      "date": "2025-06-01",
+      "description": "Amazon Test Upload",
+      "amount": 89.9,
+      "originalAmount": -89.9,
       "category1": null,
       "category2": null,
-      "category3": null
+      "category3": null,
+      "id": "6"
+    },
+    {
+      "date": "2025-06-02",
+      "description": "REWE Einkauf",
+      "amount": 112.45,
+      "originalAmount": -112.45,
+      "category1": null,
+      "category2": null,
+      "category3": null,
+      "id": "7"
+    },
+    {
+      "date": "2025-06-03",
+      "description": "Netflix Abo",
+      "amount": 17.99,
+      "originalAmount": -17.99,
+      "category1": null,
+      "category2": null,
+      "category3": null,
+      "id": "8"
+    },
+    {
+      "date": "2025-06-04",
+      "description": "Aral Tankstelle",
+      "amount": 74.2,
+      "originalAmount": -74.2,
+      "category1": null,
+      "category2": null,
+      "category3": null,
+      "id": "9"
+    },
+    {
+      "date": "2025-06-05",
+      "description": "Zalando Bestellung",
+      "amount": 159,
+      "originalAmount": -159,
+      "category1": null,
+      "category2": null,
+      "category3": null,
+      "id": "10"
     }
   ],
   "categories": [
@@ -194,28 +244,23 @@
     },
     {
       "id": "59",
-      "name": "home",
+      "name": "Home",
       "parent": null
     },
     {
       "id": "60",
-      "name": "furniture",
-      "parent": "home"
+      "name": "Furniture",
+      "parent": "Home"
     },
     {
       "id": "61",
-      "name": "letto",
-      "parent": "home"
+      "name": "Cucina",
+      "parent": "Furniture"
     },
     {
       "id": "62",
-      "name": "letto",
-      "parent": "furniture"
-    },
-    {
-      "id": "63",
-      "name": "cucina",
-      "parent": "furniture"
+      "name": "soggiorno",
+      "parent": "Furniture"
     }
   ],
   "rules": []
