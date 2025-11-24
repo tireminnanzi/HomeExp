@@ -83,34 +83,63 @@
 
 .expense-item {
     display: grid;
-    grid-template-columns: 10% 70% 20%;
-    grid-template-rows: 30px auto;
-    gap: 8px;
-    align-items: center;
-    padding: 8px 12px 8px 12px;
+    grid-template-columns: 115px 1fr 140px !important;   /* DATA | DESCRIZIONE | IMPORTO */
+    grid-template-rows: auto auto !important;            /* riga 1: dati principali | riga 2: tag */
+    gap: 6px 12px !important;
+    padding: 14px 16px !important;
+    min-height: 70px !important;
+    height: auto !important;
+    align-items: start !important;
     border-bottom: 1px solid #e5e5e5;
-    cursor: pointer;
-    font-size: 16px;
-    color: #000;
-    height: 80px;
-    box-sizing: border-box;
-    transition: background-color 0.2s;
 }
 
 .expense-item:hover { background-color: #f9fafb; }
 .expense-item.selected { background-color: #e5e7eb; }
+.expense-item * {
+    box-sizing: border-box;
+}
+
+
+.expense-date {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    min-width: 115px !important;
+    width: 115px !important;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #4b5563;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 8px;
+}
+
+.expense-description {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.5 !important;
+    color: #1f2937;
+    padding: 2px 0;
+    max-width: 100%;
+}
 
 .expense-date,
 .expense-description {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: clip !important;   /* non più ellipsis sulla descrizione */
 }
 
 .expense-amount {
-    font-weight: bold;
-    text-align: right;
-    padding-right: 4px;
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 2 !important;
+    justify-self: end !important;
+    text-align: right !important;
+    min-width: 130px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    padding-right: 8px !important;
     white-space: nowrap;
 }
 
@@ -121,13 +150,16 @@
    3. TAG CATEGORIE NELLA RIGA SPESA
    ========================================== */
 .category-tags {
-    grid-row: 2 / 3;
-    grid-column: 1 / -1;
+    grid-column: 1 / -1 !important;
+    grid-row: 2 / 3 !important;
     display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding: 4px 0;
-    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0 4px 123px !important;   /* 115px data + 8px padding = 123px */
+    border-top: 1px dashed #d1d5db;
+    font-size: 13px;
+    min-height: 36px;
+    align-items: center;
 }
 
 .expense-category-button {
