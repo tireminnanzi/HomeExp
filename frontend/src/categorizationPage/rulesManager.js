@@ -1,5 +1,5 @@
 // frontend/src/categorizationPage/rulesManager.js
-console.log('rulesManager.js → VERSIONE FINALE 100% FUNZIONANTE');
+console.log('rulesManager.js → VERSIONE FINALE, PULITA E CON ORDINE INVERSO');
 
 const rulesManager = {
     _isAddingRule: false,
@@ -71,14 +71,18 @@ const rulesManager = {
 
             await this.applyAllRulesToExpenses();
 
+            // Pulizia UI
             if (input) input.value = '';
             const ruleForm = document.getElementById('rule-form');
             if (ruleForm) ruleForm.style.display = 'none';
-
             if (btn) {
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
+
+            // Aggiorna la lista regole (ultima in alto)
+            const { data: freshRules } = await window.fetchAllRules();
+            window.renderRulesList?.(freshRules);
 
             return { success: true, data };
 
@@ -104,32 +108,9 @@ const rulesManager = {
 
             await this.applyAllRulesToExpenses();
 
-            const { data: updatedRules } = await window.fetchAllRules();
-            const rulesList = document.getElementById('rules-list');
-            if (!rulesList) return;
-
-            rulesList.innerHTML = updatedRules.length > 0
-                ? updatedRules.map(rule => {
-                    const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
-                    return `<div class="rule-item">
-                        <span class="rule-text">${rule.words} → ${display}</span>
-                        <button class="rule-delete-button">X</button>
-                    </div>`;
-                }).join('')
-                : '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
-
-            rulesList.querySelectorAll('.rule-delete-button').forEach(btn => {
-                btn.onclick = () => {
-                    const item = btn.closest('.rule-item');
-                    const text = item.querySelector('.rule-text').textContent;
-                    if (confirm(`Eliminare regola: "${text}"?`)) {
-                        const rule = updatedRules.find(r =>
-                            r.words + ' → ' + (r.categories.filter(Boolean).join(' > ') || 'Nessuna') === text
-                        );
-                        if (rule) window.rulesManager.deleteRule(rule.id);
-                    }
-                };
-            });
+            // Aggiorna la lista regole (senza rendering qui)
+            const { data: freshRules } = await window.fetchAllRules();
+            window.renderRulesList?.(freshRules);
 
         } catch (err) {
             console.error('[rulesManager] Errore delete:', err);
@@ -144,7 +125,6 @@ const rulesManager = {
         const { data: rules } = await window.fetchAllRules();
         if (!rules?.length) return;
 
-        const updatedIds = new Set();
         const promises = [];
 
         for (const expense of freshExpenses) {
@@ -163,12 +143,7 @@ const rulesManager = {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(updated)
-                        })
-                        .then(r => r.json())
-                        .then(data => {
-                            updatedIds.add(data.id);
-                            return data;
-                        })
+                        }).then(r => r.json())
                     );
                     break;
                 }
@@ -182,13 +157,9 @@ const rulesManager = {
         results.forEach(exp => {
             const idx = window.expensesList.findIndex(e => e.id === exp.id);
             if (idx !== -1) window.expensesList[idx] = exp;
-        });
 
-        updatedIds.forEach(id => {
-            const exp = window.expensesList.find(e => e.id === id);
-            if (exp) {
-                const isSelected = id === window.selectedExpenseId;
-                window.expenseManager.renderRow(exp, isSelected);
+            if (exp.id === window.selectedExpenseId) {
+                window.expenseManager.renderRow(exp, true);
             }
         });
 
@@ -205,4 +176,4 @@ const rulesManager = {
 };
 
 window.rulesManager = rulesManager;
-console.log('rulesManager → CARICATO CORRETTAMENTE E PRONTO');
+console.log('rulesManager → PRONTO, PULITO, CON ORDINE INVERSO');

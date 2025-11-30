@@ -1,5 +1,5 @@
 // frontend/src/categorizationPage/categorizationPage.js
-console.log('categorizationPage.js → VERSIONE STABILE PERFETTA');
+console.log('categorizationPage.js → VERSIONE STABILE + REGOLE IN ORDINE INVERSO');
 
 async function initializeCategorization() {
     const mainContent = document.getElementById('main-content');
@@ -32,18 +32,11 @@ async function initializeCategorization() {
     const ruleInput = document.getElementById('rule-input');
 
     addRuleButton.addEventListener('click', () => {
-        if (!window.selectedExpenseId) {
-            alert("Seleziona una spesa");
-            return;
-        }
+        if (!window.selectedExpenseId) return alert("Seleziona una spesa");
 
         const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-        const hasCategory = expense.category1 || expense.category2 || expense.category3;
-
-        if (!hasCategory) {
-            alert("Assegna almeno una categoria alla spesa prima di creare una regola");
-            return;
-        }
+        if (!expense.category1 && !expense.category2 && !expense.category3)
+            return alert("Assegna almeno una categoria alla spesa prima di creare una regola");
 
         ruleForm.style.display = 'block';
         ruleInput.disabled = false;
@@ -94,7 +87,6 @@ async function loadData() {
     if (window.expensesList.length > 0) {
         window.expenseManager.renderAll(window.expensesList);
 
-        // SELEZIONE AUTOMATICA PRIMA SPESA NON CATEGORIZZATA
         const firstUncategorized = window.expensesList.find(e => 
             !e.category1 && !e.category2 && !e.category3
         );
@@ -104,30 +96,50 @@ async function loadData() {
         }
     }
 
-    // Render regole (versione semplice stabile)
+    // ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+    // Usa la funzione centrale (definita sotto)
+    // ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+    window.renderRulesList(rulesRes.success ? rulesRes.data : []);
+}
+
+// =============================================================
+// FUNZIONE CENTRALE: mostra regole con ultima in alto
+// =============================================================
+window.renderRulesList = function(rulesData) {
     const rulesList = document.getElementById('rules-list');
-    rulesList.innerHTML = rulesRes.success && rulesRes.data.length > 0
-        ? rulesRes.data.map(rule => {
-            const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
-            return `<div class="rule-item">
-                <span class="rule-text">${rule.words} → ${display}</span>
-                <button class="rule-delete-button">X</button>
-            </div>`;
-        }).join('')
-        : '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
+    if (!rulesList) return;
+
+    const sorted = [...rulesData].reverse(); // ultima creata in alto
+
+    if (sorted.length === 0) {
+        rulesList.innerHTML = '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
+        return;
+    }
+
+    rulesList.innerHTML = sorted.map(rule => {
+        const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
+        return `<div class="rule-item">
+            <span class="rule-text">${rule.words} → ${display}</span>
+            <button class="rule-delete-button">X</button>
+        </div>`;
+    }).join('');
 
     rulesList.querySelectorAll('.rule-delete-button').forEach(btn => {
         btn.onclick = () => {
             const text = btn.closest('.rule-item').querySelector('.rule-text').textContent;
             if (confirm(`Eliminare regola: "${text}"?`)) {
-                const rule = rulesRes.data.find(r => 
+                const rule = sorted.find(r => 
                     r.words + ' → ' + (r.categories.filter(Boolean).join(' > ') || 'Nessuna') === text
                 );
                 if (rule) window.rulesManager.deleteRule(rule.id);
             }
         };
     });
-}
+};
 
+// =============================================================
+// Esposizione
+// =============================================================
 window.initializeCategorization = initializeCategorization;
-console.log('categorizationPage.js → STABILE E PERFETTO');
+
+console.log('categorizationPage.js → REGOLE IN ORDINE INVERSO + PULITO');
