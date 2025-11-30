@@ -115,19 +115,43 @@ const expenseManager = {
   },
 
   renderAll(expenses, initialSelectedId = null) {
-    this.rows.clear();
-    document.getElementById('expense-list').innerHTML = '';
-    window.expensesList = expenses;
+  this.rows.clear();
+  document.getElementById('expense-list').innerHTML = '';
+  window.expensesList = expenses;
 
-    expenses.forEach(exp => {
-      const selected = exp.id === (initialSelectedId || expenses[0]?.id);
-      this.renderRow(exp, selected);
-    });
+  // STEP 1: Trova la prima spesa NON categorizzata
+  let firstUncategorized = null;
+  let firstAny = null;
 
-    if (expenses.length > 0 && !window.selectedExpenseId) {
-      window.selectedExpenseId = initialSelectedId || expenses[0].id;
+  expenses.forEach(exp => {
+    const isCategorized = exp.category1 || exp.category2 || exp.category3;
+    if (!firstAny) firstAny = exp; // la prima in assoluto
+    if (!isCategorized && !firstUncategorized) {
+      firstUncategorized = exp; // la prima senza categoria
     }
-  },
+    const selected = exp.id === initialSelectedId;
+    this.renderRow(exp, selected);
+  });
+
+  // STEP 2: Decidi quale selezionare all'avvio
+  const expenseToSelect = firstUncategorized || firstAny;
+
+  if (expenseToSelect && !window.selectedExpenseId) {
+    window.selectedExpenseId = expenseToSelect.id;
+    // Rendi visivamente selezionata
+    this.rows.get(expenseToSelect.id)?.classList.add('selected');
+    this.rows.get(expenseToSelect.id)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Aggiorna i pulsanti delle categorie a destra
+  if (expenseToSelect && window.categoriesManager) {
+    window.categoriesManager.updateCategoryButtons(
+      expenseToSelect.id,
+      expenses,
+      window.categoriesList
+    );
+  }
+},
 
   editDescription(expense, span) {
     const original = span.textContent;

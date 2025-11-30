@@ -31,35 +31,35 @@
       "date": "2025-05-02",
       "description": "DB VERTRIEB GMBH AMVV0000099865045/2025,  BALZAROTTI  WALTER,  190117903-002  NR 1017925 40BAHN.DE/ABOPORTAL End-to-End-Ref.: MVVAMVV000009986504 Mand",
       "amount": -58,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "4"
     },
     {
       "date": "2025-05-02",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 046303691305 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "5"
     },
     {
       "date": "2025-05-02",
       "description": "GOTHAER KRANKENVERSICHERUNG 98.000.640182 ABBUCHUNG AM 02.05.20 25 KV 27,50+ End-to-End-Ref.: S2025042401000733022 Mandatsref: 210608296 Gläubiger-ID:",
       "amount": -27.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Walter",
+      "category3": "Denti",
       "id": "6"
     },
     {
       "date": "2025-04-29",
       "description": "NETTO MARKEN-DISCOU/WOLFRATSHAUSER 2025-04-28T17:54:01 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -12.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "7"
     },
@@ -67,9 +67,9 @@
       "date": "2025-04-29",
       "description": "AGIP,MUENCHEN,HERTERICHSTR.//Munche 2025-04-28T08:06:51 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -25.02,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Trasporti",
       "id": "8"
     },
     {
@@ -85,17 +85,17 @@
       "date": "2025-04-28",
       "description": "Woolworth GmbH Fil. 1567//Muenchen/ 2025-04-25T17:12:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1.25,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "10"
     },
     {
       "date": "2025-04-28",
       "description": "ALDI SE U. CO. KG/MEGLINGERSTR. 33/ 2025-04-25T17:31:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.81,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "11"
     },
@@ -103,8 +103,8 @@
       "date": "2025-04-28",
       "description": "NETTO MARKEN-DISCOU/WOLFRATSHAUSER 2025-04-26T10:47:53 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -49.58,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "12"
     },
@@ -112,8 +112,8 @@
       "date": "2025-04-28",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "13"
     },
@@ -121,8 +121,8 @@
       "date": "2025-04-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "14"
     },
@@ -130,8 +130,8 @@
       "date": "2025-04-25",
       "description": "MARIENSTERN APOTHEKE SOLLN Vielen D 2025-04-24T11:26:46 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "15"
     },
@@ -139,17 +139,17 @@
       "date": "2025-04-25",
       "description": "CHECK24 CHECK24 Gutscheinauszahlung - Antra g 11086805 - fuer Ihre Zahnzusatzve rsicherung End-to-End-Ref.: 36214791- 11086805 Kundenreferenz: e0f9e94",
       "amount": 30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Walter",
+      "category3": "Denti",
       "id": "16"
     },
     {
       "date": "2025-04-25",
       "description": "Azimo Stichting Third Party Account Qorvo Munich GmbH 2c51fb270f52451e8 7117833c069dcc9/Salary 0425  11/Kon radZusePlatz 1, DE End-to-End-Ref.: CFKT66",
       "amount": 7207.87,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "17"
     },
@@ -157,17 +157,17 @@
       "date": "2025-04-24",
       "description": "00113 MCDONALDS//MUENCHEN/DE 2025-04-23T12:53:34 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "MCDonald",
       "id": "18"
     },
     {
       "date": "2025-04-24",
       "description": "Ludwigshoeher Apotheke//Muenchen/DE 2025-04-23T17:55:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.59,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "19"
     },
@@ -175,8 +175,8 @@
       "date": "2025-04-24",
       "description": "NETTO MARKEN-DISCOU/WOLFRATSHAUSER 2025-04-23T14:34:32 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -29.14,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "20"
     },
@@ -184,17 +184,17 @@
       "date": "2025-04-24",
       "description": "Roberto Galetto BAPPIT21203 IT42Q0503445690000000000277 contributo unificato-pro End-to-End-Ref.: MOB.114.UE.POS00005682",
       "amount": -545,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "21"
     },
     {
       "date": "2025-04-24",
       "description": "Ammerländer Versicherung VVaG Rec.-Nr.  16041511/Pol.-Nr.  100959 8871 End-to-End-Ref.: 16041511 Mandatsref: 1250218 Gläubiger-ID: DE56ZZZ00000022435",
       "amount": -59.9,
-      "category1": null,
-      "category2": null,
+      "category1": "Assicurazione",
+      "category2": "Casa",
       "category3": null,
       "id": "22"
     },
@@ -202,71 +202,71 @@
       "date": "2025-04-24",
       "description": "CHECK24 CHECK24 Auszahlung Guthaben - Buchu ngsnummer 928340982030, Anmietung: 16.04.25 - 20.04.25, Marseille Flug hafen End-to-End-Ref.: 36221543- 34",
       "amount": 10,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "CarRent",
       "id": "23"
     },
     {
       "date": "2025-04-23",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F25010639080 29,99 EUR End-to-End-Ref.: 1500270825/115025988228 Mandatsref: KM-1500270825-000001",
       "amount": -29.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "24"
     },
     {
       "date": "2025-04-22",
       "description": "Action 4388/Avenue Jean-Marie Tjiba 2025-04-17T21:26:32 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.12,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "Shopping",
       "id": "25"
     },
     {
       "date": "2025-04-22",
       "description": "AUTOGRILL 0373/VIA AEROPORTO 13/ORI 2025-04-20T15:54:15 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "Cibo",
       "id": "26"
     },
     {
       "date": "2025-04-22",
       "description": "ESSO VITROLLES L/ESSO EXPRESS VITRO 2025-04-20T12:55:17 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -32.43,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "Trasporti",
       "id": "27"
     },
     {
       "date": "2025-04-22",
       "description": "CARREFOUR/390 RUE JEAN MARIE TJIBAO 2025-04-17T19:46:36 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -23.56,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "Cibo",
       "id": "28"
     },
     {
       "date": "2025-04-22",
       "description": "AUTOGRILL 0373/VIA AEROPORTO 13/ORI 2025-04-16T11:31:52 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.49,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "Cibo",
       "id": "29"
     },
     {
       "date": "2025-04-22",
       "description": "FARMACIA VILLONGO SRL/VIA AEROPORTO 2025-04-16T10:41:23 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "30"
     },
@@ -274,17 +274,17 @@
       "date": "2025-04-22",
       "description": "BavariaDirekt Versicherung AG 91019204095 22.04.2025 fuer Walter End-to-End-Ref.: P82-519000886440 Mandatsref: 91019204095 Gläubiger-ID: DE34OVA000001",
       "amount": -72.76,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Walter",
+      "category3": "Salute",
       "id": "31"
     },
     {
       "date": "2025-04-17",
       "description": "PRIMARK MILANO/CC ADIGEO VIA DELLA/ 2025-04-15T15:04:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -64.5,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Primark",
       "category3": null,
       "id": "32"
     },
@@ -292,17 +292,17 @@
       "date": "2025-04-17",
       "description": "ARESE CC IL CENTRO/Via Giuseppe Eug 2025-04-15T14:10:53 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "33"
     },
     {
       "date": "2025-04-17",
       "description": "JD MILAN/ARESE SC/ARESE MILAN/IT/1 2025-04-15T15:33:31 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -68,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Arese",
       "category3": null,
       "id": "34"
     },
@@ -310,26 +310,26 @@
       "date": "2025-04-17",
       "description": "IPER ARESE/VIA LURAGHI SNC/ARESE/IT 2025-04-15T16:08:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.95,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "35"
     },
     {
       "date": "2025-04-16",
       "description": "D090 Lentate sul Seves/Via Nazional 2025-04-14T14:27:27 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -32.16,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Trasporti",
       "id": "36"
     },
     {
       "date": "2025-04-16",
       "description": "ALDI S.R.L./VIA NAZIONALE DEI GIOVI 2025-04-14T12:57:15 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -48.68,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "37"
     },
@@ -337,26 +337,26 @@
       "date": "2025-04-14",
       "description": "Barmenia Allgemeine Versicherungs A G 250123192Z 41215/DATENSCHUTZINFORMA TIONEN: DATENSCHUTZ.BARMENIA.DE End-to-End-Ref.: 044603065274 Kundenreferenz",
       "amount": 25.64,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "38"
     },
     {
       "date": "2025-04-14",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "39"
     },
     {
       "date": "2025-04-09",
       "description": "NETTO MARKEN-DISCOU/WOLFRATSHAUSER 2025-04-08T11:15:31 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.1,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "40"
     },
@@ -364,8 +364,8 @@
       "date": "2025-04-08",
       "description": "Ludwigshoeher Apotheke//Muenchen/DE 2025-04-07T08:50:37 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -10,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "41"
     },
@@ -382,8 +382,8 @@
       "date": "2025-04-07",
       "description": "NETTO MARKEN-DISCOU/WOLFRATSHAUSER 2025-04-05T08:30:33 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -27.68,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "43"
     },
@@ -391,17 +391,17 @@
       "date": "2025-04-04",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1225292 263/8, Ihre Tarifrechnung End-to-End-Ref.: 3104514907990001225292263008RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "44"
     },
     {
       "date": "2025-04-03",
       "description": "BAMBORA INC. End-to-End-Ref.: 99415112 Kundenreferenz: NSCT2504030013700000000000000000002",
       "amount": 77,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "45"
     },
@@ -409,17 +409,17 @@
       "date": "2025-04-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "46"
     },
     {
       "date": "2025-04-03",
       "description": "ERTRAEGNISGUTSCHRIFT VOM 02.04.25 DEPOTBESTAND:             31,000 VA.FTSE A.W.H.D.Y.UETFDLD A1T8FV             USD 0,448015 Abr.Betrag Brutto 12,83 E",
       "amount": 10.46,
-      "category1": null,
-      "category2": null,
+      "category1": "Investimenti",
+      "category2": "dividendi",
       "category3": null,
       "id": "47"
     },
@@ -427,17 +427,17 @@
       "date": "2025-04-02",
       "description": "WUENSCHE TUEBINGERSTR.//MUENCHEN/DE 2025-04-01T17:45:35 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.1,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "48"
     },
     {
       "date": "2025-04-02",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-04-01T17:32:58 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -54.81,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "49"
     },
@@ -454,43 +454,43 @@
       "date": "2025-04-01",
       "description": "DB VERTRIEB GMBH AMVV0000099178514/2025,  BALZAROTTI  WALTER,  190117903-002  NR 1017925 40BAHN.DE/ABOPORTAL End-to-End-Ref.: MVVAMVV000009917851 Mand",
       "amount": -58,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "51"
     },
     {
       "date": "2025-04-01",
       "description": "DB VERTRIEB GMBH AMVV0000097912503/2025,  BALZAROTTI  WALTER,  190117903-002  NR 1017925 40BAHN.DE/ABOPORTAL End-to-End-Ref.: MVVAMVV000009791250 Mand",
       "amount": -58,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "52"
     },
     {
       "date": "2025-04-01",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 043502840770 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "53"
     },
     {
       "date": "2025-04-01",
       "description": "GOTHAER KRANKENVERSICHERUNG 98.000.640182 ABBUCHUNG AM 01.04.20 25 KV 27,50+ End-to-End-Ref.: S2025032501000836362 Mandatsref: 210608296 Gläubiger-ID:",
       "amount": -27.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Walter",
+      "category3": "Denti",
       "id": "54"
     },
     {
       "date": "2025-03-31",
       "description": "Rechnungsabschluss Konto  110271400 EUR BLZ   300 400 00 vom 31.12.2024 bis 31.03.2025 Saldo nach Abschluss                     8.115,12  EUR w/ Geneh",
       "amount": 0,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "55"
@@ -508,7 +508,7 @@
       "date": "2025-03-28",
       "description": "WP-KAUF      GESCH.TG.27.03.2025 V. 27.03.2025 73/004259 VANGUARD S+P 500U.ETF DLD WPKNR: A1JX53  ISIN: IE00B3XXRP09 NENNWERT:           20,000 GESCH.",
       "amount": -2022.96,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "57"
@@ -517,8 +517,8 @@
       "date": "2025-03-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "58"
     },
@@ -526,8 +526,8 @@
       "date": "2025-03-27",
       "description": "BAMBORA INC. End-to-End-Ref.: 98733305 Kundenreferenz: NSCT2503270018400000000000000000001",
       "amount": 143,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "59"
     },
@@ -535,8 +535,8 @@
       "date": "2025-03-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "60"
     },
@@ -553,17 +553,17 @@
       "date": "2025-03-25",
       "description": "LADUREE Flag-Ship Platzl//Muenchen/ 2025-03-24T12:35:24 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Lavoro",
       "id": "62"
     },
     {
       "date": "2025-03-25",
       "description": "Azimo Stichting Third Party Account Qorvo Munich GmbH 2c51fb270f52451e8 7117833c069dcc9/Salary 0325  11//Ko nradZusePlatz 1, DE End-to-End-Ref.: B9BB0",
       "amount": 7243.21,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "63"
     },
@@ -571,8 +571,8 @@
       "date": "2025-03-24",
       "description": "ALDI SE U. CO. KG//MUENCHEN/DE 2025-03-22T10:09:14 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -32.71,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "64"
     },
@@ -580,8 +580,8 @@
       "date": "2025-03-24",
       "description": "El Chapo Gastro GmbH GIR 69319495// 2025-03-22T21:48:45 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -67.5,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
       "category3": null,
       "id": "65"
     },
@@ -589,8 +589,8 @@
       "date": "2025-03-21",
       "description": "ROSSMANN 3394 MUENCHEN 190310463201071251220033946 ELV6030 6545 19.03 10.46 ME3 End-to-End-Ref.: 19031046320107125122003394660306545 Mandatsref: G0306",
       "amount": -23.93,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "66"
     },
@@ -598,17 +598,17 @@
       "date": "2025-03-20",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F25007719434 29,99 EUR End-to-End-Ref.: 1500270825/136125995100 Mandatsref: KM-1500270825-000001",
       "amount": -29.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "67"
     },
     {
       "date": "2025-03-19",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-03-18T17:26:12 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -32.9,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "68"
     },
@@ -616,25 +616,25 @@
       "date": "2025-03-19",
       "description": "CHECK24 CHECK24 Auszahlung Guthaben - Buchu ngsnummer 1475733186COUNT, Anmietun g: 09.03.25 - 14.03.25, Muenchen Fl ughafen End-to-End-Ref.: 35692975-",
       "amount": 10,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Avignone",
+      "category3": "CarRent",
       "id": "69"
     },
     {
       "date": "2025-03-18",
       "description": "Tante Emma//Muenchen/DE 2025-03-17T12:43:22 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "70"
     },
     {
       "date": "2025-03-18",
       "description": "WP-KAUF      GESCH.TG.17.03.2025 V. 17.03.2025 73/001392 BLACKROCK INC.       O.N. WPKNR: A40PW4  ISIN: US09290D1019 NENNWERT:            2,000 GESCH.",
       "amount": -1721.7,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "71"
@@ -643,8 +643,8 @@
       "date": "2025-03-17",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-03-14T16:44:24 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -107.43,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "72"
     },
@@ -652,17 +652,17 @@
       "date": "2025-03-13",
       "description": "MVG AUTOMATEN//MUENCHEN/DE 2025-03-11T13:08:01 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "73"
     },
     {
       "date": "2025-03-13",
       "description": "SumUp  .KAIMUG Rest. G/Theatinerstr 2025-03-11T13:42:00 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.85,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
       "category3": null,
       "id": "74"
     },
@@ -670,44 +670,44 @@
       "date": "2025-03-12",
       "description": "AUMUELLER 24 GIR 79938871//MÜNCHEN/ 2025-03-11T10:28:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "75"
     },
     {
       "date": "2025-03-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "76"
     },
     {
       "date": "2025-03-11",
       "description": "Envivas Krankenversicherung AG ENVIVAS Krankenvers. AG Versicherun gsnr. 417527265 Beitrag Auslandssch utz End-to-End-Ref.: 120002023672 Mandatsref: 1",
       "amount": -34.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Walter",
+      "category3": "Salute",
       "id": "77"
     },
     {
       "date": "2025-03-07",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1202875 584/8, Ihre Tarifrechnung End-to-End-Ref.: 3104491402970001202875584008RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "78"
     },
     {
       "date": "2025-03-06",
       "description": "BAMBORA INC. End-to-End-Ref.: 96955136 Kundenreferenz: NSCT2503060016230000000000000000002",
       "amount": 11,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "79"
     },
@@ -716,8 +716,8 @@
       "description": "DESPAR DS1 BZ ORTISEI/VIA RESIA 230 2025-03-04T12:32:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -30.33,
       "category1": "Viaggi",
-      "category2": "Lazzate",
-      "category3": "Trasporti",
+      "category2": "Ortisei",
+      "category3": "Cibo",
       "id": "80"
     },
     {
@@ -725,15 +725,15 @@
       "description": "DESPAR DOLOMITI/VIA REZIA 46/ORTISE 2025-03-04T17:12:20 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.97,
       "category1": "Viaggi",
-      "category2": "Lazzate",
-      "category3": "Trasporti",
+      "category2": "Ortisei",
+      "category3": "Cibo",
       "id": "81"
     },
     {
       "date": "2025-03-06",
       "description": "WP-KAUF      GESCH.TG.05.03.2025 V. 05.03.2025 73/000735 SPDR MSCI ACW IM ETF WPKNR: A1JJTD  ISIN: IE00B3YLTY66 NENNWERT:            9,000 GESCH.-NR:",
       "amount": -2050.03,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "82"
@@ -742,9 +742,9 @@
       "date": "2025-03-05",
       "description": "CAFFE. CORSO/REZIASTR. 74/ST.ULRICH 2025-03-03T15:06:39 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Ortisei",
+      "category3": "Rist",
       "id": "83"
     },
     {
@@ -769,17 +769,17 @@
       "date": "2025-03-05",
       "description": "WEG Grosshesseloher Str.3-5A Stromverbrauch Zwischewnzaehler Whg  . 41 End-to-End-Ref.: 74658324 Mandatsref: 00091HerrBalzarotti Gläubiger-ID: DE80ZZZ",
       "amount": -24.96,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "86"
     },
     {
       "date": "2025-03-03",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2025-02-28T08:17:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.69,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "87"
     },
@@ -787,9 +787,9 @@
       "date": "2025-03-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "88"
     },
     {
@@ -805,53 +805,53 @@
       "date": "2025-03-03",
       "description": "Abrechnung Amazon Visa-Kreditkarte Rechnungsnr BILLCOLL20250224100000634117,DDCOLL 20250224D1X000623972 End-to-End-Ref.: dab6632daafe4ca88fe76dba61269",
       "amount": -1348.84,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "90"
     },
     {
       "date": "2025-03-03",
       "description": "ERGO VERSICHERUNG AG Rechtsschutzversicherung SV75194605  24.03.25-24.03.26 End-to-End-Ref.: 138250301R000071SV075194605 Mandatsref: MDEM201934844553",
       "amount": -309.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Casa",
+      "category3": "Legale",
       "id": "91"
     },
     {
       "date": "2025-03-03",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 040403303886 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "92"
     },
     {
       "date": "2025-02-28",
       "description": "Woolworth GmbH Fil. 1567//Muenchen/ 2025-02-27T13:51:24 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -11.75,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "93"
     },
     {
       "date": "2025-02-28",
       "description": "AGIP,MUENCHEN,HERTERICHSTR.//Munche 2025-02-27T13:19:56 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -30.51,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Trasporti",
       "id": "94"
     },
     {
       "date": "2025-02-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "95"
     },
@@ -859,17 +859,17 @@
       "date": "2025-02-28",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1201172 095/8, Ihr Ratenplan End-to-End-Ref.: 3204302712380001201172095008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "96"
     },
     {
       "date": "2025-02-27",
       "description": "LANDESHAUPTSTADT MUENCHEN SSKMDEMMXXX DE86701500000000203000 MQR 5.6100.0120.0027 End-to-End-Ref.: MOB.58.UE.391766",
       "amount": -112,
-      "category1": null,
-      "category2": null,
+      "category1": "Tasse",
+      "category2": "Bimba",
       "category3": null,
       "id": "97"
     },
@@ -877,8 +877,8 @@
       "date": "2025-02-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "98"
     },
@@ -886,8 +886,8 @@
       "date": "2025-02-25",
       "description": "Azimo Stichting Third Party Account Salary 0225  11/Qorvo Munich GmbH 2 c51fb270f52451e87117833c069dcc9/Kon radZusePlatz 1, DE End-to-End-Ref.: 19JZ9N",
       "amount": 7207.87,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "99"
     },
@@ -895,17 +895,17 @@
       "date": "2025-02-25",
       "description": "WOOLWORTH GMBH ELV61739839 22.02 15.03 ME3 End-to-End-Ref.: IC-18472619453 Mandatsref: 6173983942572502221503 Gläubiger-ID: DE11ZZZ00000009471 SEPA-BA",
       "amount": -28.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "100"
     },
     {
       "date": "2025-02-24",
       "description": "ALDI SE U. CO. KG//MUENCHEN/DE 2025-02-22T15:36:13 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -29.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "101"
     },
@@ -913,8 +913,8 @@
       "date": "2025-02-24",
       "description": "ROSSMANN//M.nchen Obersendling/DE 2025-02-22T15:55:01 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -26.21,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "102"
     },
@@ -922,17 +922,17 @@
       "date": "2025-02-24",
       "description": "OPG Gymnasium BYLADEM1KMS DE81702501500190592048 Vittoria Balzarotti, 6G End-to-End-Ref.: MOB.53.UE.124051",
       "amount": -22,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Ginnasium",
       "id": "103"
     },
     {
       "date": "2025-02-20",
       "description": "BAMBORA INC. End-to-End-Ref.: 95784040 Kundenreferenz: NSCT2502200014420000000000000000001",
       "amount": 200.6,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "104"
     },
@@ -940,17 +940,17 @@
       "date": "2025-02-20",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F25004824560 29,99 EUR End-to-End-Ref.: 1500270825/138965816515 Mandatsref: KM-1500270825-000001",
       "amount": -29.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "105"
     },
     {
       "date": "2025-02-17",
       "description": "ROSSMANN 3394 MUENCHEN 130208263191852251220033940 ELV6030 6545 13.02 08.26 ME3 End-to-End-Ref.: 13020826319185225122003394060306545 Mandatsref: G0306",
       "amount": -26.2,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "106"
     },
@@ -958,17 +958,17 @@
       "date": "2025-02-14",
       "description": "florali by Tobias Niefenecker e.K./ 2025-02-13T17:39:14 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -19.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "107"
     },
     {
       "date": "2025-02-14",
       "description": "EDEKA KOLLO//MUENCHEN/DE 2025-02-13T17:46:47 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.67,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Edeka",
       "category3": null,
       "id": "108"
     },
@@ -976,17 +976,17 @@
       "date": "2025-02-14",
       "description": "Paolo Delfino UNCRITM1227 IT71B0200801627000021048968 Competenze professionali quale CTU nella procedura rg 2219-2020 Corte d'Appello di Milano End-to",
       "amount": -1694.48,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "109"
     },
     {
       "date": "2025-02-13",
       "description": "Walter Balzarotti Trasferimento End-to-End-Ref.: NOTPROVIDED Kundenreferenz: NSCT2502130030550000000000000000001",
       "amount": 4000,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Walter",
       "category3": null,
       "id": "110"
     },
@@ -994,17 +994,17 @@
       "date": "2025-02-12",
       "description": "BAECKEREI REIS Wolf GIR 79942453//M 2025-02-11T10:23:41 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.7,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "111"
     },
     {
       "date": "2025-02-12",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-02-11T17:11:55 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -41.2,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "112"
     },
@@ -1012,26 +1012,26 @@
       "date": "2025-02-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "113"
     },
     {
       "date": "2025-02-10",
       "description": "HALONG BAY//Muenchen/DE 2025-02-07T18:34:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -23,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Giap",
       "id": "114"
     },
     {
       "date": "2025-02-10",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-02-07T16:28:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -67.19,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "115"
     },
@@ -1039,17 +1039,17 @@
       "date": "2025-02-06",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1180444 010/8, Ihre Tarifrechnung End-to-End-Ref.: 3104468173840001180444010008RCUR Mand",
       "amount": -4.08,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "116"
     },
     {
       "date": "2025-02-05",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-02-04T17:17:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -12.54,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "117"
     },
@@ -1057,17 +1057,17 @@
       "date": "2025-02-04",
       "description": "Vodafone GmbH 0000120180855 0020063842054 Rechnungsnr: 121193187576 KdNr. 120180855 Vodafone sagt Danke End-to-End-Ref.: 0000120180855 0020063842054 M",
       "amount": -32.92,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Walter",
       "id": "118"
     },
     {
       "date": "2025-02-03",
       "description": "DM DROGERIEMARKT SAGT DANKE DM Drogerie/Tübinger Straße 3e/Münc 2025-01-31T16:30:21 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.85,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "DM",
       "category3": null,
       "id": "119"
     },
@@ -1075,17 +1075,17 @@
       "date": "2025-02-03",
       "description": "Die Spielzeugkiste, Munchen Die Spielzeugkiste/Wolfratshauser S 2025-01-31T13:20:10 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -19.94,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "120"
     },
     {
       "date": "2025-02-03",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-01-31T16:12:15 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -22.15,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "121"
     },
@@ -1093,8 +1093,8 @@
       "date": "2025-02-03",
       "description": "prokundo GmbH Guthabenerstattung zu Vers.-Nr. 43/ 6238023010 End-to-End-Ref.: U25030205131923PX18 Kundenreferenz: U25030205131923PX",
       "amount": 37,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "122"
     },
@@ -1102,9 +1102,9 @@
       "date": "2025-02-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "123"
     },
     {
@@ -1120,8 +1120,8 @@
       "date": "2025-02-03",
       "description": "prokundo GmbH 436238023010    PA000245443/ 436238 023010 36,40/ UNFALL End-to-End-Ref.: 436238023010/PRO.G0631-30220 Mandatsref: PA000245443 Gläubiger",
       "amount": -36.4,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "125"
     },
@@ -1129,8 +1129,8 @@
       "date": "2025-02-03",
       "description": "prokundo GmbH 436238023010    PA000245443/ 436238 023010 18,20/ UNFALL/ ERSTBEITRAG End-to-End-Ref.: 436238023010/PRO.G0631-30219 Mandatsref: PA000245",
       "amount": -18.2,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "126"
     },
@@ -1138,9 +1138,9 @@
       "date": "2025-02-03",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 040403242885 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "127"
     },
     {
@@ -1156,8 +1156,8 @@
       "date": "2025-01-30",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202501 End-to-End-Ref.: 3335005770 Kundenreferenz: NSCT2501300027690000000000000000001",
       "amount": 2456.58,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "129"
     },
@@ -1165,17 +1165,17 @@
       "date": "2025-01-29",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1178411 269/8, Ihr Ratenplan End-to-End-Ref.: 3204280506030001178411269008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "130"
     },
     {
       "date": "2025-01-28",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2025-01-27T13:24:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -24.05,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "131"
     },
@@ -1183,8 +1183,8 @@
       "date": "2025-01-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "132"
     },
@@ -1192,8 +1192,8 @@
       "date": "2025-01-28",
       "description": "ROSSMANN 3394 MUENCHEN 250115593186531251220033946 ELV6030 6545 25.01 15.59 ME3 End-to-End-Ref.: 25011559318653125122003394660306545 Mandatsref: G0306",
       "amount": -6.47,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "133"
     },
@@ -1201,8 +1201,8 @@
       "date": "2025-01-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "134"
     },
@@ -1210,17 +1210,17 @@
       "date": "2025-01-24",
       "description": "Zahnarzt praxis Knut Amberg DAAEDEDDXXX DE83300606010306204384 Rechnung Nr. 14003 End-to-End-Ref.: MOB.24.UE.33214",
       "amount": -4054.73,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Dentista",
+      "category3": "Cova",
       "id": "135"
     },
     {
       "date": "2025-01-24",
       "description": "Azimo Stichting Third Party Account Salary 0125  11/KonradZusePlatz 1, DE/Qorvo Munich GmbH 2c51fb270f5245 1e87117833c069dcc9 End-to-End-Ref.: 2UA4Y7K",
       "amount": 7172.53,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Qorvo",
       "category3": null,
       "id": "136"
     },
@@ -1228,8 +1228,8 @@
       "date": "2025-01-22",
       "description": "LIDL SAGT DANKE//Pullach/DE 2025-01-21T08:27:59 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -67.6,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "137"
     },
@@ -1237,18 +1237,18 @@
       "date": "2025-01-22",
       "description": "PEP PARKEN/Ollenhauerstr. 6/MUENCHE 2025-01-20T12:40:47 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Trasporti",
       "id": "138"
     },
     {
       "date": "2025-01-22",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F25001962559 29,99 EUR End-to-End-Ref.: 1500270825/936529076707 Mandatsref: KM-1500270825-000001",
       "amount": -29.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "139"
     },
     {
@@ -1264,17 +1264,17 @@
       "date": "2025-01-21",
       "description": "Bäckerei - Konditorei Heinrich Tra/ 2025-01-20T10:12:56 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "141"
     },
     {
       "date": "2025-01-21",
       "description": "Steuerbelastung auf Vorabpauschale gem. § 18 InvStG Depotbestand: 000000000000002,000 ISHSVII-NASDAQ 100 DL ACC A0YEDL EUR 000000000000000,84 weitere",
       "amount": -0.84,
-      "category1": null,
-      "category2": null,
+      "category1": "Investimenti",
+      "category2": "Costi",
       "category3": null,
       "id": "142"
     },
@@ -1282,8 +1282,8 @@
       "date": "2025-01-21",
       "description": "Steuerbelastung auf Vorabpauschale gem. § 18 InvStG Depotbestand: 000000000000003,000 ISHSVII-CORE S+P500 DLACC A0YEDG EUR 000000000000000,33 weitere",
       "amount": -0.33,
-      "category1": null,
-      "category2": null,
+      "category1": "Investimenti",
+      "category2": "Costi",
       "category3": null,
       "id": "143"
     },
@@ -1291,8 +1291,8 @@
       "date": "2025-01-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1200,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "144"
     },
@@ -1300,8 +1300,8 @@
       "date": "2025-01-20",
       "description": "Steuerbelastung auf Vorabpauschale gem. § 18 InvStG Depotbestand: 000000000000058,000 VANECK SEMICONDUCT UC.ETF A2QC5J EUR 000000000000001,67 weitere",
       "amount": -1.67,
-      "category1": null,
-      "category2": null,
+      "category1": "Investimenti",
+      "category2": "Costi",
       "category3": null,
       "id": "145"
     },
@@ -1309,8 +1309,8 @@
       "date": "2025-01-17",
       "description": "Steuerbelastung auf Vorabpauschale gem. § 18 InvStG Depotbestand: 000000000000017,000 X(I)-AI+BIG DATA ETF 1CDL A2N6LC EUR 000000000000001,65 weitere",
       "amount": -1.65,
-      "category1": null,
-      "category2": null,
+      "category1": "Investimenti",
+      "category2": "Costi",
       "category3": null,
       "id": "146"
     },
@@ -1318,26 +1318,26 @@
       "date": "2025-01-16",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F25001127302 4,19 EUR End-to-End-Ref.: 1055341883/122025348222 Mandatsref: KM-1055341883-000001 G",
       "amount": -4.19,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "147"
     },
     {
       "date": "2025-01-14",
       "description": "WOOLWORTH GMBH ELV61739837 11.01 12.15 ME3 End-to-End-Ref.: IC-18230839939 Mandatsref: 6173983782672501111215 Gläubiger-ID: DE11ZZZ00000009471 SEPA-BA",
       "amount": -15.3,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "148"
     },
     {
       "date": "2025-01-13",
       "description": "DM DROGERIEMARKT SAGT DANKE DM Drogerie/Kistlerhofstraße 154/Mü 2025-01-11T13:33:04 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -26.9,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "DM",
       "category3": null,
       "id": "149"
     },
@@ -1345,8 +1345,8 @@
       "date": "2025-01-13",
       "description": "LIDL SAGT DANKE//M.nchen/DE 2025-01-11T13:10:35 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -81.78,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "150"
     },
@@ -1354,35 +1354,35 @@
       "date": "2025-01-13",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2025-01-10T18:48:18 KFN 2  VJ 2512",
       "amount": -70,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "151"
     },
     {
       "date": "2025-01-13",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "152"
     },
     {
       "date": "2025-01-13",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1158339 293/8, Ihre Tarifrechnung End-to-End-Ref.: 3104444977800001158339293008RCUR Mand",
       "amount": -4.96,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "153"
     },
     {
       "date": "2025-01-10",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2025-01-09T08:16:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -20.74,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "154"
     },
@@ -1390,8 +1390,8 @@
       "date": "2025-01-10",
       "description": "ROSSMANN 3394 MUENCHEN 080108093181413251220033946 ELV6030 6545 08.01 08.09 ME3 End-to-End-Ref.: 08010809318141325122003394660306545 Mandatsref: G0306",
       "amount": -19.05,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "155"
     },
@@ -1399,98 +1399,98 @@
       "date": "2025-01-08",
       "description": "Barmenia Allgemeine Versicherungs A G 250016645A 39423/DATENSCHUTZINFORMA TIONEN: DATENSCHUTZ.BARMENIA.DE End-to-End-Ref.: 041003119041 Kundenreferenz",
       "amount": 60.01,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "156"
     },
     {
       "date": "2025-01-08",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2025-01-07T18:53:33 KFN 2  VJ 2512",
       "amount": -60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "157"
     },
     {
       "date": "2025-01-08",
       "description": "Vodafone GmbH 0000120180855 0020006282444 Rechnungsnr: 121122761855 KdNr. 120180855 Vodafone sagt Danke End-to-End-Ref.: 0000120180855 0020006282444 M",
       "amount": -71.82,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Walter",
       "id": "158"
     },
     {
       "date": "2025-01-07",
       "description": "Barmenia Allgemeine Versicherungs A G 250004177X EC948/DATENSCHUTZINFORMA TIONEN: DATENSCHUTZ.BARMENIA.DE End-to-End-Ref.: 044602995979 Kundenreferenz",
       "amount": 60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "159"
     },
     {
       "date": "2025-01-07",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2025-01-05T14:03:30 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.53,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "160"
     },
     {
       "date": "2025-01-07",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2025-01-04T13:17:23 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -24.48,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "161"
     },
     {
       "date": "2025-01-07",
       "description": "AEROP. ADOLFO SUAREZ M/AER.ADOLFO S 2025-01-05T17:14:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -20.7,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "162"
     },
     {
       "date": "2025-01-07",
       "description": "WP-KAUF      GESCH.TG.06.01.2025 V. 06.01.2025 73/003150 VA.FTSE A.W.H.D.Y.UETFDLD WPKNR: A1T8FV  ISIN: IE00B8GKDB10 NENNWERT:           31,000 GESCH.",
       "amount": -2010.76,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "163"
     },
     {
       "date": "2025-01-06",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2025-01-02T17:13:39 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.2,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "164"
     },
     {
       "date": "2025-01-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "165"
     },
     {
       "date": "2025-01-02",
       "description": "MASSIMO DUTTI/C.  ORENSE 2024-12-30T19:51:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -40.05,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Massimo Dutti",
       "category3": null,
       "id": "166"
     },
@@ -1498,8 +1498,8 @@
       "date": "2025-01-02",
       "description": "MANOLO BAKES/C.  BASILICA 2024-12-30T18:09:04 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.35,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "167"
     },
@@ -1507,8 +1507,8 @@
       "date": "2025-01-02",
       "description": "BAZAR REINA MERCEDES S/C.  EDGAR NE 2024-12-31T13:48:45 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.8,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "168"
     },
@@ -1516,18 +1516,18 @@
       "date": "2025-01-02",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-12-31T12:29:39 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -35.44,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "169"
     },
     {
       "date": "2025-01-02",
       "description": "BavariaDirekt Versicherung AG 91030103336 D-QE 1398 01.01.2025 fu er Balzarotti End-to-End-Ref.: P82-553002508206 Mandatsref: 91030103336 Gläubiger-ID",
       "amount": -609.98,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Auto",
+      "category3": "Peugeot",
       "id": "170"
     },
     {
@@ -1543,17 +1543,17 @@
       "date": "2025-01-02",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 044502596930 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "172"
     },
     {
       "date": "2025-01-02",
       "description": "ARD ZDF DRadio Beitragsservice Rundfunk 01.2025 - 06.2025 Beitrags nr. 625963905 Aenderungen ganz bequ em: www.rundfunkbeitrag.de End-to-End-Ref.: 625",
       "amount": -110.16,
-      "category1": null,
-      "category2": null,
+      "category1": "Tasse",
+      "category2": "Radio",
       "category3": null,
       "id": "173"
     },
@@ -1561,7 +1561,7 @@
       "date": "2024-12-31",
       "description": "Rechnungsabschluss Konto  110271400 EUR BLZ   300 400 00 vom 30.09.2024 bis 31.12.2024 Saldo nach Abschluss                     8.620,78  EUR w/ Geneh",
       "amount": 0,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "174"
@@ -1570,26 +1570,26 @@
       "date": "2024-12-31",
       "description": "Kontoführung Konto  110271400 EUR BLZ   300 400 00 vom 01.12.2024 bis 31.12.2024 Grundpreis              0,00  EUR SEPA Echtzeitüberweisung Posten",
       "amount": -1.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "175"
     },
     {
       "date": "2024-12-31",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-12-28T16:42:21 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.95,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "176"
     },
     {
       "date": "2024-12-31",
       "description": "VANY TETUAN/C.  DULCINEA 2024-12-28T10:38:41 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -36.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "177"
     },
@@ -1597,8 +1597,8 @@
       "date": "2024-12-31",
       "description": "PRIMAPRIX T196/C.  CL EMBAJADORES 1 2024-12-28T18:13:03 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.2,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Primark",
       "category3": null,
       "id": "178"
     },
@@ -1606,17 +1606,17 @@
       "date": "2024-12-31",
       "description": "DIA 14091/C.  REINA MERCEDES 2024-12-28T10:45:37 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.97,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "179"
     },
     {
       "date": "2024-12-31",
       "description": "AZCA/C.  RAIMUNDO FERNANDEZ VIL0/MA 2024-12-28T12:07:12 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.9,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "180"
     },
@@ -1624,8 +1624,8 @@
       "date": "2024-12-31",
       "description": "BALBISIANA/C.  AV CONCHA ESPINA 14 2024-12-29T17:49:39 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -31,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "181"
     },
@@ -1642,26 +1642,26 @@
       "date": "2024-12-30",
       "description": "FOTO CINE VISION/C.  AVENIDA GENERA 2024-12-27T12:24:10 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "183"
     },
     {
       "date": "2024-12-30",
       "description": "DNI.PASAPORTE MADRID-C/C.  CL LUNA 2024-12-27T13:55:43 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Trasporti",
       "id": "184"
     },
     {
       "date": "2024-12-30",
       "description": "EL CORTE INGLES/RAIMUNDO FERNANDEZ 2024-12-24T11:34:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -120,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "185"
     },
@@ -1669,8 +1669,8 @@
       "date": "2024-12-30",
       "description": "EL CORTE INGLES/RAIMUNDO FERNANDEZ 2024-12-24T11:54:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -50,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "186"
     },
@@ -1678,17 +1678,17 @@
       "date": "2024-12-30",
       "description": "EXPRESS MARIA DE GUZMA/C.  CL MARIA 2024-12-26T21:10:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.39,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "187"
     },
     {
       "date": "2024-12-30",
       "description": "Kinepolis Madrid/Calle Edgar Nevill 2024-12-26T16:44:08 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -16.05,
-      "category1": null,
-      "category2": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
       "category3": null,
       "id": "188"
     },
@@ -1696,8 +1696,8 @@
       "date": "2024-12-30",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "189"
     },
@@ -1705,53 +1705,53 @@
       "date": "2024-12-30",
       "description": "Zahnarzt praxis Knut Amberg DAAEDEDDXXX DE83300606010306204384 Rechnung Nr. 13707 End-to-End-Ref.: MOB.363.UE.217444",
       "amount": -10.96,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Dentista",
+      "category3": "Cova",
       "id": "190"
     },
     {
       "date": "2024-12-30",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1155530 450/8, Ihr Ratenplan End-to-End-Ref.: 3204258878170001155530450008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "191"
     },
     {
       "date": "2024-12-27",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-12-24T09:24:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -37.04,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "192"
     },
     {
       "date": "2024-12-27",
       "description": "SERGE MILANO/VIA AEROPORTO N. 13  C 2024-12-23T18:44:07 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "193"
     },
     {
       "date": "2024-12-27",
       "description": "BAR ARRIVI ORIO AL SER/VIA AEROPORT 2024-12-23T16:56:43 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "194"
     },
     {
       "date": "2024-12-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "195"
     },
@@ -1759,8 +1759,8 @@
       "date": "2024-12-24",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202412 End-to-End-Ref.: 3335005450 Kundenreferenz: NSCT2412240029580000000000000000007",
       "amount": 9102.69,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "196"
     },
@@ -1768,53 +1768,53 @@
       "date": "2024-12-24",
       "description": "ESSELUNGA CASCINA MERL/VIA TRIBONIA 2024-12-21T12:41:51 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -10.61,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "197"
     },
     {
       "date": "2024-12-23",
       "description": "OBERSCHEIDER CARWORLD/Reichsstrase 2024-12-20T15:20:02 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Trasporti",
       "id": "198"
     },
     {
       "date": "2024-12-23",
       "description": "Eni 3121/Reichsstrasse 16a/Lustenau 2024-12-20T15:24:10 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.1,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Carburante",
+      "category3": "Gasolio",
       "id": "199"
     },
     {
       "date": "2024-12-23",
       "description": "Anna Rita Balzarotti BPPIITRRXXX IT59W0760101600000056705650 per il prelievo del 22/12 End-to-End-Ref.: MOB.357.UE.26893",
       "amount": -200,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "200"
     },
     {
       "date": "2024-12-20",
       "description": "DOMPIERRE 1009//Gruenwald/DE 2024-12-19T11:41:16 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.6,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "201"
     },
     {
       "date": "2024-12-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1200,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "202"
     },
@@ -1822,8 +1822,8 @@
       "date": "2024-12-19",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-12-18T12:46:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -18.03,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "203"
     },
@@ -1831,17 +1831,17 @@
       "date": "2024-12-19",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F24043647439 29,99 EUR End-to-End-Ref.: 1500270825/928528849053 Mandatsref: KM-1500270825-000001",
       "amount": -29.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "204"
     },
     {
       "date": "2024-12-18",
       "description": "787 EDEKA M WOLFRATSH.STR76//MUENCH 2024-12-17T15:38:26 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -15.27,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Edeka",
       "category3": null,
       "id": "205"
     },
@@ -1849,8 +1849,8 @@
       "date": "2024-12-18",
       "description": "ROSSMANN 3394 MUENCHEN 161211243066501251220033946 ELV6030 6546 16.12 11.24 ME3 End-to-End-Ref.: 16121124306650125122003394660306546 Mandatsref: G0306",
       "amount": -15.93,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "206"
     },
@@ -1858,8 +1858,8 @@
       "date": "2024-12-17",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-12-16T10:56:15 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -10.65,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "207"
     },
@@ -1867,8 +1867,8 @@
       "date": "2024-12-16",
       "description": "ALDI SE U. CO. KG//MUENCHEN/DE 2024-12-13T15:24:16 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -93.53,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "208"
     },
@@ -1876,70 +1876,70 @@
       "date": "2024-12-16",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24042796023 9,99 EUR End-to-End-Ref.: 1055341883/934929281341 Mandatsref: KM-1055341883-000001 G",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "209"
     },
     {
       "date": "2024-12-12",
       "description": "BAECKEREI REIS Wolf GIR 79942641//M 2024-12-11T10:02:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.2,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "210"
     },
     {
       "date": "2024-12-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "211"
     },
     {
       "date": "2024-12-10",
       "description": "Drillisch Online GmbH C8336401 U683575087 B778364269 handyvertrag.de End-to-End-Ref.: C8336401+U683575087 Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläu",
       "amount": -4.69,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "212"
     },
     {
       "date": "2024-12-09",
       "description": "OPG Gymnasium BYLADEM1KMS DE81702501500190592048 Skilager 2025, Vittoria Balzarotti,  6G End-to-End-Ref.: MOB.343.EE.30828 Kundenreferenz: MOB.343.EE.",
       "amount": -405,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Skilager",
+      "category3": "Vichi",
       "id": "213"
     },
     {
       "date": "2024-12-06",
       "description": "Walter Balzarotti UNCRITM1340 IT97Y0200820200000004104769 IMU 2024 Dicembre End-to-End-Ref.: MOB.341.UE.159099",
       "amount": -1400,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "214"
     },
     {
       "date": "2024-12-06",
       "description": "BELLATRIX VERWALTUNGS- UND//GRUENWA 2024-12-04T12:47:42 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -15,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "215"
     },
     {
       "date": "2024-12-06",
       "description": "WP-KAUF      GESCH.TG.05.12.2024 V. 05.12.2024 73/001053 ISHSVII-CORE S+P500 DLACC WPKNR: A0YEDG  ISIN: IE00B5BMR087 NENNWERT:            3,000 GESCH.",
       "amount": -1849.2,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "216"
@@ -1948,25 +1948,25 @@
       "date": "2024-12-06",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1133411 766/8, Ihre Tarifrechnung End-to-End-Ref.: 3104421471220001133411766008RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "217"
     },
     {
       "date": "2024-12-05",
       "description": "CAFE KREUTZKAMM//Muenchen/DE 2024-12-04T12:41:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.3,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "218"
     },
     {
       "date": "2024-12-05",
       "description": "Ab dem 01.01.2025 wird für Sie die Beauftragung einer beleglosen Echtzeitüberweisung kostenfrei möglich sein. Bitte beachten Sie für beleghaft erteilt",
       "amount": 0,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "219"
@@ -1975,8 +1975,8 @@
       "date": "2024-12-05",
       "description": "ROSSMANN 3394 MUENCHEN 031216333172370251220033946 ELV6030 6545 03.12 16.33 ME3 End-to-End-Ref.: 03121633317237025122003394660306545 Mandatsref: G0306",
       "amount": -23.51,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "220"
     },
@@ -1984,17 +1984,17 @@
       "date": "2024-12-04",
       "description": "OTTO PAYMENTS HSTBDEHHXXX DE12201207003100990333 CRK-UQD-EWZ-KEC End-to-End-Ref.: MOB.339.UE.33617",
       "amount": -14.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "221"
     },
     {
       "date": "2024-12-03",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-12-02T11:29:41 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -30.77,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "222"
     },
@@ -2002,17 +2002,17 @@
       "date": "2024-12-03",
       "description": "Anna Rita Balzarotti BPPIITRRXXX IT59W0760101600000056705650 Saldo Cattaneo dich. IMU End-to-End-Ref.: MOB.338.UE.122940",
       "amount": -200,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "223"
     },
     {
       "date": "2024-12-03",
       "description": "ISSUER MNG MADRID ORENSE T117 30/11/2024 0 000 EUR 19,99 EUR 19,99 KURS 1,0000 000000 E2E-ID - FDAC8VGO800 End-to-End-Ref.: FDAC8VGO800 Kundenreferenz",
       "amount": 19.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
       "category3": null,
       "id": "224"
     },
@@ -2020,26 +2020,26 @@
       "date": "2024-12-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "225"
     },
     {
       "date": "2024-12-02",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-29T14:43:16 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "226"
     },
     {
       "date": "2024-12-02",
       "description": "ZARA/PSO.CASTELLANA            79/M 2024-11-29T11:18:08 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -30.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "227"
     },
@@ -2047,27 +2047,27 @@
       "date": "2024-12-02",
       "description": "METRO DE MADRID S.A./AV. DE ASTURIA 2024-11-29T10:19:05 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -6,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Trasporti",
       "id": "228"
     },
     {
       "date": "2024-12-02",
       "description": "MNG MADRID ORENSE T117/C.  ORENSE 2024-11-29T14:17:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -15.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "229"
     },
     {
       "date": "2024-12-02",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-28T12:53:25 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "230"
     },
     {
@@ -2083,18 +2083,18 @@
       "date": "2024-12-02",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 044502516922 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "232"
     },
     {
       "date": "2024-11-29",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1130570 942/8, Ihr Ratenplan End-to-End-Ref.: 3204236305540001130570942008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "233"
     },
     {
@@ -2110,26 +2110,26 @@
       "date": "2024-11-28",
       "description": "Barmenia Allgemeine Versicherungs A G 240382348K EC935/DATENSCHUTZINFORMA TIONEN: DATENSCHUTZ.BARMENIA.DE End-to-End-Ref.: 042302596355 Kundenreferenz",
       "amount": 60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "235"
     },
     {
       "date": "2024-11-28",
       "description": "Barmenia Allgemeine Versicherungs A G 240382348K EC929, EC935/DATENSCHUTZ INFORMATIONEN: DATENSCHUTZ.BARMENIA .DE End-to-End-Ref.: 042302596354 Kunden",
       "amount": 75,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "236"
     },
     {
       "date": "2024-11-28",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202411 End-to-End-Ref.: 3335005410 Kundenreferenz: NSCT2411280025580000000000000000003",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "237"
     },
@@ -2137,8 +2137,8 @@
       "date": "2024-11-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "238"
     },
@@ -2146,17 +2146,17 @@
       "date": "2024-11-27",
       "description": "TH820100 MARTINEZ CAMP/PSO.GENERAL 2024-11-25T09:30:34 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "239"
     },
     {
       "date": "2024-11-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "240"
     },
@@ -2164,44 +2164,44 @@
       "date": "2024-11-26",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-23T17:56:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.46,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "241"
     },
     {
       "date": "2024-11-21",
       "description": "klarmobil GmbH Kd.1500270825 Wir sagen Danke. RG-N r.F24040796360 42,57 EUR End-to-End-Ref.: 1500270825/934929189087 Mandatsref: KM-1500270825-000001",
       "amount": -42.57,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "242"
     },
     {
       "date": "2024-11-20",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-11-19T08:12:41 KFN 2  VJ 2512",
       "amount": -60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "243"
     },
     {
       "date": "2024-11-20",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-18T19:18:23 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.75,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "244"
     },
     {
       "date": "2024-11-20",
       "description": "VANY TETUAN/C.  DULCINEA 2024-11-18T12:22:40 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -36.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "245"
     },
@@ -2209,17 +2209,17 @@
       "date": "2024-11-20",
       "description": "DIA 14091/C.  REINA MERCEDES 2024-11-18T12:32:58 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.11,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "246"
     },
     {
       "date": "2024-11-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1200,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "247"
     },
@@ -2227,8 +2227,8 @@
       "date": "2024-11-19",
       "description": "PRIMAPRIX T196/C.  CL EMBAJADORES 1 2024-11-16T10:59:18 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.55,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Primark",
       "category3": null,
       "id": "248"
     },
@@ -2236,61 +2236,61 @@
       "date": "2024-11-18",
       "description": "MNG MADRID ORENSE T117/C.  ORENSE 2024-11-15T15:15:02 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -19.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "249"
     },
     {
       "date": "2024-11-18",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-15T15:33:52 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.08,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "250"
     },
     {
       "date": "2024-11-18",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-11-14T13:02:53 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.33,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "251"
     },
     {
       "date": "2024-11-18",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24039960332 10,06 EUR End-to-End-Ref.: 1055341883/133285340341 Mandatsref: KM-1055341883-000001",
       "amount": -10.06,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "252"
     },
     {
       "date": "2024-11-14",
       "description": "LABOR BECKER MVZ GBR COBADEFFXXX DE06700400410470879800 Rechnungs-NR 01-24-277093 vom End-to-End-Ref.: MOB.319.UE.187541",
       "amount": -66.44,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Analisi",
+      "category3": "Cova",
       "id": "253"
     },
     {
       "date": "2024-11-13",
       "description": "Walter Balzarotti End-to-End-Ref.: NOTPROVIDED Kundenreferenz: NSCT2411130015400000000000000000001",
       "amount": 2000,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "254"
     },
     {
       "date": "2024-11-13",
       "description": "WP-KAUF      GESCH.TG.12.11.2024 V. 12.11.2024 73/003060 ISHSVII-NASDAQ 100 DL ACC WPKNR: A0YEDL  ISIN: IE00B53SZB19 NENNWERT:            2,000 GESCH.",
       "amount": -2281.75,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "255"
@@ -2299,8 +2299,8 @@
       "date": "2024-11-13",
       "description": "ROSSMANN 3394 MUENCHEN 091116473063578251220033946 ELV6030 6546 09.11 16.47 ME3 End-to-End-Ref.: 09111647306357825122003394660306546 Mandatsref: G0306",
       "amount": -8.55,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "256"
     },
@@ -2308,44 +2308,44 @@
       "date": "2024-11-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "257"
     },
     {
       "date": "2024-11-11",
       "description": "Bargeldauszahlung Commerzbank 00213896/Wolfratshauser 2024-11-09T16:36:38 KFN 3  VJ 2512",
       "amount": -300,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "258"
     },
     {
       "date": "2024-11-11",
       "description": "Anna Rita Balzarotti BPPIITRRXXX IT59W0760101600000056705650 Saldo Avvocato Bazzi End-to-End-Ref.: MOB.314.UE.134355",
       "amount": -1000,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "259"
     },
     {
       "date": "2024-11-11",
       "description": "Zahnarzt praxis Knut Amberg DEUTDEDBMUC DE75700700240999371801 Rechnungsnummer: 13707 End-to-End-Ref.: MOB.314.UE.134048",
       "amount": -399.23,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "260"
     },
     {
       "date": "2024-11-08",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-11-07T12:10:35 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -22.81,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "261"
     },
@@ -2353,26 +2353,26 @@
       "date": "2024-11-08",
       "description": "Drillisch Online GmbH C8336401 U676257413 B770203894 handyvertrag.de End-to-End-Ref.: C8336401+U676257413 Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläu",
       "amount": -6.38,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "262"
     },
     {
       "date": "2024-11-07",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1109161 599/8, Ihre Tarifrechnung End-to-End-Ref.: 3104399042390001109161599008RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "263"
     },
     {
       "date": "2024-11-05",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-11-04T14:38:12 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.49,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "264"
     },
@@ -2380,8 +2380,8 @@
       "date": "2024-11-04",
       "description": "PRIMARK MILAN VIA TORI/VIA TORINO V 2024-10-31T14:39:16 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -36.2,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Primark",
       "category3": null,
       "id": "265"
     },
@@ -2389,35 +2389,35 @@
       "date": "2024-11-04",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "266"
     },
     {
       "date": "2024-11-04",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 041002974422 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "267"
     },
     {
       "date": "2024-11-01",
       "description": "D033 Vertemate Con Min/Dei Giovi sp 2024-10-30T12:45:27 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -12.58,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "268"
     },
     {
       "date": "2024-11-01",
       "description": "LIDL 1465/VIA N.LE DEI GIOVI 290/LE 2024-10-30T12:11:33 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -46.32,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "269"
     },
@@ -2425,9 +2425,9 @@
       "date": "2024-11-01",
       "description": "IPERAL LENTATE/VIA SCULTORI DEL LEG 2024-10-30T13:10:10 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -12.75,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "270"
     },
     {
@@ -2443,8 +2443,8 @@
       "date": "2024-10-30",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202410 End-to-End-Ref.: 3335005370 Kundenreferenz: NSCT2410300024200000000000000000001",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "272"
     },
@@ -2452,44 +2452,44 @@
       "date": "2024-10-29",
       "description": "PENNY MARKET S.R.L./VIA PER BULGORE 2024-10-27T11:28:00 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.25,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "273"
     },
     {
       "date": "2024-10-29",
       "description": "ESSELUNGA CASCINA MERL/VIA TRIBONIA 2024-10-27T20:04:00 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -22.43,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "274"
     },
     {
       "date": "2024-10-29",
       "description": "LEGAMI/VIA GOTTLIEB WILHELM DA/MILA 2024-10-27T16:51:04 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.95,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "275"
     },
     {
       "date": "2024-10-29",
       "description": "Abrechnung Amazon Visa-Kreditkarte Rechnungsnr BILLCOLL20241024100000081850,DDCOLL 20241024PC7000115815 End-to-End-Ref.: DEB51333560911640468230db0122",
       "amount": -920.89,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "276"
     },
     {
       "date": "2024-10-28",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-10-26T10:29:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -21.01,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "277"
     },
@@ -2497,8 +2497,8 @@
       "date": "2024-10-28",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "278"
     },
@@ -2506,8 +2506,8 @@
       "date": "2024-10-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "279"
     },
@@ -2515,17 +2515,17 @@
       "date": "2024-10-28",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1106986 165/8, Ihr Ratenplan End-to-End-Ref.: 3204215332330001106986165008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "280"
     },
     {
       "date": "2024-10-21",
       "description": "EDEKA BAJIC//MUENCHEN/DE 2024-10-18T17:05:15 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.98,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Edeka",
       "category3": null,
       "id": "281"
     },
@@ -2533,8 +2533,8 @@
       "date": "2024-10-21",
       "description": "epay-2962-18.10 DM Drogerie/Tübinger Straße 3e/Münc 2024-10-18T16:43:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "DM",
       "category3": null,
       "id": "282"
     },
@@ -2542,8 +2542,8 @@
       "date": "2024-10-21",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-10-18T16:25:26 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -38.12,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "283"
     },
@@ -2551,17 +2551,17 @@
       "date": "2024-10-21",
       "description": "ESSO TANKSTELLE//Muenchen/DE 2024-10-18T15:59:45 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -25.02,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Carburante",
+      "category3": "Gasolio",
       "id": "284"
     },
     {
       "date": "2024-10-21",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1800,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "285"
     },
@@ -2569,8 +2569,8 @@
       "date": "2024-10-21",
       "description": "GEMEINDE PULLACH I. ISARTAL BYLADEM1KMS DE46702501500190569301 133580742323 D QE1398 End-to-End-Ref.: MOB.294.UE.170411",
       "amount": -30,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasporti",
+      "category2": "Multa",
       "category3": null,
       "id": "286"
     },
@@ -2578,8 +2578,8 @@
       "date": "2024-10-21",
       "description": "ROSSMANN 3394 MUENCHEN 171008183158225251220033946 ELV6030 6545 17.10 08.18 ME3 End-to-End-Ref.: 17100818315822525122003394660306545 Mandatsref: G0306",
       "amount": -14.25,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "287"
     },
@@ -2596,62 +2596,62 @@
       "date": "2024-10-16",
       "description": "Barmenia Allgemeine Versicherungs A G 240342630K 38429, 38301, 38262,3828 6/DATENSCHUTZINFORMATIONEN: DATENSC HUTZ.BARMENIA.DE End-to-End-Ref.: 044002",
       "amount": 272.84,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "289"
     },
     {
       "date": "2024-10-16",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24037131069 9,99 EUR End-to-End-Ref.: 1055341883/136124756637 Mandatsref: KM-1055341883-000001 G",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "290"
     },
     {
       "date": "2024-10-14",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "291"
     },
     {
       "date": "2024-10-11",
       "description": "Coffee Fellows E//Muenchen-Flughafe 2024-10-09T09:18:22 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.75,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "292"
     },
     {
       "date": "2024-10-10",
       "description": "LEFTIES/C.  BRAVO MURILLO         1 2024-10-08T11:04:33 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "293"
     },
     {
       "date": "2024-10-10",
       "description": "LA HERMOSITA ESPRONCED/C.  ESPRONCE 2024-10-08T09:08:09 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "294"
     },
     {
       "date": "2024-10-10",
       "description": "LIDL BRAVO MURILLO/C.  CL BRAVO MUR 2024-10-08T10:38:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.38,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "295"
     },
@@ -2659,8 +2659,8 @@
       "date": "2024-10-10",
       "description": "FARM. ROSA FDEZ. VEGAS/C.  CL ALONS 2024-10-08T17:43:32 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -20.43,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "296"
     },
@@ -2668,26 +2668,26 @@
       "date": "2024-10-10",
       "description": "Drillisch Online GmbH C8336401 U669303159 B762984751 handyvertrag.de End-to-End-Ref.: C8336401+U669303159 Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläu",
       "amount": -5.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "297"
     },
     {
       "date": "2024-10-09",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-10-07T11:54:51 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.82,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "298"
     },
     {
       "date": "2024-10-09",
       "description": "PRIMAPRIX T196/C.  CL EMBAJADORES 1 2024-10-07T11:45:18 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.35,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Primark",
       "category3": null,
       "id": "299"
     },
@@ -2695,7 +2695,7 @@
       "date": "2024-10-09",
       "description": "WP-KAUF      GESCH.TG.08.10.2024 V. 08.10.2024 73/007370 GL X ETF-GXLIBATC DLA WPKNR: A2QPB3  ISIN: IE00BLCHJN13 NENNWERT:          256,000 GESCH.-NR:",
       "amount": -2012.49,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "300"
@@ -2704,8 +2704,8 @@
       "date": "2024-10-08",
       "description": "Walter Balzarotti End-to-End-Ref.: NOTPROVIDED Kundenreferenz: NSCT2410080034750000000000000000001",
       "amount": 2000,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Walter",
       "category3": null,
       "id": "301"
     },
@@ -2713,17 +2713,17 @@
       "date": "2024-10-08",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-10-06T13:55:57 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.14,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "302"
     },
     {
       "date": "2024-10-08",
       "description": "WOMEN SECRET/C.  CL ORENSE 2 2024-10-06T13:08:08 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.29,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "303"
     },
@@ -2731,18 +2731,18 @@
       "date": "2024-10-08",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-10-07T16:55:41 KFN 2  VJ 2512",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "304"
     },
     {
       "date": "2024-10-08",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-10-07T16:56:29 KFN 2  VJ 2512",
       "amount": -70,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "305"
     },
     {
@@ -2758,54 +2758,54 @@
       "date": "2024-10-08",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1086998 072/8, Ihre Tarifrechnung End-to-End-Ref.: 3104375394820001086998072008RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "307"
     },
     {
       "date": "2024-10-07",
       "description": "LA PANERA ROSA/C.  MESONERO ROMANOS 2024-10-04T12:52:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -21,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "308"
     },
     {
       "date": "2024-10-07",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-10-03T13:01:12 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.46,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "309"
     },
     {
       "date": "2024-10-03",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-10-01T17:36:53 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.18,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "310"
     },
     {
       "date": "2024-10-03",
       "description": "LEVADURA MADRE/C.  REINA MERCEDES 2024-10-01T17:33:41 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.25,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "311"
     },
     {
       "date": "2024-10-01",
       "description": "HALONG BAY//Muenchen/DE 2024-09-30T20:07:08 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -20,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Giap",
       "id": "312"
     },
     {
@@ -2821,9 +2821,9 @@
       "date": "2024-10-01",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 041902754200 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "314"
     },
     {
@@ -2839,17 +2839,17 @@
       "date": "2024-09-30",
       "description": "BM COMANDANTE ZORITA/C.  CL COMANDA 2024-09-27T12:14:34 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.19,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "316"
     },
     {
       "date": "2024-09-30",
       "description": "VANY TETUAN/C.  DULCINEA 2024-09-27T11:25:26 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -31.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Madrid",
       "category3": null,
       "id": "317"
     },
@@ -2857,26 +2857,26 @@
       "date": "2024-09-30",
       "description": "MERCADONA CASTELLANA-J/C.  CL PINTO 2024-09-27T19:02:53 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.47,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "318"
     },
     {
       "date": "2024-09-30",
       "description": "SIMPLY GENERAL MOSCARD/C.  C. GENER 2024-09-27T12:50:50 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.12,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "319"
     },
     {
       "date": "2024-09-30",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "320"
     },
@@ -2884,8 +2884,8 @@
       "date": "2024-09-27",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202409 End-to-End-Ref.: 3335005330 Kundenreferenz: NSCT2409270032450000000000000000003",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "321"
     },
@@ -2893,8 +2893,8 @@
       "date": "2024-09-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "322"
     },
@@ -2902,35 +2902,35 @@
       "date": "2024-09-27",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1084430 441/8, Ihr Ratenplan End-to-End-Ref.: 3204192886640001084430441008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "323"
     },
     {
       "date": "2024-09-25",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-09-24T17:39:20 KFN 2  VJ 2512",
       "amount": -60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "324"
     },
     {
       "date": "2024-09-24",
       "description": "CHATTER CAFE SANSE/C.  SALVADOR DE 2024-09-22T14:39:59 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.25,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "325"
     },
     {
       "date": "2024-09-24",
       "description": "FARRUTX/C.  ISAAC PERAL           1 2024-09-22T15:04:57 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -89,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Monaco",
       "category3": null,
       "id": "326"
     },
@@ -2938,16 +2938,16 @@
       "date": "2024-09-23",
       "description": "METRO DE MADRID S.A./AV. DE ASTURIA 2024-09-20T14:43:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.1,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Trasporti",
       "id": "327"
     },
     {
       "date": "2024-09-23",
       "description": "WP-KAUF      GESCH.TG.20.09.2024 V. 20.09.2024 73/002207 X(I)-AI+BIG DATA ETF 1CDL WPKNR: A2N6LC  ISIN: IE00BGV5VN51 NENNWERT:           17,000 GESCH.",
       "amount": -2021.05,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "328"
@@ -2956,7 +2956,7 @@
       "date": "2024-09-20",
       "description": "Walter Balzarotti Walter Balzarotti Maria Garana End-to-End-Ref.: DE58300400000110271400 Kundenreferenz: NSCT2409200026250000000000000000001",
       "amount": 2000,
-      "category1": null,
+      "category1": "Trasferimenti",
       "category2": null,
       "category3": null,
       "id": "329"
@@ -2965,8 +2965,8 @@
       "date": "2024-09-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -2500,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "330"
     },
@@ -2974,8 +2974,8 @@
       "date": "2024-09-20",
       "description": "ROSSMANN 3394 MUENCHEN 180914063149898251220033946 ELV6030 6545 18.09 14.06 ME3 End-to-End-Ref.: 18091406314989825122003394660306545 Mandatsref: G0306",
       "amount": -13.71,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "331"
     },
@@ -2983,8 +2983,8 @@
       "date": "2024-09-18",
       "description": "FORELLEN-APOTHEKE//Muenchen/DE 2024-09-17T11:57:30 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -21.46,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "332"
     },
@@ -2992,8 +2992,8 @@
       "date": "2024-09-18",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-09-17T18:20:12 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -55.91,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "333"
     },
@@ -3001,35 +3001,35 @@
       "date": "2024-09-17",
       "description": "Barmenia Allgemeine Versicherungs A G 240306034N 38150, Re-2024-086125-2,  Re-2024-08597/DATENSCHUTZINFORMATI ONEN: DATENSCHUTZ.BARMENIA.DE End-to-End",
       "amount": 180.83,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "334"
     },
     {
       "date": "2024-09-16",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24034326441 12,16 EUR End-to-End-Ref.: 1055341883/124825155093 Mandatsref: KM-1055341883-000001",
       "amount": -12.16,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "335"
     },
     {
       "date": "2024-09-13",
       "description": "WOOLWORTH GMBH ELV61739837 11.09 15.50 ME3 End-to-End-Ref.: IC-17507694732 Mandatsref: 6173983716812409111550 Gläubiger-ID: DE11ZZZ00000009471 SEPA-BA",
       "amount": -29.2,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "336"
     },
     {
       "date": "2024-09-12",
       "description": "REWE SAGT DANKE. 46400783//Muenchen 2024-09-11T16:09:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.31,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Rewe",
       "category3": null,
       "id": "337"
     },
@@ -3037,17 +3037,17 @@
       "date": "2024-09-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "338"
     },
     {
       "date": "2024-09-12",
       "description": "ROSSMANN 3394 MUENCHEN 100908273147495251220033946 ELV6030 6545 10.09 08.27 ME3 End-to-End-Ref.: 10090827314749525122003394660306545 Mandatsref: G0306",
       "amount": -36.7,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "339"
     },
@@ -3055,17 +3055,17 @@
       "date": "2024-09-10",
       "description": "Drillisch Online GmbH C8336401 U662468989 B755067033 handyvertrag.de End-to-End-Ref.: C8336401+U662468989 Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläu",
       "amount": -65.49,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "340"
     },
     {
       "date": "2024-09-09",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-09-07T15:33:37 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.7,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "341"
     },
@@ -3073,7 +3073,7 @@
       "date": "2024-09-09",
       "description": "WP-KAUF      GESCH.TG.06.09.2024 V. 06.09.2024 73/001913 VANECK SEMICONDUCT UC.ETF WPKNR: A2QC5J  ISIN: IE00BMC38736 NENNWERT:           58,000 GESCH.",
       "amount": -2007.66,
-      "category1": null,
+      "category1": "Investimenti",
       "category2": null,
       "category3": null,
       "id": "342"
@@ -3082,27 +3082,27 @@
       "date": "2024-09-06",
       "description": "Barmenia Allgemeine Versicherungs A G 240265383V 14912/2024,88,87/DATENSC HUTZINFORMATIONEN: DATENSCHUTZ.BARM ENIA.DE End-to-End-Ref.: 045502905283 Ku",
       "amount": 285.2,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "343"
     },
     {
       "date": "2024-09-06",
       "description": "Bargeldauszahlung Commerzbank 00201801/Wolfratshauser 2024-09-05T12:16:08 KFN 2  VJ 2512",
       "amount": -220,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "344"
     },
     {
       "date": "2024-09-06",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1065006 789/8, Ihre Tarifrechnung End-to-End-Ref.: 3104351536750001065006789008RCUR Mand",
       "amount": -5.15,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "345"
     },
     {
@@ -3118,35 +3118,35 @@
       "date": "2024-09-02",
       "description": "FRAU UTE PAUER HYVEDEMMXXX DE74700202700015273787 VITTORIA BALZAROTTI - THEATHER End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -59,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Teatro",
       "id": "347"
     },
     {
       "date": "2024-09-02",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 041502652730 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "348"
     },
     {
       "date": "2024-08-30",
       "description": "Kontoführung Konto  110271400 EUR BLZ   300 400 00 vom 01.08.2024 bis 31.08.2024 Grundpreis              0,00  EUR SEPA Echtzeitüberweisung Posten",
       "amount": -1.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "349"
     },
     {
       "date": "2024-08-29",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202408 End-to-End-Ref.: 3335005290 Kundenreferenz: NSCT2408290024040000000000000000001",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "350"
     },
@@ -3154,17 +3154,17 @@
       "date": "2024-08-29",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1062393 262/8, Ihr Ratenplan End-to-End-Ref.: 3204170635720001062393262008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "351"
     },
     {
       "date": "2024-08-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "352"
     },
@@ -3172,8 +3172,8 @@
       "date": "2024-08-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "353"
     },
@@ -3181,17 +3181,17 @@
       "date": "2024-08-23",
       "description": "filu Veterinary/Schleissheimer Stra 2024-08-21T19:06:17 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -20.1,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "354"
     },
     {
       "date": "2024-08-22",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-08-21T18:57:07 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -19.51,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "355"
     },
@@ -3199,62 +3199,62 @@
       "date": "2024-08-22",
       "description": "ADS LARIO EST TAMOIL G/A9 LARIO EST 2024-08-20T10:56:32 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -17.56,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Trasporti",
       "id": "356"
     },
     {
       "date": "2024-08-22",
       "description": "VETERINARIA SAN FRANC./VIA ISAAC NE 2024-08-20T10:12:38 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -45.2,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "357"
     },
     {
       "date": "2024-08-21",
       "description": "Dott.ssa Liliana Carnevale BCITITMMXXX IT16F0306909445100000009045 Medicazione Pimba fatt. 87 e 88 End-to-End-Ref.: MOB.234.UE.13823",
       "amount": -240,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "358"
     },
     {
       "date": "2024-08-21",
       "description": "BENNET/STRADA STATALE DEI GIOVI  24 2024-08-17T18:17:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.14,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "359"
     },
     {
       "date": "2024-08-20",
       "description": "OKAIDI LENTATE/CO BENNET VIA NAZION 2024-08-17T17:35:20 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.14,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "360"
     },
     {
       "date": "2024-08-20",
       "description": "OVS/CC BENNET V.NAZIONALE DEI GIOVI 2024-08-17T17:47:40 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.96,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Vestiti",
+      "category2": "OVS",
+      "category3": "Walter",
       "id": "361"
     },
     {
       "date": "2024-08-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -2500,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "362"
     },
@@ -3262,8 +3262,8 @@
       "date": "2024-08-19",
       "description": "LIDL 1465/VIA N.LE DEI GIOVI 290/LE 2024-08-15T12:31:19 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.43,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "363"
     },
@@ -3271,80 +3271,80 @@
       "date": "2024-08-19",
       "description": "SUPERMERCATO EUROSPIN/STRADA STATAL 2024-08-15T12:12:48 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -20.73,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "364"
     },
     {
       "date": "2024-08-19",
       "description": "ASPIT DIREZ.ENTRATA  -/CASELLO AUTO 2024-08-16T16:21:22 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -0.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Trasporti",
       "id": "365"
     },
     {
       "date": "2024-08-19",
       "description": "ASPIT DIREZ. USCITA  -/CASELLO AUTO 2024-08-16T12:29:49 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -0.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Trasporti",
       "id": "366"
     },
     {
       "date": "2024-08-19",
       "description": "MCDONALD.S/VIA GIUSEPPE LURAGHI 11/ 2024-08-16T13:34:50 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "367"
     },
     {
       "date": "2024-08-19",
       "description": "MCDONALD.S/VIA GIUSEPPE LURAGHI 11/ 2024-08-16T14:02:50 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.7,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "368"
     },
     {
       "date": "2024-08-16",
       "description": "CLINICA VETERINARIA ME/VIA LIBERTA. 2024-08-13T18:10:56 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -25,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "369"
     },
     {
       "date": "2024-08-15",
       "description": "CHECK24 VP Hotel GmbH COBADEFF DE57700400410275103006 240423CRLDU End-to-End-Ref.: MOB.228.EE.51708 Kundenreferenz: MOB.228.EE.51708",
       "amount": -435.53,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "California",
+      "category3": "Hotel",
       "id": "370"
     },
     {
       "date": "2024-08-15",
       "description": "ASPIT DIREZ. USCITA  -/CASELLO AUTO 2024-08-13T10:20:51 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Trasporti",
       "id": "371"
     },
     {
       "date": "2024-08-15",
       "description": "LIDL 1465/VIA N.LE DEI GIOVI 290/LE 2024-08-13T18:45:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -19.1,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "372"
     },
@@ -3352,44 +3352,44 @@
       "date": "2024-08-15",
       "description": "IPERSTORE BARLASSINA/VIA MONTENEGRO 2024-08-13T13:07:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -40,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "373"
     },
     {
       "date": "2024-08-15",
       "description": "LEROY MERLIN/STRADA STATALE DEI GIO 2024-08-13T12:23:55 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "374"
     },
     {
       "date": "2024-08-15",
       "description": "ARCAPLANET/VIA NAZIONALE DEI GIOVI 2024-08-13T18:54:26 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -25.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Accessori",
+      "category3": "Bimba",
       "id": "375"
     },
     {
       "date": "2024-08-15",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24031559091 9,99 EUR End-to-End-Ref.: 1055341883/138964680357 Mandatsref: KM-1055341883-000001 G",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "376"
     },
     {
       "date": "2024-08-14",
       "description": "Infineon Technologies AG NO.654371DT7.8.2024 FAE TRAINING VI LLACH End-to-End-Ref.: 3500033067 Kundenreferenz: NSCT2408140027090000000000000000003",
       "amount": 227.47,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "377"
     },
@@ -3397,53 +3397,53 @@
       "date": "2024-08-13",
       "description": "Barmenia Allgemeine Versicherungs A G 240265383V 2024/00003951, 2024/0000 4090/DATENSCHUTZINFORMATIONEN: DATE NSCHUTZ.BARMENIA.DE End-to-End-Ref.: 043",
       "amount": 3971,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "378"
     },
     {
       "date": "2024-08-13",
       "description": "IPERSTORE BARLASSINA/VIA MONTENEGRO 2024-08-11T13:06:40 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -60.92,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "379"
     },
     {
       "date": "2024-08-12",
       "description": "CLINICA VETERINARIA ME/VIA LIBERTA. 2024-08-08T13:54:46 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -516,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "380"
     },
     {
       "date": "2024-08-12",
       "description": "MERCADONA POL LAS NAVA/C.  OT POL L 2024-08-09T15:42:00 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -12.55,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "381"
     },
     {
       "date": "2024-08-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "382"
     },
     {
       "date": "2024-08-12",
       "description": "corces pando BSCHESMMXXX ES1100495257522495000224 Agosto 2024 - Covadonga e Vittoria End-to-End-Ref.: MOB.223.UE.39038",
       "amount": -250,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "383"
     },
@@ -3451,53 +3451,53 @@
       "date": "2024-08-08",
       "description": "Drillisch Online GmbH C8336401 U655563475 B746974844 handyvertrag.de End-to-End-Ref.: C8336401+U655563475 Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläu",
       "amount": -12.64,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "384"
     },
     {
       "date": "2024-08-07",
       "description": "IPERSTORE BARLASSINA/VIA MONTENEGRO 2024-08-05T19:03:54 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -17.09,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "385"
     },
     {
       "date": "2024-08-06",
       "description": "EL CORTE INGLES/RAIMUNDO FERNANDEZ 2024-08-04T14:48:44 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -6.85,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "386"
     },
     {
       "date": "2024-08-06",
       "description": "VANY TETUAN/C.  DULCINEA 2024-08-03T11:35:34 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -36.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "MAdrid",
+      "category3": "Cibo",
       "id": "387"
     },
     {
       "date": "2024-08-06",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1041988 255/8, Ihre Tarifrechnung End-to-End-Ref.: 3104324316760001041988255008RCUR Mand",
       "amount": -4.21,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "388"
     },
     {
       "date": "2024-08-06",
       "description": "AMERICAN EXPRESS EUROPE S.A. (Germa ny branch) 3750-991419-41004 End-to-End-Ref.: 301-941774-26117 Mandatsref: E2019128060098477 Gläubiger-ID: DE19ZZZ",
       "amount": -889.83,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "389"
     },
@@ -3505,9 +3505,9 @@
       "date": "2024-08-05",
       "description": "Clinica Veterinaria Meda POSOIT2102H IT49F0569651090000003856X67 saldo preventivo 30/07/2024 End-to-End-Ref.: CCB.218.UE.322318",
       "amount": -2525,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "390"
     },
     {
@@ -3532,35 +3532,35 @@
       "date": "2024-08-01",
       "description": "FRAU UTE PAUER HYVEDEMMXXX DE74700202700015273787 VITTORIA BALZAROTTI - THEATHER End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -59,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Teatro",
       "id": "393"
     },
     {
       "date": "2024-08-01",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 047002353176 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "394"
     },
     {
       "date": "2024-07-30",
       "description": "OTTO Payments GmbH Deine Rueckzahlung zu Rechnung R-DE -363383188-2024-1045. End-to-End-Ref.: 20240729-4740339 Kundenreferenz: NSCT2407300035160000000",
       "amount": 18.89,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "395"
     },
     {
       "date": "2024-07-30",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202407 End-to-End-Ref.: 3335005250 Kundenreferenz: NSCT2407300028520000000000000000005",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "396"
     },
@@ -3568,8 +3568,8 @@
       "date": "2024-07-29",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-26T08:16:32 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.87,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "397"
     },
@@ -3577,8 +3577,8 @@
       "date": "2024-07-29",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "398"
     },
@@ -3586,8 +3586,8 @@
       "date": "2024-07-29",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "399"
     },
@@ -3595,53 +3595,53 @@
       "date": "2024-07-29",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1039470 656/8, Ihr Ratenplan End-to-End-Ref.: 3204148481650001039470656008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "400"
     },
     {
       "date": "2024-07-26",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-07-25T10:50:00 KFN 3  VJ 2512",
       "amount": -50,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "401"
     },
     {
       "date": "2024-07-25",
       "description": "BAECKEREI REIS Wolf GIR 79942641//M 2024-07-24T17:00:28 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "402"
     },
     {
       "date": "2024-07-24",
       "description": "HALONG BAY//Muenchen/DE 2024-07-23T19:39:36 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -12,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Giap",
       "id": "403"
     },
     {
       "date": "2024-07-24",
       "description": "HALONG BAY//Muenchen/DE 2024-07-23T19:20:01 KFN 2  VJ 2512 Kartenzahlung",
       "amount": -27,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Giap",
       "id": "404"
     },
     {
       "date": "2024-07-24",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-23T08:19:06 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -22.29,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "405"
     },
@@ -3649,17 +3649,17 @@
       "date": "2024-07-24",
       "description": "Bargeldauszahlung Commerzbank 00213896/Wolfratshauser 2024-07-23T10:34:53 KFN 2  VJ 2512",
       "amount": -450,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "406"
     },
     {
       "date": "2024-07-22",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-07-19T16:15:57 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -31.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "407"
     },
@@ -3667,8 +3667,8 @@
       "date": "2024-07-22",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -2500,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "408"
     },
@@ -3676,8 +3676,8 @@
       "date": "2024-07-19",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-18T08:08:55 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -13.48,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "409"
     },
@@ -3685,8 +3685,8 @@
       "date": "2024-07-19",
       "description": "ROSSMANN 3394 MUENCHEN 170716523133164251220033946 ELV6030 6545 17.07 16.52 ME3 End-to-End-Ref.: 17071652313316425122003394660306545 Mandatsref: G0306",
       "amount": -18.12,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "410"
     },
@@ -3694,7 +3694,7 @@
       "date": "2024-07-17",
       "description": "Walter Balzarotti End-to-End-Ref.: NOTPROVIDED Kundenreferenz: NSCT2407170044550000000000000000001",
       "amount": 3000,
-      "category1": null,
+      "category1": "Trasferimenti",
       "category2": null,
       "category3": null,
       "id": "411"
@@ -3703,8 +3703,8 @@
       "date": "2024-07-17",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-07-16T16:59:17 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -26.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "412"
     },
@@ -3712,8 +3712,8 @@
       "date": "2024-07-16",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-15T11:58:17 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -8.05,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "413"
     },
@@ -3721,8 +3721,8 @@
       "date": "2024-07-16",
       "description": "ROSSMANN 3394 MUENCHEN 120718273131869251220033946 ELV6030 6545 12.07 18.27 ME3 End-to-End-Ref.: 12071827313186925122003394660306545 Mandatsref: G0306",
       "amount": -24.44,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "414"
     },
@@ -3730,44 +3730,44 @@
       "date": "2024-07-15",
       "description": "BAECK ZOETTL WOLFRATSHAUSER//MUENCH 2024-07-12T15:27:59 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.64,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "Caffe",
       "id": "415"
     },
     {
       "date": "2024-07-15",
       "description": "DB AUTOMAT//MUENCHEN-SOLLN/DE 2024-07-12T15:38:01 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -1.8,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "416"
     },
     {
       "date": "2024-07-15",
       "description": "DB AUTOMAT//MUENCHEN-SOLLN/DE 2024-07-12T15:34:36 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "417"
     },
     {
       "date": "2024-07-15",
       "description": "DB AUTOMAT//MUENCHEN HBF/DE 2024-07-12T16:41:16 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "418"
     },
     {
       "date": "2024-07-15",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-12T17:26:31 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.78,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "419"
     },
@@ -3784,62 +3784,62 @@
       "date": "2024-07-15",
       "description": "STUDIO LEGALE AVV. NICOLETTA BAZZI ICRAITRRCAR IT56M0844033840000000293641 Per spese legali come erede Balzaro tti Benedetto End-to-End-Ref.: MOB.196.",
       "amount": -1000,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "421"
     },
     {
       "date": "2024-07-15",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24028771920 10,44 EUR End-to-End-Ref.: 1055341883/155879893105 Mandatsref: KM-1055341883-000001",
       "amount": -10.44,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "422"
     },
     {
       "date": "2024-07-12",
       "description": "Barmenia Allgemeine Versicherungs A G 240229863H 403160031/DATENSCHUTZINF ORMATIONEN: DATENSCHUTZ.BARMENIA.DE End-to-End-Ref.: 043102749656 Kundenrefe",
       "amount": 133.11,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "423"
     },
     {
       "date": "2024-07-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "424"
     },
     {
       "date": "2024-07-10",
       "description": "00354 MCDONALDS ELV54219760 08.07 17.10 ME3 End-to-End-Ref.: T024070854219760068987 Mandatsref: 5421976042922407081710 Gläubiger-ID: DE80ZZZ0000165975",
       "amount": -5.19,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "MCDonald",
       "id": "425"
     },
     {
       "date": "2024-07-10",
       "description": "Drillisch Online GmbH C8336401 U648653953 B739164910 handyvertrag.de End-to-End-Ref.: ZFVNEIQHOHJSZBIA Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläubig",
       "amount": -8.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "426"
     },
     {
       "date": "2024-07-09",
       "description": "epay-1882-08.07 DM Drogerie/Kistlerhofstraße 154/Mü 2024-07-08T16:53:18 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -9.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "DM",
       "category3": null,
       "id": "427"
     },
@@ -3847,8 +3847,8 @@
       "date": "2024-07-09",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-07-08T16:38:59 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -46.33,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "428"
     },
@@ -3856,18 +3856,18 @@
       "date": "2024-07-09",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1020049 750/8, Ihre Tarifrechnung End-to-End-Ref.: 3104300011200001020049750008RCUR Mand",
       "amount": -4.44,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "429"
     },
     {
       "date": "2024-07-08",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-07-05T07:12:45 KFN 2  VJ 2512",
       "amount": -900,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "430"
     },
     {
@@ -3883,17 +3883,17 @@
       "date": "2024-07-08",
       "description": "zentrum für Kleintiermedizin DEUTDEFFXXX DE39500700100095113700 rechnungsnummer 403160031 - Pimba End-to-End-Ref.: MOB.189.UE.119393",
       "amount": -133,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Salute",
+      "category2": "Veterinario",
+      "category3": "Bimba",
       "id": "432"
     },
     {
       "date": "2024-07-05",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-07-04T08:11:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -14.86,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "433"
     },
@@ -3901,26 +3901,26 @@
       "date": "2024-07-04",
       "description": "00354 MCDONALDS ELV54225155 02.07 20.06 ME3 End-to-End-Ref.: T024070254225155013489 Mandatsref: 5422515524552407022006 Gläubiger-ID: DE80ZZZ0000165975",
       "amount": -4.39,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "MCDonald",
       "id": "434"
     },
     {
       "date": "2024-07-04",
       "description": "00354 MCDONALDS ELV54225162 02.07 19.37 ME3 End-to-End-Ref.: T024070254225162015809 Mandatsref: 5422516246842407021937 Gläubiger-ID: DE80ZZZ0000165975",
       "amount": -19.88,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Cibo",
+      "category2": "Ristorante",
+      "category3": "MCDonald",
       "id": "435"
     },
     {
       "date": "2024-07-03",
       "description": "Infineon Technologies AG NO.653559DT28.6.2024 PCIM BOOTH DUT Y End-to-End-Ref.: 3500028921 Kundenreferenz: NSCT2407030028610000000000000000007",
       "amount": 783.4,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "436"
     },
@@ -3928,17 +3928,17 @@
       "date": "2024-07-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "437"
     },
     {
       "date": "2024-07-02",
       "description": "ALDI SE U. CO. KG//MUENCHEN/DE 2024-07-01T18:39:54 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -38.95,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "438"
     },
@@ -3946,8 +3946,8 @@
       "date": "2024-07-02",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-28T08:22:31 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -28.57,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "439"
     },
@@ -3955,18 +3955,18 @@
       "date": "2024-07-02",
       "description": "1+1 Telecom GmbH KD-Nr. K853275329/ RG-Nr. 150989625 153 End-to-End-Ref.: 006111947600 Mandatsref: 0200029774218 Gläubiger-ID: DE77ZZZ00000569719 SEPA",
       "amount": -33.37,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Internet",
       "id": "440"
     },
     {
       "date": "2024-07-01",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-06-28T17:22:31 KFN 2  VJ 2512",
       "amount": -750,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "441"
     },
     {
@@ -3982,17 +3982,17 @@
       "date": "2024-07-01",
       "description": "FRAU UTE PAUER HYVEDEMMXXX DE74700202700015273787 VITTORIA BALZAROTTI - THEATHER End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -59,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Teatro",
       "id": "443"
     },
     {
       "date": "2024-07-01",
       "description": "ARD ZDF DRadio Beitragsservice Rundfunk 07.2024 - 12.2024 Beitrags nr. 625963905 Aenderungen ganz bequ em: www.rundfunkbeitrag.de End-to-End-Ref.: 625",
       "amount": -110.16,
-      "category1": null,
-      "category2": null,
+      "category1": "Tasse",
+      "category2": "Radio",
       "category3": null,
       "id": "444"
     },
@@ -4000,8 +4000,8 @@
       "date": "2024-07-01",
       "description": "ROSSMANN 3394 MUENCHEN 270618013127566251220033946 ELV6030 6545 27.06 18.01 ME3 End-to-End-Ref.: 27061801312756625122003394660306545 Mandatsref: G0306",
       "amount": -7.17,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "445"
     },
@@ -4009,9 +4009,9 @@
       "date": "2024-07-01",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 045902606218 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -60.65,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "446"
     },
     {
@@ -4027,8 +4027,8 @@
       "date": "2024-06-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "448"
     },
@@ -4036,17 +4036,17 @@
       "date": "2024-06-28",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1017321 027/8, Ihr Ratenplan End-to-End-Ref.: 3204125891380001017321027008RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "449"
     },
     {
       "date": "2024-06-27",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202406 End-to-End-Ref.: 3335005210 Kundenreferenz: NSCT2406270028900000000000000000004",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "450"
     },
@@ -4054,8 +4054,8 @@
       "date": "2024-06-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "451"
     },
@@ -4063,8 +4063,8 @@
       "date": "2024-06-27",
       "description": "tegut... gute Lebens 250617363026288251249928980 ELV6036 0748 25.06 17.36 ME3 End-to-End-Ref.: 25061736302628825124992898060360748 Mandatsref: G036074",
       "amount": -19.99,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Tegut",
       "category3": null,
       "id": "452"
     },
@@ -4072,17 +4072,17 @@
       "date": "2024-06-25",
       "description": "Barmenia Allgemeine Versicherungs A G 240207839T 37082, 37083, 37105,3710 5/DATENSCHUTZINFORMATIONEN: DATENSC HUTZ.BARMENIA.DE End-to-End-Ref.: 046802",
       "amount": 199.16,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "453"
     },
     {
       "date": "2024-06-25",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-24T10:03:13 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -27.32,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "454"
     },
@@ -4090,17 +4090,17 @@
       "date": "2024-06-24",
       "description": "Roberto Galetto PPAYITR1XXX IT69D3608105138236950836954 Raccomandata Apertura Cancello End-to-End-Ref.: MOB.174.UE.53639",
       "amount": -150,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "455"
     },
     {
       "date": "2024-06-21",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-20T08:13:13 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -18.98,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "456"
     },
@@ -4108,8 +4108,8 @@
       "date": "2024-06-20",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -2500,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "457"
     },
@@ -4117,8 +4117,8 @@
       "date": "2024-06-19",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-06-18T17:14:29 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -5.67,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "458"
     },
@@ -4126,53 +4126,53 @@
       "date": "2024-06-18",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-06-17T07:57:29 KFN 2  VJ 2512",
       "amount": -150,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "459"
     },
     {
       "date": "2024-06-17",
       "description": "Anna Rita Balzarotti BPPIITRRXXX IT59W0760101600000056705650 IMU Giugno 2024 End-to-End-Ref.: MOB.169.UE.153797",
       "amount": -1315,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "460"
     },
     {
       "date": "2024-06-17",
       "description": "Walter Balzarotti UNCRITM1340 IT97Y0200820200000004104769 IMU End-to-End-Ref.: MOB.169.EE.150401 Kundenreferenz: MOB.169.EE.150401 Rückgabegrund: Auf",
       "amount": 1315,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "461"
     },
     {
       "date": "2024-06-17",
       "description": "Walter Balzarotti UNCRITM1340 IT97Y0200820200000004104769 IMU End-to-End-Ref.: MOB.169.EE.150401 Kundenreferenz: MOB.169.EE.150401",
       "amount": -1315,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "462"
     },
     {
       "date": "2024-06-17",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24026028480 9,99 EUR End-to-End-Ref.: 1055341883/934928253466 Mandatsref: KM-1055341883-000001 G",
       "amount": -9.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "463"
     },
     {
       "date": "2024-06-14",
       "description": "POLIZEIVERWALTUNGSAMT BYLADEMMXXX DE08700500000001281149 8098156076241 D-QE1398 End-to-End-Ref.: MOB.166.UE.303667",
       "amount": -50,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasporti",
+      "category2": "Multa",
       "category3": null,
       "id": "464"
     },
@@ -4180,8 +4180,8 @@
       "date": "2024-06-14",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-13T09:44:47 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.39,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "465"
     },
@@ -4189,44 +4189,44 @@
       "date": "2024-06-14",
       "description": "Walter Balzarotti UNCRITM1340 IT97Y0200820200000004104769 IMU End-to-End-Ref.: CCB.166.UE.POS00008686",
       "amount": -4400,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Tasse",
       "id": "466"
     },
     {
       "date": "2024-06-13",
       "description": "Bundeskasse DO Weiden Kfz-Steuer fuer D QE 1398 fuer die Zeit vom 13.06.2024 bis zum 12.06.2 025 Kassenzeichen K11038574127 End-to-End-Ref.: K11038574",
       "amount": -168,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Tasse",
+      "category2": "Auto",
+      "category3": "Peugeot",
       "id": "467"
     },
     {
       "date": "2024-06-13",
       "description": "NV-Versicherungen VVaG Rec.-Nr. 8562196/Pol.-Nr. 254072800 1 End-to-End-Ref.: 8562196 Mandatsref: 651168 Gläubiger-ID: DE80ZZZ00000124047 SEPA-BASISLA",
       "amount": -56.23,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Responsabilita",
       "id": "468"
     },
     {
       "date": "2024-06-12",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "469"
     },
     {
       "date": "2024-06-11",
       "description": "ALDI SE U. CO. KG//MUENCHEN/DE 2024-06-10T17:29:25 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -28.03,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Aldi",
       "category3": null,
       "id": "470"
     },
@@ -4234,8 +4234,8 @@
       "date": "2024-06-10",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-08T12:31:26 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -31.65,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "471"
     },
@@ -4243,35 +4243,35 @@
       "date": "2024-06-10",
       "description": "Drillisch Online GmbH C8336401 U641787967 B731398762 handyvertrag.de End-to-End-Ref.: UVMABASQHYOVCOON Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläubig",
       "amount": -10.28,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "472"
     },
     {
       "date": "2024-06-07",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1998484 439/7, Ihre Tarifrechnung End-to-End-Ref.: 3104276650000001998484439007RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "473"
     },
     {
       "date": "2024-06-07",
       "description": "OPG Gymnasium BYLADEM1KMS DE81702501500190592048 Run for Kenya 2024-Vittoria Balzaro tti End-to-End-Ref.: MOB.158.UE.390417",
       "amount": -6,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Ginnasium",
       "id": "474"
     },
     {
       "date": "2024-06-05",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-06-04T17:17:32 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -7.66,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "475"
     },
@@ -4279,17 +4279,17 @@
       "date": "2024-06-05",
       "description": "Zahnarzt praxis Knut Amberg DEUTDEDBMUC DE75700700240999371801 Rechnungsnummer: 13264 End-to-End-Ref.: MOB.157.UE.32560",
       "amount": -350.07,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "476"
     },
     {
       "date": "2024-06-05",
       "description": "ROSSMANN 3394 MUENCHEN 030608143121236251220033940 ELV6030 6545 03.06 08.14 ME3 End-to-End-Ref.: 03060814312123625122003394060306545 Mandatsref: G0306",
       "amount": -15.57,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "477"
     },
@@ -4297,8 +4297,8 @@
       "date": "2024-06-04",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-06-03T17:21:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -25.12,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "478"
     },
@@ -4306,8 +4306,8 @@
       "date": "2024-06-03",
       "description": "LIDL 1465/VIA N.LE DEI GIOVI 290/LE 2024-05-30T11:38:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -33.56,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "479"
     },
@@ -4333,27 +4333,27 @@
       "date": "2024-06-03",
       "description": "GRUPPO NEGOZI SRL/VIA FILIPPO TURAT 2024-05-31T18:39:40 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.4,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "482"
     },
     {
       "date": "2024-06-03",
       "description": "FOUND SRL/VIA NAZIONALE 2024-05-31T14:32:05 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -35,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Divertimenti",
       "id": "483"
     },
     {
       "date": "2024-06-03",
       "description": "PRISKA  ROTERMUND DANIEL DEUTDEDB660 DE04660700240083897900 VITTORIA BALZAROTTI PIANO UNTERRICH T End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -100,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Piano",
       "id": "484"
     },
     {
@@ -4369,36 +4369,36 @@
       "date": "2024-06-03",
       "description": "FRAU UTE PAUER HYVEDEMMXXX DE74700202700015273787 VITTORIA BALZAROTTI - THEATHER End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -59,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Teatro",
       "id": "486"
     },
     {
       "date": "2024-06-03",
       "description": "Barmenia Allgemeine Versicherungs A G Tierversicherung/Vertrag B301925221 End-to-End-Ref.: 046902939333 Mandatsref: ADC301925221000 Gläubiger-ID: DE63",
       "amount": -56.45,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Assicurazione",
+      "category2": "Bimba",
+      "category3": "Salute",
       "id": "487"
     },
     {
       "date": "2024-06-03",
       "description": "1+1 Telecom GmbH KD-Nr. K853275329/ RG-Nr. 150982627 733 End-to-End-Ref.: 006071952403 Mandatsref: 0200029774218 Gläubiger-ID: DE77ZZZ00000569719 SEPA",
       "amount": -44.98,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Internet",
       "id": "488"
     },
     {
       "date": "2024-05-30",
       "description": "Roberto Galetto BAPPIT21203 IT42Q0503445690000000000277 Azione di recupero abitazione-Accon to End-to-End-Ref.: MOB.151.UE.410410",
       "amount": -1000,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "489"
     },
     {
@@ -4414,8 +4414,8 @@
       "date": "2024-05-29",
       "description": "Infineon Technologies AG Lohn/Gehalt 30133335/202405 End-to-End-Ref.: 3335005170 Kundenreferenz: NSCT2405290025660000000000000000001",
       "amount": 6490.07,
-      "category1": null,
-      "category2": null,
+      "category1": "Stipendio",
+      "category2": "Infineon",
       "category3": null,
       "id": "491"
     },
@@ -4423,8 +4423,8 @@
       "date": "2024-05-29",
       "description": "FARMACIA BOTTURA E BEV/LOMBARDIA 18 2024-05-27T17:55:58 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "492"
     },
@@ -4432,17 +4432,17 @@
       "date": "2024-05-29",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6091096793, Rg-Nr.: 1995663 728/7, Ihr Ratenplan End-to-End-Ref.: 3204103066400001995663728007RCUR Mandatsre",
       "amount": -13,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "493"
     },
     {
       "date": "2024-05-28",
       "description": "MARIA COVADONGA GARANA CORC End-to-End-Ref.: NOTPROVIDED Kundenreferenz: 2028000001",
       "amount": 1100,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "494"
     },
@@ -4450,8 +4450,8 @@
       "date": "2024-05-27",
       "description": "MARIA COVADONGA GARANA CORC COBADEFFXXX DE69300400000201134400 End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -1350,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "495"
     },
@@ -4459,17 +4459,17 @@
       "date": "2024-05-23",
       "description": "BENNET/STRADA STATALE DEI GIOVI  24 2024-05-21T13:15:20 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -99.5,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Viaggi",
+      "category2": "Lazzate",
+      "category3": "Cibo",
       "id": "496"
     },
     {
       "date": "2024-05-22",
       "description": "ZARA 6437/VIA EUGENIO LURAGHI 47/AR 2024-05-20T18:30:45 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17.9,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Zara",
       "category3": null,
       "id": "497"
     },
@@ -4477,8 +4477,8 @@
       "date": "2024-05-22",
       "description": "STRADIVARIUS 10825/VIA EUGENIO LURA 2024-05-20T18:15:22 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -54.13,
-      "category1": null,
-      "category2": null,
+      "category1": "Vestiti",
+      "category2": "Stradivarius",
       "category3": null,
       "id": "498"
     },
@@ -4486,17 +4486,17 @@
       "date": "2024-05-21",
       "description": "klarmobil GmbH Kd.1055341883 Wir sagen Danke. RG-N r.F24023291187 10,06 EUR End-to-End-Ref.: 1055341883/130443917975 Mandatsref: KM-1055341883-000001",
       "amount": -10.06,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Vichi",
       "id": "499"
     },
     {
       "date": "2024-05-21",
       "description": "COVADONGA GARANA INGDDEFFXXX DE11500105175444928642 NOSTRO CONTO ING MENSILE End-to-End-Ref.: NOTPROVIDED Dauerauftrag",
       "amount": -2500,
-      "category1": null,
-      "category2": null,
+      "category1": "Trasferimenti",
+      "category2": "Cova",
       "category3": null,
       "id": "500"
     },
@@ -4504,8 +4504,8 @@
       "date": "2024-05-20",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-05-17T16:23:11 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -4.52,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "501"
     },
@@ -4513,8 +4513,8 @@
       "date": "2024-05-15",
       "description": "LIDL SAGT DANKE//Muenchen/DE 2024-05-14T17:26:10 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -64.69,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Lidl",
       "category3": null,
       "id": "502"
     },
@@ -4522,62 +4522,62 @@
       "date": "2024-05-14",
       "description": "Bargeldauszahlung Commerzbank 00213897/Wolfratshauser 2024-05-13T13:49:55 KFN 2  VJ 2512",
       "amount": -60,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Prelievo",
       "id": "503"
     },
     {
       "date": "2024-05-13",
       "description": "SWM VERSORGUNGS GMBH PBNKDEFFXXX DE50700100800014060800 GLIDNR. DE3711000000030246 - VERTRA G NR. 210 752 8040 End-to-End-Ref.: NOTPROVIDED Dauerauftr",
       "amount": -30,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Elettricita",
       "id": "504"
     },
     {
       "date": "2024-05-10",
       "description": "Rodrigo Guillermo Gribble Escobar BKBKESMMXXX ES5001286044130100002353 Regalo Cumple Marco End-to-End-Ref.: CCB.131.UE.POS00028405",
       "amount": -125,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Monaco",
+      "category3": "Accessori",
       "id": "505"
     },
     {
       "date": "2024-05-10",
       "description": "Telefonica Germany GmbH + Co. OHG Kd-Nr.: 6090875418, Rg-Nr.: 1977218 028/7, Ihre Tarifrechnung End-to-End-Ref.: 3104253020770001977218028007RCUR Mand",
       "amount": -3.99,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "506"
     },
     {
       "date": "2024-05-10",
       "description": "Deutscher TurnerBund e.V. 5878816 / 2024/212631/10 End-to-End-Ref.: reID/880843 Mandatsref: 1000291953 Gläubiger-ID: DE63ZZZ00000048693 SEPA-BASISLAST",
       "amount": -20,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Scuola",
+      "category2": "Vichi",
+      "category3": "Ginnastica",
       "id": "507"
     },
     {
       "date": "2024-05-10",
       "description": "Drillisch Online GmbH C8336401 U634931949 B723674653 handyvertrag.de End-to-End-Ref.: WIUSXBZNAYFNKGPC Mandatsref: 43C1E9E883A6BA9D4FE7D2A0E91 Gläubig",
       "amount": -18.51,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Telefono",
+      "category3": "Cova",
       "id": "508"
     },
     {
       "date": "2024-05-07",
       "description": "FORELLEN-APOTHEKE//Muenchen/DE 2024-05-06T09:44:23 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -22.12,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Farmacia",
       "category3": null,
       "id": "509"
     },
@@ -4585,8 +4585,8 @@
       "date": "2024-05-07",
       "description": "NETTO MARKEN-DISCOU//MUENCHEN/DE 2024-05-06T12:53:56 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -2.76,
-      "category1": null,
-      "category2": null,
+      "category1": "Cibo",
+      "category2": "Netto",
       "category3": null,
       "id": "510"
     },
@@ -4594,8 +4594,8 @@
       "date": "2024-05-07",
       "description": "ROSSMANN 3394 MUENCHEN 030513213114670251220033946 ELV6030 6545 03.05 13.21 ME3 End-to-End-Ref.: 03051321311467025122003394660306545 Mandatsref: G0306",
       "amount": -11.83,
-      "category1": null,
-      "category2": null,
+      "category1": "Salute",
+      "category2": "Rossmann",
       "category3": null,
       "id": "511"
     },
@@ -4603,27 +4603,27 @@
       "date": "2024-05-06",
       "description": "MVG AUTOMATEN//MUENCHEN/DE 2024-05-03T12:50:27 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -17,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "512"
     },
     {
       "date": "2024-05-06",
       "description": "DB Automaten/Wolfratshauser Str./Mu 2024-05-03T09:28:46 KFN 3  VJ 2512 Kartenzahlung",
       "amount": -3.9,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Trasporti",
+      "category2": "Treno",
+      "category3": "Munich",
       "id": "513"
     },
     {
       "date": "2024-05-06",
       "description": "Roberto Galetto BCITITMMXXX IT46N0306933880000008359102 spese vive mediazione End-to-End-Ref.: CCB.126.UE.POS00020707",
       "amount": -279.07,
-      "category1": null,
-      "category2": null,
-      "category3": null,
+      "category1": "Casa",
+      "category2": "Lazzate",
+      "category3": "Avvocato",
       "id": "514"
     }
   ],
@@ -4704,11 +4704,6 @@
       "parent": "Groceries"
     },
     {
-      "id": "32",
-      "name": ".",
-      "parent": "Walter"
-    },
-    {
       "id": "33",
       "name": "Pasta",
       "parent": "Groceries"
@@ -4787,17 +4782,797 @@
       "id": "66",
       "name": "Trasporti",
       "parent": "Lazzate"
+    },
+    {
+      "id": "67",
+      "name": "Lavoro",
+      "parent": null
+    },
+    {
+      "id": "68",
+      "name": "Trasporti",
+      "parent": "Monaco"
+    },
+    {
+      "id": "69",
+      "name": "Assicurazione",
+      "parent": null
+    },
+    {
+      "id": "70",
+      "name": "Bimba",
+      "parent": "Assicurazione"
+    },
+    {
+      "id": "71",
+      "name": "Salute",
+      "parent": "Bimba"
+    },
+    {
+      "id": "72",
+      "name": "Walter",
+      "parent": "Assicurazione"
+    },
+    {
+      "id": "73",
+      "name": "Denti",
+      "parent": "Walter"
+    },
+    {
+      "id": "74",
+      "name": "Cibo",
+      "parent": null
+    },
+    {
+      "id": "75",
+      "name": "Netto",
+      "parent": "Cibo"
+    },
+    {
+      "id": "76",
+      "name": "Accessori",
+      "parent": "Monaco"
+    },
+    {
+      "id": "77",
+      "name": "Aldi",
+      "parent": "Cibo"
+    },
+    {
+      "id": "78",
+      "name": "Trasferimenti",
+      "parent": null
+    },
+    {
+      "id": "79",
+      "name": "Cova",
+      "parent": "Trasferimenti"
+    },
+    {
+      "id": "80",
+      "name": "Salute",
+      "parent": null
+    },
+    {
+      "id": "81",
+      "name": "Farmacia",
+      "parent": "Salute"
+    },
+    {
+      "id": "82",
+      "name": "Stipendio",
+      "parent": null
+    },
+    {
+      "id": "83",
+      "name": "Qorvo",
+      "parent": "Stipendio"
+    },
+    {
+      "id": "84",
+      "name": "Ristorante",
+      "parent": "Cibo"
+    },
+    {
+      "id": "85",
+      "name": "MCDonald",
+      "parent": "Ristorante"
+    },
+    {
+      "id": "86",
+      "name": "Avvocato",
+      "parent": "Lazzate"
+    },
+    {
+      "id": "87",
+      "name": "Casa",
+      "parent": "Assicurazione"
+    },
+    {
+      "id": "88",
+      "name": "Avignone",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "89",
+      "name": "CarRent",
+      "parent": "Avignone"
+    },
+    {
+      "id": "90",
+      "name": "Telefono",
+      "parent": "Casa"
+    },
+    {
+      "id": "91",
+      "name": "Vichi",
+      "parent": "Telefono"
+    },
+    {
+      "id": "92",
+      "name": "Shopping",
+      "parent": "Avignone"
+    },
+    {
+      "id": "93",
+      "name": "Cibo",
+      "parent": "Avignone"
+    },
+    {
+      "id": "94",
+      "name": "Trasporti",
+      "parent": "Avignone"
+    },
+    {
+      "id": "95",
+      "name": "Salute",
+      "parent": "Walter"
+    },
+    {
+      "id": "96",
+      "name": "Vestiti",
+      "parent": null
+    },
+    {
+      "id": "97",
+      "name": "Primark",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "98",
+      "name": "Cibo",
+      "parent": "Lazzate"
+    },
+    {
+      "id": "99",
+      "name": "Arese",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "100",
+      "name": "Elettricita",
+      "parent": "Monaco"
+    },
+    {
+      "id": "101",
+      "name": "Cova",
+      "parent": "Telefono"
+    },
+    {
+      "id": "102",
+      "name": "Scuola",
+      "parent": null
+    },
+    {
+      "id": "103",
+      "name": "Vichi",
+      "parent": "Scuola"
+    },
+    {
+      "id": "104",
+      "name": "Piano",
+      "parent": "Vichi"
+    },
+    {
+      "id": "105",
+      "name": "Investimenti",
+      "parent": null
+    },
+    {
+      "id": "106",
+      "name": "dividendi",
+      "parent": "Investimenti"
+    },
+    {
+      "id": "107",
+      "name": "Caffe",
+      "parent": "Ristorante"
+    },
+    {
+      "id": "108",
+      "name": "Lidl",
+      "parent": "Cibo"
+    },
+    {
+      "id": "109",
+      "name": "Lavoro",
+      "parent": "Ristorante"
+    },
+    {
+      "id": "110",
+      "name": "Rossmann",
+      "parent": "Salute"
+    },
+    {
+      "id": "111",
+      "name": "Ortisei",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "112",
+      "name": "Cibo",
+      "parent": "Ortisei"
+    },
+    {
+      "id": "113",
+      "name": "Rist",
+      "parent": "Ortisei"
+    },
+    {
+      "id": "114",
+      "name": "Legale",
+      "parent": "Casa"
+    },
+    {
+      "id": "115",
+      "name": "Tasse",
+      "parent": null
+    },
+    {
+      "id": "116",
+      "name": "Bimba",
+      "parent": "Tasse"
+    },
+    {
+      "id": "117",
+      "name": "Ginnasium",
+      "parent": "Vichi"
+    },
+    {
+      "id": "118",
+      "name": "Edeka",
+      "parent": "Cibo"
+    },
+    {
+      "id": "119",
+      "name": "Walter",
+      "parent": "Trasferimenti"
+    },
+    {
+      "id": "120",
+      "name": "Giap",
+      "parent": "Ristorante"
+    },
+    {
+      "id": "121",
+      "name": "Walter",
+      "parent": "Telefono"
+    },
+    {
+      "id": "122",
+      "name": "DM",
+      "parent": "Salute"
+    },
+    {
+      "id": "123",
+      "name": "Infineon",
+      "parent": "Stipendio"
+    },
+    {
+      "id": "124",
+      "name": "Dentista",
+      "parent": "Salute"
+    },
+    {
+      "id": "125",
+      "name": "Cova",
+      "parent": "Dentista"
+    },
+    {
+      "id": "126",
+      "name": "Costi",
+      "parent": "Investimenti"
+    },
+    {
+      "id": "127",
+      "name": "MAdrid",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "128",
+      "name": "Cibo",
+      "parent": "MAdrid"
+    },
+    {
+      "id": "129",
+      "name": "Massimo Dutti",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "130",
+      "name": "Madrid",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "131",
+      "name": "Auto",
+      "parent": "Assicurazione"
+    },
+    {
+      "id": "132",
+      "name": "Peugeot",
+      "parent": "Auto"
+    },
+    {
+      "id": "133",
+      "name": "Radio",
+      "parent": "Tasse"
+    },
+    {
+      "id": "134",
+      "name": "Trasporti",
+      "parent": null
+    },
+    {
+      "id": "135",
+      "name": "Carburante",
+      "parent": "Trasporti"
+    },
+    {
+      "id": "136",
+      "name": "Gasolio",
+      "parent": "Carburante"
+    },
+    {
+      "id": "137",
+      "name": "Skilager",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "138",
+      "name": "Vichi",
+      "parent": "Skilager"
+    },
+    {
+      "id": "139",
+      "name": "Trasporti",
+      "parent": "MAdrid"
+    },
+    {
+      "id": "140",
+      "name": "Analisi",
+      "parent": "Salute"
+    },
+    {
+      "id": "141",
+      "name": "Cova",
+      "parent": "Analisi"
+    },
+    {
+      "id": "142",
+      "name": "Prelievo",
+      "parent": "Monaco"
+    },
+    {
+      "id": "143",
+      "name": "Multa",
+      "parent": "Trasporti"
+    },
+    {
+      "id": "144",
+      "name": "Monaco",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "145",
+      "name": "Rewe",
+      "parent": "Cibo"
+    },
+    {
+      "id": "146",
+      "name": "Teatro",
+      "parent": "Vichi"
+    },
+    {
+      "id": "147",
+      "name": "Veterinario",
+      "parent": "Salute"
+    },
+    {
+      "id": "148",
+      "name": "Bimba",
+      "parent": "Veterinario"
+    },
+    {
+      "id": "149",
+      "name": "OVS",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "150",
+      "name": "Walter",
+      "parent": "OVS"
+    },
+    {
+      "id": "151",
+      "name": "Hotel",
+      "parent": "Avignone"
+    },
+    {
+      "id": "152",
+      "name": "California",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "153",
+      "name": "Hotel",
+      "parent": "California"
+    },
+    {
+      "id": "154",
+      "name": "Accessori",
+      "parent": "Lazzate"
+    },
+    {
+      "id": "155",
+      "name": "Accessori",
+      "parent": "Salute"
+    },
+    {
+      "id": "156",
+      "name": "Bimba",
+      "parent": "Accessori"
+    },
+    {
+      "id": "157",
+      "name": "Infineon",
+      "parent": "Viaggi"
+    },
+    {
+      "id": "158",
+      "name": "Treno",
+      "parent": "Trasporti"
+    },
+    {
+      "id": "159",
+      "name": "Munich",
+      "parent": "Treno"
+    },
+    {
+      "id": "160",
+      "name": "Internet",
+      "parent": "Telefono"
+    },
+    {
+      "id": "161",
+      "name": "Tegut",
+      "parent": "Cibo"
+    },
+    {
+      "id": "162",
+      "name": "Auto",
+      "parent": "Tasse"
+    },
+    {
+      "id": "163",
+      "name": "Responsabilita",
+      "parent": "Bimba"
+    },
+    {
+      "id": "164",
+      "name": "Divertimenti",
+      "parent": "Lazzate"
+    },
+    {
+      "id": "165",
+      "name": "Zara",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "166",
+      "name": "Stradivarius",
+      "parent": "Vestiti"
+    },
+    {
+      "id": "167",
+      "name": "Ginnastica",
+      "parent": "Vichi"
     }
   ],
   "rules": [
     {
-      "words": "Nivi Spa",
+      "words": "Netto",
+      "categories": [
+        "Cibo",
+        "Netto"
+      ],
+      "id": 3
+    },
+    {
+      "words": "Covadonga",
+      "categories": [
+        "Trasferimenti",
+        "Cova"
+      ],
+      "id": 4
+    },
+    {
+      "words": "MCDonalds",
+      "categories": [
+        "Cibo",
+        "Ristorante",
+        "MCDonald"
+      ],
+      "id": 5
+    },
+    {
+      "words": "Apotheke",
+      "categories": [
+        "Salute",
+        "Farmacia"
+      ],
+      "id": 6
+    },
+    {
+      "words": "Tierversicherung",
+      "categories": [
+        "Assicurazione",
+        "Bimba",
+        "Salute"
+      ],
+      "id": 7
+    },
+    {
+      "words": "bambora",
+      "categories": [
+        "Stipendio",
+        "Qorvo"
+      ],
+      "id": 8
+    },
+    {
+      "words": "azimo",
+      "categories": [
+        "Stipendio",
+        "Qorvo"
+      ],
+      "id": 9
+    },
+    {
+      "words": "aldi",
+      "categories": [
+        "Cibo",
+        "Aldi"
+      ],
+      "id": 10
+    },
+    {
+      "words": "rossmann",
+      "categories": [
+        "Salute",
+        "Rossmann"
+      ],
+      "id": 11
+    },
+    {
+      "words": "klarmobil",
+      "categories": [
+        "Casa",
+        "Telefono",
+        "Vichi"
+      ],
+      "id": 12
+    },
+    {
+      "words": "lidl",
+      "categories": [
+        "Cibo",
+        "Lidl"
+      ],
+      "id": 13
+    },
+    {
+      "words": "swm",
+      "categories": [
+        "Casa",
+        "Monaco",
+        "Elettricita"
+      ],
+      "id": 14
+    },
+    {
+      "words": "telefonica",
+      "categories": [
+        "Casa",
+        "Telefono",
+        "Cova"
+      ],
+      "id": 15
+    },
+    {
+      "words": "Priska",
+      "categories": [
+        "Scuola",
+        "Vichi",
+        "Piano"
+      ],
+      "id": 16
+    },
+    {
+      "words": "Woolworth",
+      "categories": [
+        "Casa",
+        "Monaco",
+        "Accessori"
+      ],
+      "id": 17
+    },
+    {
+      "words": "Steuerbelastung",
+      "categories": [
+        "Investimenti",
+        "Costi"
+      ],
+      "id": 18
+    },
+    {
+      "words": "DM",
+      "categories": [
+        "Salute",
+        "DM"
+      ],
+      "id": 19
+    },
+    {
+      "words": "Simply",
+      "categories": [
+        "Viaggi",
+        "MAdrid",
+        "Cibo"
+      ],
+      "id": 20
+    },
+    {
+      "words": "edeka",
+      "categories": [
+        "Cibo",
+        "Edeka"
+      ],
+      "id": 21
+    },
+    {
+      "words": "Reis",
+      "categories": [
+        "Cibo",
+        "Ristorante",
+        "Caffe"
+      ],
+      "id": 22
+    },
+    {
+      "words": "drillisch",
+      "categories": [
+        "Casa",
+        "Telefono",
+        "Cova"
+      ],
+      "id": 23
+    },
+    {
+      "words": "Bargeldauszahlung",
+      "categories": [
+        "Casa",
+        "Monaco",
+        "Prelievo"
+      ],
+      "id": 24
+    },
+    {
+      "words": "Infineon",
+      "categories": [
+        "Stipendio",
+        "Infineon"
+      ],
+      "id": 25
+    },
+    {
+      "words": "PAuer",
+      "categories": [
+        "Scuola",
+        "Vichi",
+        "Teatro"
+      ],
+      "id": 26
+    },
+    {
+      "words": "Halong",
+      "categories": [
+        "Cibo",
+        "Ristorante",
+        "Giap"
+      ],
+      "id": 27
+    },
+    {
+      "words": "AUTOMAT//MUENCHEN",
+      "categories": [
+        "Trasporti",
+        "Treno",
+        "Munich"
+      ],
+      "id": 28
+    },
+    {
+      "words": "Barmenia Allgemeine Versicherungs",
+      "categories": [
+        "Assicurazione",
+        "Bimba",
+        "Salute"
+      ],
+      "id": 29
+    },
+    {
+      "words": "zdf",
+      "categories": [
+        "Tasse",
+        "Radio"
+      ],
+      "id": 30
+    },
+    {
+      "words": "1+1",
+      "categories": [
+        "Casa",
+        "Telefono",
+        "Internet"
+      ],
+      "id": 31
+    },
+    {
+      "words": "BENNET/STRADA STATALE",
       "categories": [
         "Viaggi",
         "Lazzate",
-        "Trasporti"
+        "Cibo"
       ],
-      "id": 1
+      "id": 32
+    },
+    {
+      "words": "AUTOMATEN//MUENCHEN",
+      "categories": [
+        "Trasporti",
+        "Treno",
+        "Munich"
+      ],
+      "id": 33
+    },
+    {
+      "words": "DB Automat",
+      "categories": [
+        "Trasporti",
+        "Treno",
+        "Munich"
+      ],
+      "id": 34
+    },
+    {
+      "words": "ralf",
+      "categories": [
+        "Casa",
+        "Monaco",
+        "Affitto"
+      ],
+      "id": 35
     }
   ]
 }

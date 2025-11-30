@@ -424,3 +424,74 @@ body.delete-mode-active .category-top,
 body.delete-mode-active .delete-toggle-container {
     pointer-events: auto !important;
 }
+
+/* CHECKBOX PERSONALIZZATO QUADRATO */
+.rule-checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 10px;
+}
+
+.rule-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border: 2px solid #9ca3af;
+    border-radius: 4px;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.rule-checkbox-container:hover .checkmark {
+    border-color: #6b7280;
+}
+
+.rule-checkbox:checked + .checkmark {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.rule-checkbox:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 4px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.rule-text {
+    flex: 1;
+    color: #1f2937;
+}
+
+.rule-delete-button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
