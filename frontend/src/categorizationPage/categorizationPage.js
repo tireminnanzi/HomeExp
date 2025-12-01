@@ -1,10 +1,16 @@
 // frontend/src/categorizationPage/categorizationPage.js
-console.log('categorizationPage.js → VERSIONE STABILE + REGOLE IN ORDINE INVERSO');
+console.log('categorizationPage.js loaded');
 
-async function initializeCategorization() {
+// Initialize the categorization page and start the loading process
+export async function initializeCategorization() {
+    console.log('initializeCategorization started');
     const mainContent = document.getElementById('main-content');
-    if (!mainContent) return console.error('main-content not found');
+    if (!mainContent) {
+        console.error('main-content element not found');
+        return;
+    }
 
+    // Set up the page-specific content
     mainContent.innerHTML = `
         <div class="grid-container">
             <div class="expense-column">
@@ -14,132 +20,254 @@ async function initializeCategorization() {
             <div class="category-column">
                 <div class="category-top">
                     <h2 class="column-title">Categories</h2>
-                    <div id="category-buttons"></div>
+                    <div id="category-buttons" class="category-buttons"></div>
                 </div>
                 <div class="category-bottom">
                     <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
-                    <form id="rule-form" class="rule-form" style="display:none;">
-                        <input type="text" id="rule-input" class="rule-input" placeholder="Parole chiave (es. amazon netflix)" disabled>
+                    <form id="rule-form" class="rule-form" style="display: none;">
+                        <input type="text" id="rule-input" class="rule-input" placeholder="Enter words to match" disabled>
                     </form>
-                    <div id="rules-list"></div>
+                    <div id="rules-list" class="rules-list"></div>
                 </div>
             </div>
         </div>
     `;
+    console.log('Categorization page HTML set up');
 
+    // Set up event listeners for the "Add a Rule" button and form
     const addRuleButton = document.getElementById('add-rule-button');
     const ruleForm = document.getElementById('rule-form');
     const ruleInput = document.getElementById('rule-input');
+    const rulesList = document.getElementById('rules-list');
 
-    addRuleButton.addEventListener('click', () => {
-        if (!window.selectedExpenseId) return alert("Seleziona una spesa");
+    if (addRuleButton && ruleForm && ruleInput && rulesList) {
+        addRuleButton.addEventListener('click', () => {
+            console.log('Add a Rule button clicked');
+            ruleForm.style.display = 'block';
+            ruleInput.disabled = false;
+            ruleInput.focus();
+            addRuleButton.classList.add('active');
+        });
 
-        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-        if (!expense.category1 && !expense.category2 && !expense.category3)
-            return alert("Assegna almeno una categoria alla spesa prima di creare una regola");
+        // Handle form submission on Enter key
+        ruleInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleRuleSubmission();
+            }
+        });
 
-        ruleForm.style.display = 'block';
-        ruleInput.disabled = false;
-        ruleInput.value = '';
-        ruleInput.focus();
-        addRuleButton.classList.add('active');
-    });
+        // Handle form submission on blur
+        ruleInput.addEventListener('blur', handleRuleSubmission);
 
-    const submitRule = async () => {
-        const words = ruleInput.value.trim();
-        if (!words) {
+        async function handleRuleSubmission() {
+            const inputValue = ruleInput.value.trim();
+            console.log('Rule input submitted:', inputValue);
+
+            // Reset form
             ruleForm.style.display = 'none';
             ruleInput.disabled = true;
+            ruleInput.value = '';
             addRuleButton.classList.remove('active');
-            return;
+
+            // Validate input
+            if (!inputValue) {
+                console.log('Input is empty, action cancelled');
+                return;
+            }
+
+            // Check if a valid expense is selected
+            if (!window.selectedExpenseId || !window.expensesList) {
+                console.log('No expense selected or expenses list not available, action cancelled');
+                return;
+            }
+
+            const selectedExpense = window.expensesList.find(expense => expense.id === window.selectedExpenseId);
+            if (!selectedExpense) {
+                console.log('Selected expense not found, action cancelled');
+                return;
+            }
+
+            // Split input into words and check if any match the expense description
+            const inputWords = inputValue.toLowerCase().split(/\s+/);
+            const descriptionWords = selectedExpense.description.toLowerCase().split(/\s+/);
+            const hasMatchingWord = inputWords.some(word => descriptionWords.includes(word));
+
+            if (!hasMatchingWord) {
+                console.log('No matching words in expense description, action cancelled');
+                return;
+            }
+
+            // Prepare rule data
+            const categories = [
+                selectedExpense.category1,
+                selectedExpense.category2,
+                selectedExpense.category3
+            ].filter(cat => cat !== null && cat !== undefined);
+            const ruleData = {
+                words: inputValue,
+                categories: categories
+            };
+
+            // Show confirmation popup
+            const categoriesDisplay = categories.length > 0 ? categories.join(' > ') : 'None';
+            const confirmationMessage = `Create rule with words "${inputValue}" for categories: ${categoriesDisplay}?`;
+            console.log('Showing confirmation popup:', confirmationMessage);
+            const confirmed = confirm(confirmationMessage);
+
+            if (confirmed) {
+                console.log('Rule creation confirmed, storing rule:', ruleData);
+                // Store rule using rulesManager
+                try {
+                    const result = await window.rulesManager.addNewRule(ruleData);
+                    if (result.success) {
+                        console.log('Rule added successfully:', result.data);
+                        // Add rule to rules-list display
+                        const ruleElement = document.createElement('div');
+                        ruleElement.className = 'rule-item';
+                        ruleElement.dataset.ruleId = result.data.id;
+                        ruleElement.innerHTML = `
+                            <span class="rule-text">${result.data.words}: ${categoriesDisplay}</span>
+                            <button class="rule-delete-button" title="Delete Rule">X</button>
+                        `;
+                        rulesList.appendChild(ruleElement);
+                        console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+                        // Add delete button event listener
+                        const deleteButton = ruleElement.querySelector('.rule-delete-button');
+                        deleteButton.addEventListener('click', async (e) => {
+                            e.stopPropagation();
+                            console.log('Delete rule button clicked for ID:', result.data.id);
+                            const deleteResult = await window.rulesManager.deleteRule(result.data.id);
+                            if (deleteResult.success) {
+                                ruleElement.remove();
+                                console.log('Rule deleted from UI and db.json:', result.data.id);
+                            } else {
+                                console.error('Failed to delete rule:', deleteResult.message);
+                                alert('Failed to delete rule: ' + deleteResult.message);
+                            }
+                        });
+                    } else {
+                        console.error('Failed to add rule:', result.message);
+                        alert('Failed to add rule: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error storing rule:', error);
+                    alert('Error storing rule: ' + error.message);
+                }
+            } else {
+                console.log('Rule creation cancelled');
+            }
         }
-
-        const expense = window.expensesList.find(e => e.id === window.selectedExpenseId);
-        const categories = [expense.category1, expense.category2, expense.category3].filter(Boolean);
-
-        await window.rulesManager.addNewRule({ words, categories });
-
-        ruleForm.style.display = 'none';
-        ruleInput.disabled = true;
-        addRuleButton.classList.remove('active');
-    };
-
-    ruleInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter') { e.preventDefault(); submitRule(); }
-        if (e.key === 'Escape') { ruleForm.style.display = 'none'; ruleInput.disabled = true; addRuleButton.classList.remove('active'); }
-    });
-    ruleInput.addEventListener('blur', submitRule);
-
-    await loadData();
-    await window.rulesManager.applyAllRulesToExpenses();
-}
-
-async function loadData() {
-    const [expRes, catRes, rulesRes] = await Promise.all([
-        window.fetchAllExpenses(),
-        window.fetchAllCategories(),
-        window.fetchAllRules()
-    ]);
-
-    window.expensesList = expRes.success ? expRes.data : [];
-    window.categoriesList = catRes.success ? catRes.data : [];
-
-    if (window.expensesList.length > 0) {
-        window.expenseManager.renderAll(window.expensesList);
-
-        const firstUncategorized = window.expensesList.find(e => 
-            !e.category1 && !e.category2 && !e.category3
-        );
-        if (firstUncategorized && firstUncategorized.id !== window.selectedExpenseId) {
-            window.selectedExpenseId = firstUncategorized.id;
-            window.expenseManager.renderAll(window.expensesList);
-        }
+    } else {
+        console.error('Failed to find add-rule-button, rule-form, rule-input, or rules-list elements');
     }
 
-    // ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
-    // Usa la funzione centrale (definita sotto)
-    // ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
-    window.renderRulesList(rulesRes.success ? rulesRes.data : []);
+    await loadPage();
+    await window.rulesManager.applyAllRulesToExpenses(); // ← APPLICA REGOLE AL CARICAMENTO
 }
 
-// =============================================================
-// FUNZIONE CENTRALE: mostra regole con ultima in alto
-// =============================================================
-window.renderRulesList = function(rulesData) {
+// Load page data and set up the initial display
+async function loadPage() {
+    console.log('loadPage started');
+    const expenseList = document.getElementById('expense-list');
     const rulesList = document.getElementById('rules-list');
-    if (!rulesList) return;
-
-    const sorted = [...rulesData].reverse(); // ultima creata in alto
-
-    if (sorted.length === 0) {
-        rulesList.innerHTML = '<p style="color:#666; font-style:italic; text-align:center;">Nessuna regola definita</p>';
+    if (!expenseList || !rulesList) {
+        console.error('expense-list or rules-list element not found');
         return;
     }
+    expenseList.innerHTML = '';
+    rulesList.innerHTML = '';
 
-    rulesList.innerHTML = sorted.map(rule => {
-        const display = rule.categories.filter(Boolean).join(' > ') || 'Nessuna';
-        return `<div class="rule-item">
-            <span class="rule-text">${rule.words} → ${display}</span>
-            <button class="rule-delete-button">X</button>
-        </div>`;
-    }).join('');
+    try {
+        console.log('Fetching expenses, categories, and rules...');
+        const [fetchExpensesResult, fetchCategoriesResult, fetchRulesResult] = await Promise.all([
+            window.fetchAllExpenses(),
+            window.fetchAllCategories(),
+            window.fetchAllRules()
+        ]);
+        window.expensesList = fetchExpensesResult.success ? fetchExpensesResult.data : [];
+        window.categoriesList = fetchCategoriesResult.success ? fetchCategoriesResult.data : [];
+        const rulesListData = fetchRulesResult.success ? fetchRulesResult.data : [];
+        console.log('Expenses list at startup:', window.expensesList);
+        console.log('Categories list:', window.categoriesList);
+        console.log('Rules list:', rulesListData);
 
-    rulesList.querySelectorAll('.rule-delete-button').forEach(btn => {
-        btn.onclick = () => {
-            const text = btn.closest('.rule-item').querySelector('.rule-text').textContent;
-            if (confirm(`Eliminare regola: "${text}"?`)) {
-                const rule = sorted.find(r => 
-                    r.words + ' → ' + (r.categories.filter(Boolean).join(' > ') || 'Nessuna') === text
-                );
-                if (rule) window.rulesManager.deleteRule(rule.id);
-            }
-        };
+        // Populate rules-list
+        rulesListData.forEach(rule => {
+            const categoriesDisplay = rule.categories.length > 0 ? rule.categories.join(' > ') : 'None';
+            const ruleElement = document.createElement('div');
+            ruleElement.className = 'rule-item';
+            ruleElement.dataset.ruleId = rule.id;
+            ruleElement.innerHTML = `
+                <span class="rule-text">${rule.words}: ${categoriesDisplay}</span>
+                <button class="rule-delete-button" title="Delete Rule">X</button>
+            `;
+            rulesList.appendChild(ruleElement);
+            console.log('Rule added to rules-list:', ruleElement.innerHTML);
+
+            // Add delete button event listener
+            const deleteButton = ruleElement.querySelector('.rule-delete-button');
+            deleteButton.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                console.log('Delete rule button clicked for ID:', rule.id);
+                const deleteResult = await window.rulesManager.deleteRule(rule.id);
+                if (deleteResult.success) {
+                    ruleElement.remove();
+                    console.log('Rule deleted from UI and db.json:', rule.id);
+                } else {
+                    console.error('Failed to delete rule:', deleteResult.message);
+                    alert('Failed to delete rule: ' + deleteResult.message);
+                }
+            });
+        });
+    } catch (error) {
+        console.error('Fetch error in loadPage:', error);
+        window.expensesList = [];
+        window.categoriesList = [];
+    }
+
+    if (window.expensesList.length > 0) {
+        console.log('Initializing expense selection...');
+        window.selectedExpenseId = window.expensesList[0].id; // ← GLOBALE
+        console.log('Selected expense ID:', window.selectedExpenseId);
+        updateExpenseDisplay();
+        window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+    } else {
+        console.log('No expenses found, setting no-data message');
+        expenseList.innerHTML = '<p class="no-data">No expenses found</p>';
+    }
+    console.log('loadPage completed');
+}
+
+// Update the display of expenses based on the current list and selection
+function updateExpenseDisplay() {
+    console.log('updateExpenseDisplay called');
+    if (window.expenseManager) {
+        window.expenseManager.updateExpenseDisplay(window.expensesList, window.selectedExpenseId);
+    } else {
+        console.error('expenseManager not found');
+    }
+    console.log('updateExpenseDisplay completed');
+}
+
+// ← ESPORTA GLOBALE
+window.selectedExpenseId = null;
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded in categorizationPage.js');
+        initializeCategorization();
     });
-};
+} else {
+    console.log('Document already loaded, calling initializeCategorization');
+    initializeCategorization();
+}
 
-// =============================================================
-// Esposizione
-// =============================================================
-window.initializeCategorization = initializeCategorization;
-
-console.log('categorizationPage.js → REGOLE IN ORDINE INVERSO + PULITO');
+// Handle expense selection events to update the display
+document.getElementById('expense-list')?.addEventListener('expenseSelected', (e) => {
+    console.log('expenseSelected event received, new ID:', e.detail.id);
+    window.selectedExpenseId = e.detail.id;
+    updateExpenseDisplay();
+    window.categoriesManager.updateCategoryButtons(window.selectedExpenseId, window.expensesList, window.categoriesList);
+});

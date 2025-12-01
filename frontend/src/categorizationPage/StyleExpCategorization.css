@@ -1,497 +1,450 @@
-/********************************************
- *  CATEGORIZATION PAGE – CSS RISTRUTTURATO
- *  Versione pulita, commentata, senza duplicati
- ********************************************/
-
-/* ==========================================
-   1. LAYOUT PRINCIPALE
-   ========================================== */
+/**********************************
+ * CATEGORIZATION PAGE LAYOUT
+ **********************************/
 .main-container-categorize {
     width: 100vw;
-    max-width: 100vw;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 70% 30%;
     width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+    height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .expense-column {
     padding: 16px;
-    overflow-y: auto;
+    overflow-y: visible;
     box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
 }
 
 .category-column {
+    padding: 16px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    overflow: hidden;
-    box-sizing: border-box;
+    height: 100%;
 }
 
 .category-top {
-    position: relative;                    /* Per il pulsante X */
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding-right: 48px;                   /* Spazio per X */
 }
 
 .category-bottom {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
-    border-top: 1px solid #e5e5e5;
-    padding-top: 12px;
+    border-top: 1px solid #e5e5e5; /* Separator above Add a Rule button */
 }
 
 .column-title {
     font-size: 20px;
     font-weight: bold;
     color: #1f2937;
-    margin: 0 0 16px 0;
-    flex-shrink: 0;
+    margin-bottom: 16px;
 }
 
-/* Posizionamento preciso del pulsante X (allineato al titolo) */
-.delete-toggle-container {
-    position: absolute !important;
-    top: 4px;
-    right: 8px;
-    z-index: 20;
-}
-
-/* ==========================================
-   2. LISTA SPESE
-   ========================================== */
+/**********************************
+ * EXPENSE LIST STYLES
+ **********************************/
 .expense-list {
     list-style: none;
+    width: 100%;
+    max-width: 100%;
     padding: 0;
     margin: 0;
-    width: 100%;
 }
 
 .expense-item {
-    display: grid;
-    grid-template-columns: 115px 1fr 140px !important;   /* DATA | DESCRIZIONE | IMPORTO */
-    grid-template-rows: auto auto !important;            /* riga 1: dati principali | riga 2: tag */
-    gap: 6px 12px !important;
-    padding: 14px 16px !important;
-    min-height: 70px !important;
-    height: auto !important;
-    align-items: start !important;
+    padding: 8px 12px;
     border-bottom: 1px solid #e5e5e5;
-}
-
-.expense-item:hover { background-color: #f9fafb; }
-.expense-item.selected { background-color: #e5e7eb; }
-.expense-item * {
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    transition: background-color 0.2s;
+    display: grid;
+    grid-template-rows: 30px auto;
+    grid-template-columns: 10% 70% 20%;
+    align-items: center;
+    gap: 8px;
+    height: 80px;
     box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-right: 16px;
 }
 
+.expense-item:hover {
+    background-color: #f9fafb;
+}
+
+.expense-item.selected {
+    background-color: #e5e7eb;
+}
 
 .expense-date {
     grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    min-width: 115px !important;
-    width: 115px !important;
-    font-family: 'Courier New', monospace;
-    font-weight: 600;
-    color: #4b5563;
-    white-space: nowrap !important;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 8px;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-description {
-    grid-column: 2 / 3 !important;
-    grid-row: 1 / 2 !important;
-    white-space: normal !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    line-height: 1.5 !important;
-    color: #1f2937;
-    padding: 2px 0;
-    max-width: 100%;
-}
-
-.expense-date,
-.expense-description {
-    text-overflow: clip !important;   /* non più ellipsis sulla descrizione */
+    grid-column: 2 / 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .expense-amount {
-    grid-column: 3 / 4 !important;
-    grid-row: 1 / 2 !important;
-    justify-self: end !important;
-    text-align: right !important;
-    min-width: 130px !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    padding-right: 8px !important;
+    grid-column: 3 / 4;
+    font-weight: bold;
+    text-align: right;
+    overflow: visible;
     white-space: nowrap;
+    min-width: 8ch;
+    max-width: 100%;
+    padding-right: 4px;
 }
 
-.expense-negative .expense-amount { color: #dc2626; }
-.expense-positive .expense-amount { color: #16a34a; }
+.expense-negative .expense-amount {
+    color: #dc2626;
+}
 
-/* ==========================================
-   3. TAG CATEGORIE NELLA RIGA SPESA
-   ========================================== */
+.expense-positive .expense-amount {
+    color: #16a34a;
+}
+
+/**********************************
+ * CATEGORY TAGS AND BUTTONS
+ **********************************/
 .category-tags {
-    grid-column: 1 / -1 !important;
-    grid-row: 2 / 3 !important;
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 0 4px 123px !important;   /* 115px data + 8px padding = 123px */
-    border-top: 1px dashed #d1d5db;
-    font-size: 13px;
-    min-height: 36px;
+    flex-direction: row;
+    gap: 4px;
     align-items: center;
+    min-height: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    flex-shrink: 0;
+    max-height: 30px;
 }
 
 .expense-category-button {
-    padding: 4px 10px;
+    padding: 4px 8px;
     color: #fff;
-    font-size: 12px;
-    font-weight: 500;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
     white-space: nowrap;
-    min-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 80px;
+    max-width: 100%;
 }
 
-.expense-category-button.level-1 { background-color: #3b82f6; }
-.expense-category-button.level-1:hover { background-color: #2563eb; }
+.expense-category-button:hover {
+    /* No default hover, rely on level hover styles */
+}
 
-.expense-category-button.level-2 { background-color: #f97316; }
-.expense-category-button.level-2:hover { background-color: #ea580c; }
+.expense-category-button.level-1 {
+    background-color: #3b82f6; /* Blue for Level 1 */
+}
 
-.expense-category-button.level-3 { background-color: #dc2626; }
-.expense-category-button.level-3:hover { background-color: #b91c1c; }
+.expense-category-button.level-1:hover {
+    background-color: #2563eb;
+}
 
-/* ==========================================
-   4. PULSANTI CATEGORIA (colonna destra)
-   ========================================== */
+.expense-category-button.level-2 {
+    background-color: #f97316; /* Orange for Level 2 */
+}
+
+.expense-category-button.level-2:hover {
+    background-color: #ea580c;
+}
+
+.expense-category-button.level-3 {
+    background-color: #dc2626; /* Red for Level 3 */
+}
+
+.expense-category-button.level-3:hover {
+    background-color: #b91c1c;
+}
+
+/* Category selection buttons in category column */
 #category-buttons {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 8px;
-    position: relative;
+    gap: 8px;
+    margin-top: 4px;
+    position: relative; /* For positioning delete-toggle-container */
+}
+
+.delete-toggle-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10; /* Ensure it’s above other buttons */
+}
+
+.delete-toggle {
+    width: 32px; /* Square button */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px; /* Large X */
+    font-weight: bold;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.delete-toggle.level-1 {
+    background-color: #3b82f6; /* Blue for Level 1 */
+}
+
+.delete-toggle.level-1:hover {
+    background-color: #2563eb;
+}
+
+.delete-toggle.level-2 {
+    background-color: #f97316; /* Orange for Level 2 */
+}
+
+.delete-toggle.level-2:hover {
+    background-color: #ea580c;
+}
+
+.delete-toggle.level-3 {
+    background-color: #dc2626; /* Red for Level 3 */
+}
+
+.delete-toggle.level-3:hover {
+    background-color: #b91c1c;
+}
+
+.delete-toggle.delete-mode-active {
+    border: 2px solid #fff; /* White border to indicate active delete mode */
+}
+
+#category-buttons.delete-mode .category-button {
+    background-color: #93c5fd; /* Lighter blue for Level 1 in delete mode */
+}
+
+#category-buttons.delete-mode .category-button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+
+#category-buttons.delete-mode .category-button.level-2 {
+    background-color: #fed7aa; /* Lighter orange for Level 2 in delete mode */
+}
+
+#category-buttons.delete-mode .category-button.level-2:hover {
+    background-color: #ea580c;
+}
+
+#category-buttons.delete-mode .category-button.level-3 {
+    background-color: #fecaca; /* Lighter red for Level 3 in delete mode */
+}
+
+#category-buttons.delete-mode .category-button.level-3:hover {
+    background-color: #b91c1c;
 }
 
 .category-button {
-    padding: 10px 18px;
-    font-size: 15px;
-    font-weight: 500;
+    padding: 8px 16px;
     color: #fff;
-    background-color: #3b82f6;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s;
+    font-size: 14px;
+    transition: background-color 0.2s;
     white-space: nowrap;
+    background-color: #3b82f6;
 }
 
-.category-button:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.category-button:hover {
+    background-color: #2563eb;
+}
 
-/* Livelli colore */
-.category-button.level-2,
-.category-button.add-category.level-2,
-.delete-toggle.level-2 { background-color: #f97316; }
-.category-button.level-2:hover { background-color: #ea580c; }
+.category-button.level-2 {
+    background-color: #f97316;
+}
 
-.category-button.level-3,
-.category-button.add-category.level-3,
-.delete-toggle.level-3 { background-color: #dc2626; }
-.category-button.level-3:hover { background-color: #b91c1c; }
+.category-button.level-2:hover {
+    background-color: #ea580c;
+}
 
-/* Pulsante aggiungi categoria (⋮) */
+.category-button.level-3 {
+    background-color: #dc2626;
+}
+
+.category-button.level-3:hover {
+    background-color: #b91c1c;
+}
+
 .category-button.add-category {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    font-size: 20px;
+    padding: 8px;
+    min-width: 32px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.category-button.add-category.level-1 {
     background-color: #3b82f6;
+}
+
+.category-button.add-category.level-1:hover {
+    background-color: #2563eb;
+}
+
+.category-button.add-category.level-2 {
+    background-color: #f97316;
+}
+
+.category-button.add-category.level-2:hover {
+    background-color: #ea580c;
+}
+
+.category-button.add-category.level-3 {
+    background-color: #dc2626;
+}
+
+.category-button.add-category.level-3:hover {
+    background-color: #b91c1c;
 }
 
 .category-button.add-category.disabled {
-    background-color: #9ca3af !important;
+    background-color: #d1d5db; /* Gray when disabled */
     cursor: not-allowed;
-    opacity: 0.7;
 }
 
-/* Pulsante X – ORA IDENTICO AGLI ALTRI E SEMPRE SINCRONIZZATO */
-.delete-toggle {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    font-size: 22px;
-    font-weight: bold;
+.category-button.add-category.disabled:hover {
+    background-color: #d1d5db; /* No hover effect when disabled */
+}
+
+.category-button.editing {
     color: #fff;
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 100px;
+    outline: none;
+    caret-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
 }
 
-/* Usa le stesse classi dei pulsanti categoria */
-.delete-toggle.level-1 { background-color: #3b82f6; }
-.delete-toggle.level-2 { background-color: #f97316; }
-.delete-toggle.level-3 { background-color: #dc2626; }
-
-.delete-toggle.level-1:hover { background-color: #2563eb; }
-.delete-toggle.level-2:hover { background-color: #ea580c; }
-.delete-toggle.level-3:hover { background-color: #b91c1c; }
-
-/* Solo quando è attivo → rosso acceso */
-.delete-toggle.delete-mode-active {
-    background-color: #ef4444 !important;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
-    transform: scale(1.05);
+.category-button.editing::selection {
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
 }
 
-
-/* Delete mode – pulsanti diventano più chiari */
-#category-buttons.delete-mode .category-button {
-    opacity: 0.75;
-    filter: brightness(1.15);
+/* Rules section styles */
+#rules-list {
+    flex: 1;
+    overflow-y: auto;
 }
 
-/* ==========================================
-   5. REGOLE (Add a Rule)
-   ========================================== */
 .add-rule-button {
-    width: 100%;
-    padding: 14px;
-    margin: 12px 0;
-    background-color: #4b5563;  /* Grigio medio-scuro, perfetto */
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #6b7280; /* Gray for distinct aesthetic */
     border: none;
-    border-radius: 10px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.22s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 14px;
+    transition: background-color 0.2s;
+    align-self: center; /* Center horizontally */
+    margin: 8px 0; /* Vertical spacing to act as divider */
+    width: 100%; /* Full width for divider effect */
+    text-align: center;
 }
 
 .add-rule-button:hover {
-    background-color: #374151;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.add-rule-button:active {
-    transform: translateY(0);
+    background-color: #4b5563; /* Darker gray on hover */
 }
 
 .add-rule-button.active {
-    background-color: #1f2937;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+    background-color: #4b5563; /* Darker gray when active */
 }
 
-
 .rule-form {
-    width: 100%;
-    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
 }
 
 .rule-input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
     width: 100%;
-    padding: 10px 12px;
-    font-size: 15px;
-    border: 2px solid #d1d5db;
-    border-radius: 8px;
+    max-width: 300px; /* Limit input width */
     background-color: #f9fafb;
-    transition: all 0.2s;
+}
+
+.rule-input:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .rule-input:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
-
-.rule-input:disabled {
-    background-color: #e5e7eb;
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-#rules-list {
-    flex: 1;
-    overflow-y: auto;
-}
-.delete-toggle {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    font-size: 22px;
-    cursor: pointer;
-    color: white;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.delete-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-/* ============================================================= */
-/* DELETE MODE – VERSIONE FINALE ESATTA COME VUOI TU           */
-/* ============================================================= */
-
-/* Overlay blur leggerissimo su tutta la pagina */
-body.delete-mode-active::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(1.8px);
-    z-index: 997;
-    pointer-events: none;
-    transition: all 0.35s ease;
-}
-
-/* 1. SFOCA solo: colonna spese + parte bassa regole */
-body.delete-mode-active .expense-column,
-body.delete-mode-active .category-bottom {
-    filter: blur(2px) brightness(0.94);
-    transition: filter 0.35s ease;
-}
-
-/* 2. LASCIA PERFETTAMENTE NITIDA la parte alta categorie + pulsante X */
-body.delete-mode-active .category-top,
-body.delete-mode-active .delete-toggle-container {
-    filter: none !important;
+/* === ALLINEA X CON TITOLO "Categories" === */
+.category-top {
     position: relative;
-    z-index: 999;
-}
-
-/* 3. Porta in primo piano tutto ciò che deve essere cliccabile */
-body.delete-mode-active .category-top,
-body.delete-mode-active .delete-toggle-container {
-    z-index: 999;
-    pointer-events: auto !important;
-}
-
-/* 4. Effetto PULSE identico su tutte le categorie e sul pulsante X */
-#category-buttons.delete-mode .category-button:not(.add-category):not(.delete-toggle),
-body.delete-mode-active .delete-toggle.delete-mode-active {
-    animation: soft-pulse 1.5s infinite ease-in-out !important;
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.55) !important;
-}
-
-@keyframes soft-pulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.55);
-    }
-    50% {
-        transform: scale(1.09);
-        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0.2);
-    }
-}
-
-/* 5. Blocca click su tutto tranne la parte alta categorie */
-body.delete-mode-active { pointer-events: none; }
-body.delete-mode-active .category-top,
-body.delete-mode-active .delete-toggle-container {
-    pointer-events: auto !important;
-}
-
-/* CHECKBOX PERSONALIZZATO QUADRATO */
-.rule-checkbox-container {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    user-select: none;
-    margin-right: 10px;
+    justify-content: space-between;
+    padding-right: 40px; /* Spazio per il pulsante X */
 }
 
-.rule-checkbox {
-    opacity: 0;
-    width: 0;
-    height: 0;
-    position: absolute;
-}
-
-.checkmark {
-    width: 18px;
-    height: 18px;
-    background-color: white;
-    border: 2px solid #9ca3af;
-    border-radius: 4px;
-    transition: all 0.2s;
-    position: relative;
-}
-
-.rule-checkbox-container:hover .checkmark {
-    border-color: #6b7280;
-}
-
-.rule-checkbox:checked + .checkmark {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
-}
-
-.rule-checkbox:checked + .checkmark::after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 2px;
-    width: 5px;
-    height: 9px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.rule-item {
-    display: flex;
-    align-items: center;
-    padding: 8px 4px;
-    border-bottom: 1px solid #e5e7eb;
-    font-size: 14px;
-}
-
-.rule-text {
+.category-top .column-title {
+    margin: 0;
     flex: 1;
-    color: #1f2937;
 }
 
-.rule-delete-button {
-    background: #ef4444;
-    color: white;
-    border: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+/* Assicura che X sia sempre in alto a destra */
+.delete-toggle-container {
+    position: absolute !important;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
 }

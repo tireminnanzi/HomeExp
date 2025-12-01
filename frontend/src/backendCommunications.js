@@ -1,55 +1,4 @@
 // frontend/src/backendCommunications.js
-
-// === CREA UNA SINGOLA EXPENSE (MANUALE) ===
-async function createExpense(expenseData) {
-  try {
-    const response = await fetch('http://localhost:3000/expenses', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expenseData)
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      if (response.status === 400 && errorText.includes('Duplicate')) {
-        return { success: false, message: 'Transazione già presente (duplicato)' };
-      }
-      throw new Error(`HTTP ${response.status}: ${errorText}`);
-    }
-
-    const data = await response.json();
-    console.log('Server response: Expense created successfully', data);
-    return { success: true, data };
-  } catch (error) {
-    console.error('Error creating expense:', error);
-    return { success: false, message: error.message };
-  }
-}
-
-// === UPLOAD BULK (MASSIVO) DI EXPENSES ===
-async function uploadBulkExpenses(expensesArray) {
-  try {
-    const response = await fetch('http://localhost:3000/expenses/bulk', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expensesArray)
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Errore server: ${response.status} - ${errorText}`);
-    }
-
-    const result = await response.json();
-    console.log('Server response: Bulk upload successful', result);
-    return { success: true, data: result };
-  } catch (error) {
-    console.error('Error during bulk upload:', error);
-    return { success: false, message: error.message };
-  }
-}
-
-
 async function fetchAllExpenses() {
   try {
     const response = await fetch('http://localhost:3000/expenses');
@@ -258,8 +207,6 @@ async function deleteRule(ruleId) {
 }
 
 // Expose functions to window object
-window.createExpense = createExpense;
-window.uploadBulkExpenses = uploadBulkExpenses;
 window.fetchAllExpenses = fetchAllExpenses;
 window.fetchAllCategories = fetchAllCategories;
 window.assignCategoryToExpense = assignCategoryToExpense;

@@ -112,7 +112,6 @@ C:\PROG\HomeExp\
 │   │   ├── uploadPage/
 │   │   │   └── uploadPage.js
 │   │   │   └── file parser.js
-│   │   │   └── uploadPage.css
 │   │   ├── categorizationPage/
 │   │   │   └── categorizationPage.js
 │   │   │   └── categoriesManager.js
@@ -136,20 +135,3 @@ C:\PROG\HomeExp\
 │   ├── db.json
 │   └── node_modules/
 └── README.md
-└── .gitignore
-
-Where are now in the devlopment: 
-- backend is responsive, fully working no touch anymore
-   eventually to evaluate to split the currently single file database in three different files
-- frontend: 
-   - upload page
-       - page structure, still missing the erase all button
-       - parsing documents: to be developed
-   - Categorization page: 
-       - few bugs to fix then is fully working: 
-           - expense selection only with the arrows up and down not clicking
-           - clicking the categories assigned to an expense it doesn´t disappear, it´s only an issue of visualization because the category is deleted from the database
-           - after one expense is fully assigned of categories, the next expense is not selected
-           - the color of the x button to delete categories is not following the color of the categories
-           - the position of th ex i s not aligned with the word categories
-   - visualization page: still to start developing

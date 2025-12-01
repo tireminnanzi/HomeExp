@@ -1,258 +1,233 @@
 // frontend/src/categorizationPage/categoriesManager.js
-console.log('categoriesManager.js → VERSIONE DEFINITIVA – DELETE MODE PERFETTO, NIENTE SPARIZIONI');
+console.log('categoriesManager.js loaded');
 
 const categoriesManager = {
+    // Track delete mode state
     isDeleteMode: false,
-    currentClickOutsideHandler: null,
 
-    // FUNZIONE CENTRALIZZATA PER USCIRE DA DELETE MODE
-exitDeleteMode(selectedExpenseId, expensesList, categoriesList) {
-    this.isDeleteMode = false;
-    const categoryButtons = document.getElementById('category-buttons');
-    const deleteToggle = document.querySelector('.delete-toggle');
-
-    if (categoryButtons) categoryButtons.classList.remove('delete-mode');
-    if (deleteToggle) deleteToggle.classList.remove('delete-mode-active');
-    document.body.classList.remove('delete-mode-active');  // ← AGGIUNGI QUESTA RIGA
-
-    if (this.currentClickOutsideHandler) {
-        document.removeEventListener('click', this.currentClickOutsideHandler);
-        this.currentClickOutsideHandler = null;
-    }
-
-    this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
-},
-
+    // Update category buttons based on the selected expense ID
     updateCategoryButtons(selectedExpenseId, expensesList, categoriesList) {
+        console.log('updateCategoryButtons called for expense ID:', selectedExpenseId);
         const categoryButtons = document.getElementById('category-buttons');
-        if (!categoryButtons) return console.error('category-buttons not found');
-        categoryButtons.innerHTML = '';
+        if (!categoryButtons) {
+            console.error('category-buttons element not found');
+            return;
+        }
+        categoryButtons.innerHTML = ''; // Clear existing buttons
 
-        if (!selectedExpenseId || !expensesList || !categoriesList) return;
+        if (!selectedExpenseId || !expensesList || !categoriesList) {
+            console.log('No selected expense, expenses list, or categories list');
+            return;
+        }
 
         const expense = expensesList.find(e => e.id === selectedExpenseId);
-        if (!expense) return;
+        if (!expense) {
+            console.log('Expense not found for ID:', selectedExpenseId);
+            return;
+        }
 
-        let levelToDisplay = 1;
+        let levelToDisplay;
         let parentCategoryName = null;
 
-        if (expense.category1 && !expense.category2) {
-            levelToDisplay = 2;
-            parentCategoryName = expense.category1;
-        } else if (expense.category2) {
-            levelToDisplay = 3;
-            parentCategoryName = expense.category2;
+        // Rule 1: No categories, show Level 1 categories
+        if (!expense.category1) {
+            levelToDisplay = 1;
+            console.log('No categories assigned, displaying Level 1 categories');
+        }
+        // Rule 2: Has categories
+        else {
+            // If only Level 1, show Level 2 categories (parent is Level 1)
+            if (expense.category1 && !expense.category2) {
+                levelToDisplay = 2;
+                parentCategoryName = expense.category1;
+                console.log(`Level 1 category (${expense.category1}) assigned, displaying Level 2 categories`);
+            }
+            // If Level 1 and Level 2 (or all three), show Level 3 categories (parent is Level 2)
+            else if (expense.category2) {
+                levelToDisplay = 3;
+                parentCategoryName = expense.category2;
+                console.log(`Level 2 category (${expense.category2}) assigned, displaying Level 3 categories`);
+            }
         }
 
-        // === PULSANTE X (creato una sola volta) ===
+        // === SPOSTA PULSANTE X NEL TITOLO "Categories" (usa CSS esistente) ===
         const titleContainer = document.querySelector('.category-top');
-        if (titleContainer) {
-            let container = titleContainer.querySelector('.delete-toggle-container');
-            if (!container) {
-                container = document.createElement('div');
-                container.className = 'delete-toggle-container';
-                titleContainer.style.position = 'relative';
-                titleContainer.appendChild(container);
-            }
+        const existingToggle = document.querySelector('.delete-toggle-container');
 
-            let btn = container.querySelector('.delete-toggle');
-            if (!btn) {
-                btn = document.createElement('button');
-                btn.textContent = 'X';
-                btn.className = `category-button delete-toggle level-${levelToDisplay}`;
-                container.appendChild(btn);
-            } else {
-                // Aggiorna solo la classe del livello
-                btn.className = btn.className.replace(/level-\d/, `level-${levelToDisplay}`);
-            }
+        if (titleContainer && !existingToggle) {
+            const deleteToggleContainer = document.createElement('div');
+            deleteToggleContainer.className = 'delete-toggle-container';
 
-            // CLICK X → ENTRA IN DELETE MODE
-               btn.onclick = (e) => {
-               e.stopPropagation();
-               this.isDeleteMode = true;
-               categoryButtons.classList.add('delete-mode');
-               btn.classList.add('delete-mode-active');
-               document.body.classList.add('delete-mode-active');
-
-                if (this.currentClickOutsideHandler) {
-                    document.removeEventListener('click', this.currentClickOutsideHandler);
-                }
-
-                this.currentClickOutsideHandler = (ev) => {
-                    const isCategoryBtn = ev.target.closest('.category-button:not(.delete-toggle):not(.add-category)');
-                    const isDeleteBtn = ev.target.closest('.delete-toggle');
-
-                    if (!isCategoryBtn && !isDeleteBtn) {
-                        this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
-                    }
-                };
-
-                setTimeout(() => document.addEventListener('click', this.currentClickOutsideHandler), 100);
+            const deleteToggleButton = document.createElement('button');
+            deleteToggleButton.textContent = 'X';
+            deleteToggleButton.className = `category-button delete-toggle level-${levelToDisplay} ${this.isDeleteMode ? 'delete-mode-active' : ''}`;
+            deleteToggleButton.title = this.isDeleteMode ? 'Esci da Modalità Elimina' : 'Entra in Modalità Elimina';
+            deleteToggleButton.onclick = () => {
+                this.isDeleteMode = !this.isDeleteMode;
+                console.log(`Modalità Elimina: ${this.isDeleteMode ? 'ATTIVA' : 'DISATTIVA'}`);
+                categoryButtons.classList.toggle('delete-mode', this.isDeleteMode);
+                this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
             };
+
+            deleteToggleContainer.appendChild(deleteToggleButton);
+            titleContainer.insertBefore(deleteToggleContainer, titleContainer.firstChild);
         }
 
-        // === CATEGORIE DEL LIVELLO CORRENTE ===
+        // Filter categories based on the determined level and parent
         const categoriesToShow = categoriesList.filter(cat => {
-            if (levelToDisplay === 1) return !cat.parent;
-            return cat.parent === parentCategoryName;
+            if (levelToDisplay === 1) return !cat.parent; // Level 1: no parent
+            return cat.parent === parentCategoryName; // Level 2 or 3: match parent name
         });
 
+        // Log for debugging
+        console.log(`expense selected: ${selectedExpenseId}, categories: ${JSON.stringify(categoriesToShow.map(cat => cat.name))}`);
+        console.log(`searching for children of: ${parentCategoryName || 'none (Level 1)'}`);
+        console.log(`children found: ${JSON.stringify(categoriesToShow.map(cat => cat.name))}`);
+
+        // Render buttons for the selected level
         categoriesToShow.forEach(cat => {
-            const btn = document.createElement('button');
-            btn.textContent = cat.name;
-            btn.className = `category-button level-${levelToDisplay}`;
-            btn.onclick = async (e) => {
-                e.stopPropagation();
-
-if (this.isDeleteMode) {
-    if (!confirm(`Eliminare "${cat.name}" e TUTTE le sue sotto-categorie?`)) return;
-
-    // === STEP 1: Collect all categories to delete (parent + children + grandchildren) ===
-    const toDelete = [cat.name];  // the category being deleted
-
-    // First level children
-    const children = categoriesList
-        .filter(c => c.parent === cat.name)
-        .map(c => c.name);
-
-    // Second level children (grandchildren)
-    const grandchildren = [];
-    children.forEach(childName => {
-        const subs = categoriesList
-            .filter(c => c.parent === childName)
-            .map(c => c.name);
-        grandchildren.push(...subs);
-    });
-
-    // Add everything to delete list
-    toDelete.push(...children, ...grandchildren);
-
-    // === STEP 2: Delete from backend one by one ===
-    for (const name of toDelete) {
-        const res = await window.deleteSingleCategory(name);
-        if (!res.success) {
-            alert(`Errore eliminando "${name}"`);
-            // optionally break or continue
-        }
-    }
-
-    // === STEP 3: Remove all from local categoriesList ===
-    toDelete.forEach(name => {
-        const idx = categoriesList.findIndex(c => c.name === name);
-        if (idx !== -1) categoriesList.splice(idx, 1);
-    });
-
-    // === STEP 4: Clean all expenses that used any deleted category ===
-    expensesList.forEach(exp => {
-        let changed = false;
-
-        if (toDelete.includes(exp.category1)) {
-            exp.category1 = exp.category2 = exp.category3 = null;
-            changed = true;
-        } else if (toDelete.includes(exp.category2)) {
-            exp.category2 = exp.category3 = null;
-            changed = true;
-        } else if (toDelete.includes(exp.category3)) {
-            exp.category3 = null;
-            changed = true;
-        }
-
-        if (changed) {
-            window.expenseManager.renderRow(exp, exp.id === selectedExpenseId);
-        }
-    });
-
-    // === STEP 5: Exit delete mode and refresh UI ===
-    this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
-    return;
-}
-
-
-
-
-                // === ASSEGNAZIONE NORMALE ===
-                const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);
-                if (result.success) {
-                    const updatedExpense = result.data;
-                    const idx = expensesList.findIndex(e => e.id === updatedExpense.id);
-                    if (idx !== -1) expensesList[idx] = updatedExpense;
-                    window.expenseManager.renderRow(updatedExpense, true);
-
-                    if (levelToDisplay < 3) {
+            const button = document.createElement('button');
+            button.textContent = cat.name;
+            button.className = `category-button level-${levelToDisplay}`;
+            button.onclick = async () => {
+                if (this.isDeleteMode) {
+                    // Delete mode: delete the category
+                    console.log(`Deleting category ${cat.name}`);
+                    const result = await window.deleteSingleCategory(cat.name);
+                    if (result.success) {
+                        console.log('Category deleted successfully:', cat.name);
+                        // Remove category from categoriesList
+                        const index = categoriesList.findIndex(c => c.name === cat.name);
+                        if (index !== -1) {
+                            categoriesList.splice(index, 1);
+                            console.log('Removed category from categoriesList:', cat.name);
+                        }
+                        // Update expensesList to reflect category removal
+                        expensesList.forEach(expense => {
+                            if (expense.category1 === cat.name) {
+                                expense.category1 = null;
+                                expense.category2 = null;
+                                expense.category3 = null;
+                            } else if (expense.category2 === cat.name) {
+                                expense.category2 = null;
+                                expense.category3 = null;
+                            } else if (expense.category3 === cat.name) {
+                                expense.category3 = null;
+                            }
+                        });
+                        // Refresh UI
+                        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
                         this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                    } else {
+                        console.error('Failed to delete category:', result.message);
+                        alert('Failed to delete category: ' + result.message);
                     }
-
-                    if (levelToDisplay === 3) {
-                        const currentIdx = expensesList.findIndex(e => e.id === selectedExpenseId);
-                        const nextExpense = expensesList[currentIdx + 1] || expensesList[0];
-                        if (nextExpense) window.expenseManager.selectExpense(nextExpense.id);
+                } else {
+                    // Normal mode: assign category
+                    console.log(`Assigning category ${cat.name} at level ${levelToDisplay} to expense ${selectedExpenseId}`);
+                    const result = await window.assignCategoryToExpense(expense, levelToDisplay, cat.name);
+                    if (result.success) {
+                        console.log('Category assigned successfully:', result.data);
+                        const index = expensesList.findIndex(e => e.id === selectedExpenseId);
+                        if (index !== -1) {
+                            expensesList[index] = result.data;
+                        }
+                        window.expenseManager.updateExpenseDisplay(expensesList, selectedExpenseId);
+                        // Auto-select next expense after Level 3 assignment
+                        if (levelToDisplay === 3) {
+                            console.log('Level 3 assigned, selecting next expense');
+                            const currentIndex = expensesList.findIndex(e => e.id === selectedExpenseId);
+                            const nextIndex = currentIndex + 1 < expensesList.length ? currentIndex + 1 : 0;
+                            const nextExpenseId = expensesList[nextIndex].id;
+                            console.log(`Dispatching expenseSelected event for next expense ID: ${nextExpenseId}, index: ${nextIndex}`);
+                            const expenseList = document.getElementById('expense-list');
+                            if (expenseList) {
+                                expenseList.dispatchEvent(new CustomEvent('expenseSelected', { detail: { id: nextExpenseId } }));
+                                // Scroll to top if selecting first expense
+                                if (nextIndex === 0) {
+                                    expenseList.scrollTop = 0;
+                                    console.log('Scrolled to top of expense list');
+                                }
+                            } else {
+                                console.error('expense-list not found for dispatching event');
+                            }
+                        } else {
+                            this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                        }
+                    } else {
+                        console.error('Failed to assign category:', result.message);
+                        alert('Failed to assign category: ' + result.message);
                     }
                 }
             };
-            categoryButtons.appendChild(btn);
+            categoryButtons.appendChild(button);
         });
 
-        // === PULSANTE AGGIUNGI NUOVA CATEGORIA ===
+        // Add three dots button for adding a new category
         const addButton = document.createElement('button');
         addButton.className = `category-button add-category level-${levelToDisplay} ${this.isDeleteMode ? 'disabled' : ''}`;
-        addButton.innerHTML = '⋮';
-        addButton.onclick = (e) => {
-            e.stopPropagation();
-            if (window.categoriesManager?.isDeleteMode) return;
-
+        addButton.innerHTML = '⋮'; // Three dots symbol
+        addButton.title = `Add new category to Level ${levelToDisplay}`;
+        addButton.onclick = () => {
+            // Disable add category in delete mode
             if (this.isDeleteMode) {
-                this.exitDeleteMode(selectedExpenseId, expensesList, categoriesList);
+                console.log('Cannot add category in delete mode');
                 return;
             }
-
+            // Replace button with input field
             const input = document.createElement('input');
             input.type = 'text';
-            input.placeholder = 'Nuova categoria...';
-            input.style.cssText = `
-                padding: 10px 14px; font-size: 15px; font-weight: 500;
-                border: 2px solid #3b82f6; border-radius: 8px;
-                background: white; color: #1f2937; outline: none;
-                min-width: 180px; box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
-                caret-color: #3b82f6;
-            `;
-
+            input.className = `category-button add-category level-${levelToDisplay} editing`;
+            input.style.minWidth = '100px';
+            input.style.caretColor = '#fff'; // White cursor
             categoryButtons.replaceChild(input, addButton);
             input.focus();
-            input.select();
 
-            let submitted = false;
-            const submit = async () => {
-                if (submitted) return;
-                submitted = true;
-
-                const name = input.value.trim();
-                if (!name || (name.match(/[a-zA-Z]/g) || []).length < 2) {
-                    categoryButtons.replaceChild(addButton, input);
-                    return;
-                }
-
-                const parent = levelToDisplay === 1 ? null :
-                              levelToDisplay === 2 ? expense.category1 : expense.category2;
-
-                const res = await window.addNewCategory(name, parent);
-                if (res.success) {
-                    categoriesList.push(res.data);
-                    this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+            // Handle input submission (Enter key or blur)
+            const submitCategory = async () => {
+                const categoryName = input.value.trim();
+                if (categoryName) {
+                    // Validate: must have at least 2 alphabetic letters
+                    const alphabeticCount = (categoryName.match(/[a-zA-Z]/g) || []).length;
+                    if (alphabeticCount < 2) {
+                        console.log(`Invalid category name: ${categoryName}, only ${alphabeticCount} alphabetic letters`);
+                        // Silently restore three dots button
+                        categoryButtons.replaceChild(addButton, input);
+                        return;
+                    }
+                    const parentCategory = levelToDisplay === 1 ? null :
+                        levelToDisplay === 2 ? expense.category1 :
+                        expense.category2;
+                    const result = await window.addNewCategory(categoryName, parentCategory);
+                    if (result.success) {
+                        console.log('New category added:', result.data);
+                        categoriesList.push(result.data);
+                        this.updateCategoryButtons(selectedExpenseId, expensesList, categoriesList);
+                    } else {
+                        console.error('Failed to add category:', result.message);
+                        alert('Failed to add category: ' + result.message);
+                        // Restore three dots button
+                        categoryButtons.replaceChild(addButton, input);
+                    }
                 } else {
-                    alert(res.message || "Categoria già esistente");
+                    // Empty input, restore three dots button
                     categoryButtons.replaceChild(addButton, input);
                 }
             };
 
-            input.onkeydown = ev => {
-                if (ev.key === 'Enter') { ev.preventDefault(); submit(); }
-                if (ev.key === 'Escape') { submitted = true; categoryButtons.replaceChild(addButton, input); }
-            };
-            input.onblur = () => { if (!submitted) submit(); };
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitCategory();
+                }
+            });
+
+            input.addEventListener('blur', submitCategory);
         };
         categoryButtons.appendChild(addButton);
+
+        console.log('updateCategoryButtons completed');
     }
 };
 
 window.categoriesManager = categoriesManager;
-console.log('categoriesManager → PRONTO, FUNZIONA AL 100%, NIENTE SPARIZIONI');
+console.log('categoriesManager initialized');

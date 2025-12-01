@@ -17,58 +17,42 @@ function loadPage(page) {
     </header>
     <main class="main-container ${page === 'categorize' ? 'main-container-categorize' : ''}" id="main-content"></main>
   `;
+  console.log('HTML content updated for page:', page);
 
-  document.querySelectorAll('script[data-page]').forEach(s => s.remove());
-  document.querySelectorAll('link[data-page]').forEach(l => l.remove());
+  // Remove existing page scripts and styles
+  const existingScripts = document.querySelectorAll('script[data-page]');
+  existingScripts.forEach(script => {
+    console.log('Removing existing script:', script.src);
+    script.remove();
+  });
+  const existingStyles = document.querySelectorAll('link[data-page]');
+  existingStyles.forEach(style => {
+    console.log('Removing existing style:', style.href);
+    style.remove();
+  });
 
+  // Load page-specific scripts and styles with debug
   if (page === 'upload') {
-    console.log('Caricamento pagina Upload');
-
+    console.log('Loading upload page script');
     const style = document.createElement('link');
     style.rel = 'stylesheet';
-    style.href = 'src/uploadPage/uploadPage.css';
+    style.href = 'src/uploadPage/uploadPage.css'; // Assuming a CSS file exists
     style.dataset.page = 'upload';
     document.head.appendChild(style);
 
-    // CARICHIAMO PRIMA fileParser.js (OBBLIGATORIO)
-    const parserScript = document.createElement('script');
-    parserScript.src = 'src/uploadPage/fileParser.js';  // ← SENZA SPAZIO!
-    parserScript.type = 'module';
-    parserScript.dataset.page = 'upload';
-    document.body.appendChild(parserScript);
-
-    parserScript.onload = () => {
-      console.log('fileParser.js caricato con successo');
-
-      // POI uploadPage.js
-      const script = document.createElement('script');
-      script.src = 'src/uploadPage/uploadPage.js';
-      script.type = 'module';
-      script.dataset.page = 'upload';
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        console.log('uploadPage.js caricato → avvio renderUploadPage');
-        if (typeof window.renderUploadPage === 'function') {
-          window.renderUploadPage();
-        } else {
-          console.error('renderUploadPage non trovata!');
-        }
-      };
-    };
-
-    // In caso di errore nel caricamento del parser
-    parserScript.onerror = () => {
-      console.error('Impossibile caricare fileParser.js');
-    };
-
+    const script = document.createElement('script');
+    script.src = 'src/uploadPage/uploadPage.js';
+    script.type = 'module';
+    script.dataset.page = 'upload';
+    document.body.appendChild(script);
   } else if (page === 'categorize') {
-    console.log('Caricamento pagina Categorize');
+    console.log('Loading categorize page styles and scripts');
     const style = document.createElement('link');
     style.rel = 'stylesheet';
     style.href = 'src/categorizationPage/StyleExpCategorization.css';
     style.dataset.page = 'categorize';
     document.head.appendChild(style);
+    console.log('Added StyleExpCategorization.css link:', style.href);
 
     const expenseScript = document.createElement('script');
     expenseScript.src = 'src/categorizationPage/expenseManager.js';
@@ -77,6 +61,7 @@ function loadPage(page) {
     document.body.appendChild(expenseScript);
 
     expenseScript.onload = () => {
+      console.log('expenseManager.js loaded, loading categoriesManager.js');
       const categoriesScript = document.createElement('script');
       categoriesScript.src = 'src/categorizationPage/categoriesManager.js';
       categoriesScript.type = 'module';
@@ -84,6 +69,7 @@ function loadPage(page) {
       document.body.appendChild(categoriesScript);
 
       categoriesScript.onload = () => {
+        console.log('categoriesManager.js loaded, loading rulesManager.js');
         const rulesScript = document.createElement('script');
         rulesScript.src = 'src/categorizationPage/rulesManager.js';
         rulesScript.type = 'module';
@@ -91,32 +77,25 @@ function loadPage(page) {
         document.body.appendChild(rulesScript);
 
         rulesScript.onload = () => {
+          console.log('rulesManager.js loaded, loading categorizationPage.js');
           const pageScript = document.createElement('script');
           pageScript.src = 'src/categorizationPage/categorizationPage.js';
           pageScript.type = 'module';
           pageScript.dataset.page = 'categorize';
           document.body.appendChild(pageScript);
-
-          pageScript.onload = () => {
-            if (window.initializeCategorization) window.initializeCategorization();
-          };
         };
       };
     };
-
   } else if (page === 'visualize') {
-    console.log('Caricamento pagina Visualize');
+    console.log('Loading visualize page script');
     const script = document.createElement('script');
     script.src = 'src/visualizationPage/visualizationPage.js';
     script.type = 'module';
     script.dataset.page = 'visualize';
     document.body.appendChild(script);
-
-    script.onload = () => {
-      if (window.renderVisualizationPage) window.renderVisualizationPage();
-    };
   }
 }
 
+// Load default page
+console.log('Initializing with default page: categorize');
 loadPage('categorize');
-window.loadPage = loadPage;
