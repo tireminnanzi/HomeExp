@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .visualize-container {
+      padding: 20px;
+      height: calc(100vh - 120px); /* lascia spazio al menu */
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, sans-serif;
+    }
+
+    #monthly-histogram {
+      flex: 1;
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .chart-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="visualize-container">
+    <h2 class="chart-title">Spesa Totale per Mese</h2>
+    <canvas id="monthly-histogram"></canvas>
+  </div>
+</body>
+</html>

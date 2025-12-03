@@ -61,14 +61,12 @@ function loadPage(page) {
   } else if (page === 'categorize') {
     console.log('Caricamento pagina Categorize');
 
-    // CSS
     const style = document.createElement('link');
     style.rel = 'stylesheet';
     style.href = 'src/categorizationPage/StyleExpCategorization.css';
     style.dataset.page = 'categorize';
     document.head.appendChild(style);
 
-    // Carica HTML separato
     fetch('src/categorizationPage/categorization.html')
       .then(r => r.text())
       .then(html => {
@@ -107,15 +105,21 @@ function loadPage(page) {
   // ==================== VISUALIZE ====================
   } else if (page === 'visualize') {
     console.log('Caricamento pagina Visualize');
-    const script = document.createElement('script');
-    script.src = 'src/visualizationPage/visualizationPage.js';
-    script.type = 'module';
-    script.dataset.page = 'visualize';
-    document.body.appendChild(script);
 
-    script.onload = () => {
-      if (window.renderVisualizationPage) window.renderVisualizationPage();
-    };
+    fetch('src/visualizationPage/visualization.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('main-content').innerHTML = html;
+
+        const script = document.createElement('script');
+        script.src = 'src/visualizationPage/visualizationPage.js';
+        script.type = 'module';
+        script.dataset.page = 'visualize';
+        document.body.appendChild(script);
+      })
+      .catch(err => {
+        console.error('Errore caricamento visualization.html:', err);
+      });
   }
 }
 

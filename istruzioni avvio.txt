@@ -1,0 +1,8 @@
+Apri un CMD
+cd c:/prog/homeexp/frontend
+npm start
+Apri un CMD
+cd c:/prog/homeexp/backend
+npm start
+Browser:  http://localhost:8080
+

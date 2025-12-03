@@ -6,27 +6,35 @@ async function initializeCategorization() {
     const mainContent = document.getElementById('main-content');
     if (!mainContent) return console.error('main-content not found');
 
-    mainContent.innerHTML = `
-        <div class="grid-container">
-            <div class="expense-column">
-                <h2 class="column-title">Expenses</h2>
+mainContent.innerHTML = `
+    <div class="grid-container">
+        <!-- COLONNA SINISTRA - SPESE (scroll interno) -->
+        <div class="expense-column">
+            <h2 class="column-title">Expenses</h2>
+            <div class="scrollable-list">
                 <ul id="expense-list" class="expense-list"></ul>
             </div>
-            <div class="category-column">
-                <div class="category-top">
-                    <h2 class="column-title">Categories</h2>
-                    <div id="category-buttons"></div>
-                </div>
-                <div class="category-bottom">
-                    <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
-                    <form id="rule-form" class="rule-form" style="display:none;">
-                        <input type="text" id="rule-input" class="rule-input" placeholder="Parole chiave (es. amazon netto)" disabled>
-                    </form>
+        </div>
+
+        <!-- COLONNA DESTRA - CATEGORIE + REGOLE -->
+        <div class="category-column">
+            <div class="category-top">
+                <h2 class="column-title">Categories</h2>
+                <div id="category-buttons" class="scrollable-buttons"></div>
+            </div>
+
+            <div class="category-bottom">
+                <button id="add-rule-button" class="add-rule-button">Add a Rule</button>
+                <form id="rule-form" class="rule-form" style="display:none;">
+                    <input type="text" id="rule-input" class="rule-input" placeholder="Parole chiave (es. amazon netto)" disabled>
+                </form>
+                <div class="scrollable-rules">
                     <div id="rules-list"></div>
                 </div>
             </div>
         </div>
-    `;
+    </div>
+`;
 
     const addRuleButton = document.getElementById('add-rule-button');
     const ruleForm = document.getElementById('rule-form');
